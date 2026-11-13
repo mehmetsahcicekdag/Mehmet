@@ -1,0 +1,25 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.mehmetsahcicekdag.segem'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.mehmetsahcicekdag.segem'
+        minSdk 24
+        targetSdk 34
+        versionCode 21702
+        versionName '2.17.2'
+    }
+    signingConfigs {
+        main {
+            storeFile file('../sigorta.keystore')
+            storePassword 'SigortaSinavi2026'
+            keyAlias 'sigorta'
+            keyPassword 'SigortaSinavi2026'
+        }
+    }
+    buildTypes {
+        release { signingConfig signingConfigs.main; minifyEnabled false }
+        debug { signingConfig signingConfigs.main }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
