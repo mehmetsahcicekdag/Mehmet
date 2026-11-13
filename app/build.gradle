@@ -3,10 +3,10 @@ android {
     namespace 'com.mehmetsahcicekdag.segem'
     compileSdk 34
     defaultConfig {
-        applicationId 'com.mehmetsahcicekdag.segem'
+        applicationId 'com.firstclass.sigortasinavi'
         minSdk 24
         targetSdk 34
-        versionCode 21702
+        versionCode 21703
         versionName '2.17.2'
     }
     signingConfigs {
