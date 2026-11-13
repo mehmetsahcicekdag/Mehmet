@@ -1,8 +1,8 @@
 {
   "name": "talktime",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "TalkTime v1.0 – uçtan uca şifreli sohbet",
+  "description": "TalkTime v1.1 – uçtan uca şifreli sohbet",
   "dependencies": {
     "@capacitor/android": "8.6.2",
     "@capacitor/cli": "8.6.2",

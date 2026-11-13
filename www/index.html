@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
-<title>TalkTime v1.0 – Şifreli Sohbet</title>
+<title>TalkTime v1.1 – Şifreli Sohbet</title>
 <meta name="description" content="TalkTime: uçtan uca şifreli, sınırsız sabitleme ve link paylaşımlı sohbet uygulaması.">
 <meta name="theme-color" content="#06071a">
-<meta name="app-version" content="1.0">
+<meta name="app-version" content="1.1">
 <!-- WhatsApp / sosyal paylaşım önizlemesi -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TalkTime">
@@ -185,7 +185,7 @@ mark{background:var(--pin);color:#000;border-radius:3px}
 <!-- KİLİT EKRANI -->
 <section id="v-lock" class="view hidden">
   <div class="scroll">
-    <img class="hero" src="icons/icon-192.png" alt="">
+    <img class="hero" src="icons/bubble.png" alt="">
     <h2 class="big gt">TalkTime</h2>
     <p class="sub" id="lock-msg">PIN kodunu gir</p>
     <div class="lockdots" id="lock-dots"></div>
@@ -197,7 +197,7 @@ mark{background:var(--pin);color:#000;border-radius:3px}
 <!-- KARŞILAMA -->
 <section id="v-onb" class="view hidden">
   <div class="scroll">
-    <img class="hero" src="icons/icon-192.png" alt="">
+    <img class="hero" src="icons/bubble.png" alt="">
     <h2 class="big gt">TalkTime</h2>
     <p class="sub">Uçtan uca şifreli sohbet. Linkleri paylaş, istediğin kadar mesaj sabitle.</p>
     <input id="onb-name" class="field" maxlength="30" placeholder="Adın (karşı taraf bunu görür)" style="max-width:360px">
@@ -210,7 +210,7 @@ mark{background:var(--pin);color:#000;border-radius:3px}
 <!-- SOHBET LİSTESİ -->
 <section id="v-list" class="view hidden">
   <div class="top">
-    <div class="brand"><img src="icons/icon-192.png" alt=""><h1 class="gt">TalkTime</h1></div>
+    <div class="brand"><img src="icons/bubble.png" alt=""><h1 class="gt">TalkTime</h1></div>
     <span class="pill" id="net-pill">bağlanıyor</span>
     <button class="ib" id="btn-settings" aria-label="Ayarlar"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
   </div>
@@ -261,15 +261,15 @@ mark{background:var(--pin);color:#000;border-radius:3px}
 </script>
 <script>
 "use strict";
-/* ================= TalkTime v1.0 ================= */
-const VERSION = "1.0";
+/* ================= TalkTime v1.1 ================= */
+const VERSION = "1.1";
 const LS = "talktime_v1";
 const COLORS = ["#2a6bff","#a43cff","#ff3db8","#ff9a1f","#1fb6ff","#2ee59d","#ff4d6d","#7a5cff"];
 const REACTS = ["❤️","👍","😂","😮","😢","🙏"];
 const DEF_SETTINGS = {
   e2ee:true, readReceipts:true, typing:true, presence:true, linkPreview:true, pinBar:true, syncPins:true,
   reactions:true, enterSend:false, sound:true, vibrate:true, notify:false, dayDividers:true,
-  theme:"dark", fontSize:"15", lock:false, screenshot:false, keyWarn:true
+  theme:"dark", fontSize:"15", lock:false, screenshot:false, keyWarn:true, demo:true
 };
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -386,6 +386,7 @@ async function afterLoad(){
   S.chats = S.chats || {};
   applyTheme();
   await ensureIdentity();
+  if (S.settings.demo && !S.demoMade) createDemo();
   showView("list"); renderList();
   applyScreenshot();
   startPeer();
@@ -487,8 +488,9 @@ function startPeer(){
     else console.warn("peer", e.type, e);
   });
 }
-function isOnline(pid){ return !!(conns[pid] && conns[pid].open); }
+function isOnline(pid){ if (S.chats[pid]?.demo) return true; return !!(conns[pid] && conns[pid].open); }
 function connectTo(pid){
+  if (S.chats[pid]?.demo) return;
   if (!peer || peer.disconnected || !pid || pid === S.me.id || isOnline(pid)) return;
   rt[pid] = rt[pid] || {};
   if (rt[pid].dialing && now() - rt[pid].dialing < 10000) return;
@@ -526,6 +528,7 @@ function setupConn(c, out){
 }
 function rawSend(pid, obj){ const c = conns[pid]; if (c && c.open){ try { c.send(obj); return true; } catch(e){} } return false; }
 async function send(pid, obj){
+  if (S.chats[pid]?.demo){ demoHandle(pid, obj); return true; }
   if (!isOnline(pid)) return false;
   const ch = S.chats[pid];
   if (S.settings.e2ee && ch?.pub){
@@ -545,7 +548,7 @@ function newChat(pid, name, color){
 }
 function ackRank(s){ return {pending:0, sent:1, delivered:2, read:3}[s] ?? 0; }
 async function flush(pid){
-  const ch = S.chats[pid]; if (!ch) return;
+  const ch = S.chats[pid]; if (!ch || ch.demo) return;
   for (const m of ch.messages){
     if (m.from === S.me.id && ackRank(m.status) < 2 && !m.deleted){
       if (await send(pid, {t:"msg", m:wire(m)}) && m.status === "pending") m.status = "sent";
@@ -696,6 +699,59 @@ function handleJoin(){
   toast("Bağlanılıyor… Karşı taraf uygulamayı açınca sohbet başlar.", 3500);
 }
 
+
+/* ---------- DENEME SOHBETİ (kimseye bağlanmadan her şeyi dene) ---------- */
+const DEMO_ID = "demo-rehber";
+function createDemo(){
+  const t = now() - 60000 * 6;
+  const ch = newChat(DEMO_ID, "TalkTime Rehber", "#ff3db8");
+  ch.demo = true; delete ch.deleted;
+  const mk = (from, text, dt, extra = {}) => ({id:"d" + uid(), from: from === "me" ? S.me.id : DEMO_ID, text, ts:t + dt, status: from === "me" ? "read" : "recv", readByMe:true, rx:{}, ...extra});
+  const m1 = mk("bot", "Merhaba " + S.me.name + "! 👋 Ben TalkTime Rehber. Bu bir deneme sohbeti: buradan hiçbir şey dışarı gitmez, gönül rahatlığıyla her şeyi deneyebilirsin.", 0);
+  const m2 = mk("bot", "Herhangi bir mesaja dokun: yanıtla, kopyala, sabitle, etiketle, tepki ver, düzenle, sil… hepsi orada.", 20000);
+  const m3 = mk("bot", "Link paylaşımı böyle görünür:\nhttps://www.youtube.com\nAlttaki 🔗 düğmesiyle hızlı link gönderebilir, üstteki 🔗 ile sohbetteki tüm linkleri görebilirsin.", 40000);
+  const m4 = mk("me", "Sabitleme sınırı var mı?", 60000);
+  const m5 = mk("bot", "Yok! İstediğin kadar mesaj sabitleyebilirsin. Üstteki 📌 çubuğuna dokundukça sabitlenenler arasında gezersin, ☰ ile hepsinin listesini açarsın.", 80000, {replyTo:m4.id});
+  const m6 = mk("bot", "Sağ üstteki ⋮ menüsünde: sohbette arama, güvenlik kodu, kendini silen mesajlar, dışa aktarma var. Ana ekrandaki ⚙️ ile tüm ayarlar açılıp kapanır.", 100000);
+  const m7 = mk("bot", "Hazır olunca ana ekrandaki + düğmesiyle davet linki oluştur ve gerçek sohbete başla. Bana bir şey yaz, cevap vereyim 🙂", 120000);
+  ch.messages = [m1, m2, m3, m4, m5, m6, m7];
+  ch.pins = [{id:m3.id, ts:t, note:"Link", by:DEMO_ID}, {id:m5.id, ts:t + 1, note:"Önemli", by:DEMO_ID}];
+  m5.rx = {[S.me.id]:"👍"};
+  ch.lastAct = now(); ch.unread = 1; S.demoMade = true; save();
+}
+const DEMO_TIPS = [
+  "Bu mesajı sabitlemeyi dene: mesaja dokun → 📌 Sabitle.",
+  "Etiketli sabitleme: mesaja dokun → 🏷️ Etiketle sabitle. Sonra 📌 listesinde etikete göre süzebilirsin.",
+  "Gerçek sohbetlerde mesajlar uçtan uca şifreli gider; sunucu bile okuyamaz 🔒",
+  "⋮ menüsünden 'Kendini silen mesajlar'ı açarsan mesajlar okunduktan sonra kendiliğinden silinir ⏱",
+  "Ayarlar'dan PIN kilidi açarsan uygulama her açılışta PIN sorar.",
+  "Bir mesaja uzun değil, kısa dokunman yeterli; işlemler alttan açılır."
+];
+function demoReply(text){
+  const q = text.toLocaleLowerCase("tr-TR");
+  if (findLinks(text).length) return "Linkini aldım 🔗 Üstteki 🔗 düğmesine bas: paylaşılan tüm linkler orada, aranabilir ve sabitlenebilir.";
+  if (q.includes("sabitle") || q.includes("pin")) return "Sabitleme sınırsız 📌 Mesaja dokun → Sabitle. İstersen etiket de ekle (Önemli, Adres, Yapılacak…).";
+  if (q.includes("şifre") || q.includes("kripto") || q.includes("güven")) return "Gerçek sohbetlerde her mesaj telefonda kilitlenir, sadece karşı tarafın telefonunda açılır 🔒 ⋮ → Güvenlik kodu ile doğrulayabilirsin.";
+  if (q.includes("merhaba") || q.includes("selam")) return "Selam " + S.me.name + "! 😊 " + DEMO_TIPS[0];
+  if (q.includes("davet") || q.includes("bağlan") || q.includes("nasıl")) return "Ana ekrana dön → + düğmesi → linki WhatsApp'tan gönder. Karşı taraf tıklayınca sohbetiniz başlar. Kod ile bağlan seçeneği de var.";
+  const ch = S.chats[DEMO_ID]; ch._tip = ((ch._tip || 0) + 1) % DEMO_TIPS.length; return DEMO_TIPS[ch._tip];
+}
+function demoHandle(pid, obj){
+  const ch = S.chats[pid]; if (!ch) return;
+  if (obj.t !== "msg") return;
+  const m = ch.messages.find(x => x.id === obj.m.id); if (!m) return;
+  setTimeout(() => { m.status = "delivered"; save(); if (cur === pid) renderMsgs(); }, 400);
+  setTimeout(() => { m.status = "read"; if (m.exp && !m.expAt) m.expAt = now() + m.exp; save(); if (cur === pid) renderMsgs(); }, 900);
+  setTimeout(() => { rt[pid] = rt[pid] || {}; rt[pid].typing = true; renderHeader(); if (cur === pid) renderMsgs(); }, 1100);
+  setTimeout(() => {
+    rt[pid].typing = false;
+    const r = {id:"d" + uid(), from:pid, text:demoReply(m.text), ts:now(), status:"recv", rx:{}, exp:ch.timer || 0};
+    ch.messages.push(r); ch.lastAct = now();
+    if (cur === pid && !document.hidden){ r.readByMe = true; if (r.exp) r.expAt = now() + r.exp; beep(); } else { ch.unread = (ch.unread || 0) + 1; }
+    save(); renderAll();
+  }, 2300);
+}
+
 /* ================= RENDER ================= */
 function renderAll(){ renderList(); if (cur){ renderHeader(); renderMsgs(); renderPinbar(); } }
 function lastPreview(ch){
@@ -709,20 +765,25 @@ function renderList(){
   const box = $("#chat-list"); if (!box || !S?.me) return;
   const list = Object.values(S.chats).filter(c => !c.deleted).sort((a, b) => (b.pinnedChat ? 1 : 0) - (a.pinnedChat ? 1 : 0) || (b.pinnedChat - a.pinnedChat) || b.lastAct - a.lastAct);
   if (!list.length){
-    box.innerHTML = `<div class="empty"><img src="icons/icon-192.png" style="width:90px;border-radius:24px" alt="">
+    box.innerHTML = `<div class="empty"><img src="icons/bubble.png" style="width:90px;border-radius:24px" alt="">
       <b style="color:var(--txt);font-size:18px">Merhaba ${esc(S.me.name)}!</b>
       <span>İlk sohbetini başlatmak için davet linkini bir arkadaşına gönder. Linke tıkladığı anda ikiniz şifreli olarak yazışmaya başlarsınız.</span>
       <button class="btn" onclick="openInvite()">Davet linki oluştur</button>
-      <button class="btn sec" onclick="openCodeJoin()">Kod ile bağlan</button></div>`;
+      <button class="btn sec" onclick="openCodeJoin()">Kod ile bağlan</button>
+      <button class="btn sec" onclick="S.settings.demo=true;createDemo();renderList()">🎯 Deneme sohbetiyle keşfet</button></div>`;
     return;
   }
-  box.innerHTML = list.map(ch => {
+  const realCount = list.filter(c => !c.demo).length;
+  const banner = realCount ? "" : `<div class="empty" style="padding:18px 20px;gap:10px;border-bottom:1px solid var(--line)">
+      <span>Gerçek sohbete başlamak için bir arkadaşını davet et. Önce menüleri keşfetmek istersen <b>TalkTime Rehber</b> sohbetini aç.</span>
+      <div class="row2" style="width:100%;margin:0"><button class="btn" onclick="openInvite()">Davet et</button><button class="btn sec" onclick="openCodeJoin()">Kod ile bağlan</button></div></div>`;
+  box.innerHTML = banner + list.map(ch => {
     const last = ch.messages[ch.messages.length - 1];
     const on = isOnline(ch.id) && !ch.hidePresence && S.settings.presence;
     return `<div class="chat-item" data-open="${esc(ch.id)}">
       <div class="av" style="background:${esc(ch.color)}">${esc(initial(ch.name))}${on ? '<span class="dot"></span>' : ""}</div>
       <div class="ci-main">
-        <div class="ci-row"><span class="ci-name">${ch.pinnedChat ? '<span class="pinico">📌</span> ' : ""}${esc(ch.name)}</span><span class="ci-time">${last ? fmtShort(last.ts) : ""}</span></div>
+        <div class="ci-row"><span class="ci-name">${ch.pinnedChat ? '<span class="pinico">📌</span> ' : ""}${esc(ch.name)}${ch.demo ? ' <span class="pill" style="font-size:10px">deneme</span>' : ""}</span><span class="ci-time">${last ? fmtShort(last.ts) : ""}</span></div>
         <div class="ci-row"><span class="ci-last">${lastPreview(ch)}</span>${ch.unread ? `<span class="badge">${ch.unread}</span>` : ""}</div>
       </div></div>`;
   }).join("");
@@ -736,6 +797,7 @@ function tickHtml(m){
 }
 function statusLine(ch){
   if (rt[ch.id]?.typing && S.settings.typing) return {t:"yazıyor…", on:true};
+  if (ch.demo) return {t:"deneme sohbeti · çevrimiçi", on:true};
   if (!S.settings.presence || ch.hidePresence) return {t: S.settings.e2ee ? "🔒 uçtan uca şifreli" : "", on:false};
   if (isOnline(ch.id)) return {t:"çevrimiçi" + (S.settings.e2ee ? " · 🔒 şifreli" : ""), on:true};
   if (ch.lastSeen) return {t:"son görülme " + fmtDay(ch.lastSeen).toLocaleLowerCase("tr-TR") + " " + fmtTime(ch.lastSeen), on:false};
@@ -762,7 +824,8 @@ function renderMsgs(scrollEnd){
   const ch = S.chats[cur]; if (!ch) return;
   const box = $("#msgs"); const atEnd = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
   let html = "";
-  if (S.settings.e2ee) html += `<div class="e2e-note">🔒 Mesajlar uçtan uca şifrelidir. Sadece siz ikiniz okuyabilirsiniz, sunucu dahil kimse göremez.</div>`;
+  if (ch.demo) html += `<div class="e2e-note" style="color:var(--blue);border-color:rgba(31,182,255,.35);background:rgba(31,182,255,.08)">🎯 Bu bir deneme sohbetidir. Mesajların telefonundan dışarı çıkmaz; tüm menüleri gönül rahatlığıyla dene.</div>`;
+  else if (S.settings.e2ee) html += `<div class="e2e-note">🔒 Mesajlar uçtan uca şifrelidir. Sadece siz ikiniz okuyabilirsiniz, sunucu dahil kimse göremez.</div>`;
   if (ch.keyChanged) html += `<div class="e2e-note" style="color:var(--danger);border-color:var(--danger)">⚠️ ${esc(ch.name)} kişisinin güvenlik kodu değişti (yeni cihaz ya da sıfırlama olabilir). Menüden kodu birlikte kontrol edin.</div>`;
   let lastDay = "";
   const byId = {}; for (const m of ch.messages) byId[m.id] = m;
@@ -1024,6 +1087,7 @@ function openChatMenu(){
       download(`TalkTime_${ch.name}_${new Date().toISOString().slice(0, 10)}.txt`, "TalkTime v" + VERSION + " sohbet dökümü\n\n" + txt, "text/plain");
     }
     else if (a === "clear"){ if (confirm("Bu sohbetteki tüm mesajlar senin cihazından silinsin mi?")){ ch.messages = []; ch.pins = []; save(); renderAll(); } }
+    else if (a === "delete" && ch.demo){ if (confirm("Deneme sohbeti silinsin mi? Ayarlar'dan tekrar açabilirsin.")){ delete S.chats[cur]; S.settings.demo = false; save(); history.back(); } }
     else if (a === "delete"){ if (confirm("Sohbet silinsin mi?")){ ch.messages = []; ch.pins = []; ch.deleted = true; try { conns[cur]?.close(); } catch(e){} save(); history.back(); } }
   };
 }
@@ -1044,7 +1108,9 @@ function openSearch(){
   $("#sheet").onclick = e => { const t = e.target.closest("[data-go]"); if (t){ closeSheet(); setTimeout(() => jumpTo(t.dataset.go), 120); } };
 }
 async function openSafety(){
-  const ch = S.chats[cur]; const code = await safetyCode(cur);
+  const ch = S.chats[cur];
+  if (ch.demo){ openSheet("🔐 Güvenlik kodu", `<p class="sub" style="margin:0">Gerçek bir sohbette burada 12 haneli bir kod çıkar. Aynı kod karşı tarafın ekranında da görünür; yan yana karşılaştırıp aynıysa aranıza kimsenin girmediğinden emin olursunuz.</p><div class="code">1234 5678 9012</div><p class="sub" style="text-align:center;font-size:12px">(örnek kod)</p>`); return; }
+  const code = await safetyCode(cur);
   openSheet("🔐 Güvenlik kodu", code ? `<p class="sub" style="margin:0">Bu kod senin telefonunda ve ${esc(ch.name)} kişisinin telefonunda <b>aynı</b> görünmeli. Yan yana ya da telefonla karşılaştırın. Aynıysa aranıza kimse girmemiştir.</p>
       <div class="code">${code}</div>
       ${ch.verified ? '<p style="color:var(--ok);text-align:center">✓ Doğrulandı</p>' : ""}
@@ -1081,7 +1147,8 @@ const SET_DEF = [
     ["linkPreview", "Link kartları", "Linklerin altında site adı ve ikon gösterir."],
     ["reactions", "Emoji tepkileri", ""],
     ["dayDividers", "Tarih ayraçları", ""],
-    ["enterSend", "Enter ile gönder", "Kapalıysa Enter yeni satır açar."]
+    ["enterSend", "Enter ile gönder", "Kapalıysa Enter yeni satır açar."],
+    ["demo", "Deneme sohbeti (TalkTime Rehber)", "Kimseye bağlanmadan menüleri denemek için. Kapatınca listeden kalkar."]
   ]],
   ["Bildirimler", [
     ["notify", "Bildirimler", "Uygulama arka plandayken yeni mesajı bildirir."],
@@ -1106,7 +1173,7 @@ function renderSettings(){
     <button class="set" data-x="backup" style="width:100%;text-align:left"><div class="st">📦 Yedek al<div class="sd">Tüm sohbetleri ve anahtarını dosyaya kaydeder (yeni telefona taşımak için)</div></div></button>
     <button class="set" data-x="restore" style="width:100%;text-align:left"><div class="st">♻️ Yedeği geri yükle</div></button>
     <button class="set" data-x="wipe" style="width:100%;text-align:left;color:var(--danger)"><div class="st">🗑️ Tüm verileri sil</div></button>
-    <div class="ver"><img src="icons/icon-192.png" style="width:44px;border-radius:12px" alt=""><br><b class="gt">TalkTime</b> v${VERSION}<br>Kimliğin: ${esc(S.me.id)}</div>
+    <div class="ver"><img src="icons/bubble.png" style="width:44px;border-radius:12px" alt=""><br><b class="gt">TalkTime</b> v${VERSION}<br>Kimliğin: ${esc(S.me.id)}</div>
     <input type="file" id="restore-file" accept=".json,application/json" class="hidden">`;
   $("#set-body").innerHTML = h;
   for (const sel of document.querySelectorAll("[data-sel]")) sel.value = s[sel.dataset.sel];
@@ -1126,6 +1193,7 @@ async function onSettingChange(k, v, inp){
     if (!("Notification" in window)){ inp.checked = false; toast("Bu cihaz bildirimi desteklemiyor"); return; }
     const p = await Notification.requestPermission(); if (p !== "granted"){ inp.checked = false; toast("Bildirim izni verilmedi"); return; }
   }
+  if (k === "demo"){ if (v){ createDemo(); toast("Deneme sohbeti eklendi"); } else if (S.chats[DEMO_ID]){ delete S.chats[DEMO_ID]; toast("Deneme sohbeti kaldırıldı"); } renderList(); }
   if (k === "screenshot" && v && !window.Capacitor) toast("Bu özellik sadece APK sürümünde çalışır");
   s[k] = v; save();
   if (k === "screenshot") applyScreenshot();
