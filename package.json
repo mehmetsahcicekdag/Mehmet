@@ -1,0 +1,12 @@
+{
+  "name": "talktime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TalkTime v1.0 – uçtan uca şifreli sohbet",
+  "dependencies": {
+    "@capacitor/android": "8.6.2",
+    "@capacitor/cli": "8.6.2",
+    "@capacitor/core": "8.6.2",
+    "@capacitor-community/privacy-screen": "8.0.0"
+  }
+}

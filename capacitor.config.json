@@ -1,0 +1,8 @@
+{
+  "appId": "com.talktime.chat",
+  "appName": "TalkTime",
+  "webDir": "www",
+  "backgroundColor": "#06071a",
+  "android": { "backgroundColor": "#06071a" },
+  "plugins": { "PrivacyScreen": { "enable": false } }
+}

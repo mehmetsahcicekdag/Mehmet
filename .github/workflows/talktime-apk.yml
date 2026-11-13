@@ -1,0 +1,56 @@
+name: TalkTime APK
+on:
+  push:
+    branches: [talktime]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: android-actions/setup-android@v3
+      - name: Bağımlılıklar
+        run: npm install
+      - name: Android projesi
+        run: npx cap add android
+      - name: Logo ve sürüm
+        run: |
+          pip install pillow
+          python3 tools/brand_android.py
+          npx cap sync android
+      - name: APK derle
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+      - name: APK'yı hazırla
+        run: |
+          mkdir -p out
+          cp android/app/build/outputs/apk/debug/app-debug.apk out/TalkTime-v1.0.apk
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TalkTime-v1.0-apk
+          path: out/TalkTime-v1.0.apk
+      - name: GitHub Release (telefondan indirme linki)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete v1.0 -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create v1.0 out/TalkTime-v1.0.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "TalkTime v1.0" --notes "TalkTime v1.0 – Android APK (uçtan uca şifreli sohbet)"
+      - name: APK dalına yaz
+        run: |
+          cd out
+          git init -q -b talktime-apk
+          git config user.name "TalkTime CI"; git config user.email "ci@users.noreply.github.com"
+          git add TalkTime-v1.0.apk && git commit -qm "TalkTime v1.0 APK"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" talktime-apk
