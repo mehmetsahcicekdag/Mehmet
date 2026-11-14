@@ -1,0 +1,7 @@
+{
+  "appId": "app.englow.learn",
+  "appName": "Englow",
+  "webDir": "www",
+  "backgroundColor": "#0b1f5c",
+  "android": { "backgroundColor": "#0b1f5c" }
+}

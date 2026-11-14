@@ -1,0 +1,48 @@
+name: Englow APK
+on:
+  push:
+    branches: [englow]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Bağımlılıklar
+        run: npm install
+      - name: Android projesi
+        run: npx cap add android
+      - name: Logo, izinler ve sürüm
+        run: |
+          pip install pillow
+          python3 tools/brand_android.py
+          npx cap sync android
+      - name: APK derle
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+      - name: APK'yı hazırla
+        run: |
+          mkdir -p out
+          cp android/app/build/outputs/apk/debug/app-debug.apk out/Englow-v1.0.apk
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Englow-v1.0-apk
+          path: out/Englow-v1.0.apk
+      - name: GitHub Release (telefondan indirme linki)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete englow-v1.0 -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create englow-v1.0 out/Englow-v1.0.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "Englow v1.0" --notes "Englow v1.0 – English for Every Age · Android APK"
