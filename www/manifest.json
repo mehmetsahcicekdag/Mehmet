@@ -2,7 +2,7 @@
   "name": "TalkTime – Şifreli Sohbet",
   "short_name": "TalkTime",
   "description": "Uçtan uca şifreli sohbet. Linkleri paylaş, istediğin kadar mesaj sabitle.",
-  "version": "1.2",
+  "version": "1.3",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

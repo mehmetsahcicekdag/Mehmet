@@ -40,22 +40,22 @@ jobs:
       - name: APK'yı hazırla
         run: |
           mkdir -p out
-          cp android/app/build/outputs/apk/debug/app-debug.apk out/TalkTime-v1.2.apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk out/TalkTime-v1.3.apk
           ls -la out
       - uses: actions/upload-artifact@v4
         with:
-          name: TalkTime-v1.2-apk
-          path: out/TalkTime-v1.2.apk
+          name: TalkTime-v1.3-apk
+          path: out/TalkTime-v1.3.apk
       - name: GitHub Release (telefondan indirme linki)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete v1.2 -y --cleanup-tag -R ${{ github.repository }} || true
-          gh release create v1.2 out/TalkTime-v1.2.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "TalkTime v1.2" --notes "TalkTime v1.2 – Android APK (uçtan uca şifreli sohbet)"
+          gh release delete v1.3 -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create v1.3 out/TalkTime-v1.3.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "TalkTime v1.3" --notes "TalkTime v1.3 – Android APK (uçtan uca şifreli sohbet)"
       - name: APK dalına yaz
         run: |
           cd out
           git init -q -b talktime-apk
           git config user.name "TalkTime CI"; git config user.email "ci@users.noreply.github.com"
-          git add TalkTime-v1.2.apk && git commit -qm "TalkTime v1.2 APK"
+          git add TalkTime-v1.3.apk && git commit -qm "TalkTime v1.3 APK"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" talktime-apk
