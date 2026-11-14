@@ -1,5 +1,5 @@
-/* TalkTime v1.3 service worker */
-const CACHE = "talktime-v1.3";
+/* TalkTime v1.4 service worker */
+const CACHE = "talktime-v1.4";
 const SHELL = ["./", "index.html", "manifest.json", "icons/icon-192.png", "icons/icon-512.png", "icons/favicon.png", "icons/bubble.png", "demo/dag.jpg", "demo/gunbatimi.jpg", "demo/sehir.jpg", "demo/yemek.jpg"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
