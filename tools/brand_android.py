@@ -14,6 +14,18 @@ for f in glob.glob(os.path.join(RES, "drawable*", "splash.png")):
     bg.paste(logo.resize((s, s), Image.LANCZOS), ((w - s) // 2, (h - s) // 2)); bg.save(f)
 g = "android/app/build.gradle"; t = open(g).read()
 t = re.sub(r"versionCode \d+", "versionCode 4", t); t = re.sub(r'versionName "[^"]*"', 'versionName "1.3"', t)
+sign = """
+    signingConfigs {
+        debug {
+            storeFile file("../../tools/talktime-debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+"""
+if "talktime-debug.keystore" not in t:
+    t = t.replace("android {", "android {" + sign, 1)
 open(g, "w").write(t)
 v = os.path.join(RES, "values", "styles.xml")
 if os.path.exists(v):
