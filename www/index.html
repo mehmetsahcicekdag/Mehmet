@@ -287,6 +287,50 @@ body.dark .msnd{background:#134e4a}
 .stamp.on{filter:none;opacity:1;border-color:#16a34a;color:var(--text);background:#f0fdf4;transform:rotate(-3deg)}
 body.dark .stamp.on{background:#0f3d24}
 .choice .tag{background:#22c55e!important;color:#fff!important}
+/* ===== v2.0 ===== */
+.topbar .prog{flex:1}
+.obleo{display:flex;flex-direction:column;gap:8px;margin:4px 0 16px}
+.obleo img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #facc15;box-shadow:0 4px 0 #ca8a04}
+.obleo .bub{background:var(--card);border-radius:18px 18px 18px 6px;padding:12px 14px;box-shadow:0 4px 14px rgba(15,23,42,.08);font-size:1.05em;max-width:92%}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.ib{background:var(--card);border:3px solid var(--line);border-radius:20px;padding:12px 4px;font-weight:800;font-size:13px;color:var(--text);display:flex;flex-direction:column;align-items:center;gap:4px}
+.ib span{font-size:34px}
+.ib.sel{border-color:#2563eb;background:#dbeafe;box-shadow:0 4px 0 #1d4ed8}
+body.dark .ib.sel{background:#1e3a8a}
+.okline{color:#16a34a;font-weight:800;margin:6px 0}
+.proj{width:100%;height:auto;margin-top:6px}.proj .pl{font:800 16px Nunito,sans-serif;fill:var(--text)}
+.projx{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--muted)}
+.timepick{font:800 44px Baloo,sans-serif;border:3px solid #2563eb;border-radius:20px;padding:10px 18px;color:#1d4ed8;background:var(--card)}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px;margin:10px 0}
+.qk{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text);box-shadow:0 4px 0 var(--line)}
+.qk span{font-size:28px}.qk b{font-size:14px}.qk small{color:var(--muted);font-size:11px;text-align:center;line-height:1.2}
+.toks{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.tok{background:var(--card);border:2px solid var(--line);border-bottom-width:5px;border-radius:14px;padding:10px 12px;font-weight:800;font-size:1.1em;color:var(--text)}
+.tok.right{border-color:#16a34a;background:#dcfce7}.tok.wrong{border-color:#ef4444;background:#fee2e2}
+.chatbox{display:flex;flex-direction:column;gap:10px;padding-bottom:6px}
+.rolebar{background:#fef3c7;color:#92400e;border-radius:14px;padding:8px 12px;font-weight:800;font-size:14px}
+body.dark .rolebar{background:#422006;color:#fde68a}
+.cb{display:flex;gap:8px;align-items:flex-end}
+.cb img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #facc15;flex:none}
+.cb .cbody{padding:12px 14px;border-radius:20px;font-weight:700;font-size:1.05em;max-width:82%}
+.cb.cleo .cbody{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-bottom-left-radius:6px}
+.cb.cyou{justify-content:flex-end}.cb.cyou .cbody{background:var(--card);border:2px solid var(--line);border-bottom-right-radius:6px}
+.cb.cyou.ok .cbody{border-color:#16a34a}.cb.cyou.bad .cbody{border-color:#f97316}
+.who{font-size:11px;letter-spacing:1px;opacity:.8;margin-bottom:2px}
+.ctr{margin-top:6px;font-size:.9em;color:#fde68a}
+.cbtn{display:flex;gap:6px;margin-top:8px}.cbtn button{background:rgba(255,255,255,.2);border-radius:50%;width:36px;height:36px;font-size:16px}
+.hintbox{background:#fef9c3;border:2px dashed #eab308;border-radius:16px;padding:10px 12px;color:#713f12}
+body.dark .hintbox{background:#422006;color:#fde68a}
+.cbar{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:10px}
+.cbic{width:52px;height:52px;border-radius:50%;background:var(--card);border:2px solid var(--line);font-size:22px;box-shadow:0 3px 0 var(--line)}
+.ba{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bcol{flex:1;background:var(--card);border:3px solid var(--line);border-radius:20px;padding:12px;text-align:center;display:flex;flex-direction:column}
+.bcol small{font-weight:800;color:var(--muted);letter-spacing:1px}.bcol b{font:800 34px Baloo,sans-serif}.bcol span{font-size:13px;color:var(--muted);font-weight:700}
+.bcol.now{border-color:#facc15;box-shadow:0 5px 0 #ca8a04}.barrow{font-size:26px;color:#f59e0b}
+.skrow{display:grid;grid-template-columns:1fr;gap:4px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.skb{position:relative;height:18px;background:var(--line);border-radius:9px;overflow:hidden}
+.skb i{position:absolute;left:0;border-radius:9px}.skb .b{top:0;height:8px;background:#94a3b8}.skb .n{bottom:0;height:10px;background:linear-gradient(90deg,#ff2d95,#ff6a2b,#ffd21f)}
+.skv{font-size:13px;color:var(--muted);font-weight:700}
 </style>
 </head>
 <body>
@@ -457,7 +501,7 @@ const TOPICS = [
  {t:"Health+",tr:"Gelişmiş Sağlık",w:["symptom|belirti|🌡️","prescription|reçete|📃","injury|yaralanma|🩹","recover|iyileşmek|💚","diet|beslenme düzeni|🥦","exercise|egzersiz|🏋️","stress|stres|😵","sleep well|iyi uyumak|😴"]},
  {t:"Phrasal Verbs 2",tr:"Öbek Fiiller 2",w:["run out of|tükenmek|🪫","come up with|bulmak (fikir)|💡","get over|atlatmak|🌈","put off|ertelemek|⏸️","take off|havalanmak/çıkarmak|🛫","set up|kurmak|🏗️","carry on|devam etmek|▶️","break down|bozulmak|🔧"]},
  {t:"City Life",tr:"Şehir Hayatı",w:["traffic|trafik|🚦","crowded|kalabalık|👥","noisy|gürültülü|🔊","rent|kira|🏠","neighbourhood|mahalle|🏘️","public transport|toplu taşıma|🚌","skyscraper|gökdelen|🏙️","pedestrian|yaya|🚶"]},
- {t:"Culture",tr:"Kültür",w:["tradition|gelenek|🎎","festival|festival|🎉","custom|örf/adet|🫖","language|dil|🗣️","history|tarih|📜","heritage|miras|🏛️","celebrate|kutlamak|🥳","religion-free holiday|resmî tatil|🗓️"]},
+ {t:"Culture",tr:"Kültür",w:["tradition|gelenek|🎎","festival|festival|🎉","custom|örf/adet|🫖","language|dil|🗣️","history|tarih|📜","heritage|miras|🏛️","celebrate|kutlamak|🥳","public holiday|resmî tatil|🗓️"]},
  {t:"Cooking",tr:"Yemek Pişirme",w:["boil|kaynatmak|♨️","fry|kızartmak|🍳","bake|fırında pişirmek|🥖","chop|doğramak|🔪","mix|karıştırmak|🥣","recipe|tarif|📖","ingredient|malzeme|🧂","taste|tatmak|👅"]},
  {t:"Sports+",tr:"Gelişmiş Spor",w:["champion|şampiyon|🏆","coach|antrenör|📣","score|skor/gol atmak|🥅","match|maç|🏟️","referee|hakem|🧑‍⚖️","fans|taraftarlar|📣","training|antrenman|🏋️","draw|berabere kalmak|🤝"]},
  {t:"Linking Words",tr:"Bağlaçlar",w:["however|ancak|↪️","although|-e rağmen|⚖️","because|çünkü|➡️","so|bu yüzden|✔️","therefore|bu nedenle|∴","moreover|ayrıca|➕","unless|-medikçe|🚫","while|-iken|⏱️"]},
@@ -575,9 +619,77 @@ const STARTER = [
  {t:"Letters S–Z",tr:"Harfler S–Z",icon:"🔠",letters:"STUVWXYZ"},
  {t:"Numbers 0–10",tr:"Sayılar 0–10",icon:"🔢",nums:true}
 ];
+
+// ---------- v2.0: Chat with Leo + Pro English (Call Center) ----------
+// tur: [Leo'nun cümlesi, Türkçesi, örnek cevap, anahtar kelimeler ("" = her cevap olur)]
+const CHATS = [
+ {t:"Meet Leo",tr:"Leo ile tanış",icon:"👋",lvl:"A1",min:1,turns:[
+  ["Hi! I'm Leo. What's your name?","Merhaba! Ben Leo. Adın ne?","My name is Mehmet.",""],
+  ["Nice to meet you! Where are you from?","Tanıştığıma memnun oldum! Nerelisin?","I'm from Turkey.","from|turkey|türkiye|istanbul|i'm|i am"],
+  ["Cool! What do you do?","Harika! Ne iş yapıyorsun?","I'm a teacher.",""],
+  ["What do you like doing in your free time?","Boş zamanında ne yapmayı seversin?","I like reading and listening to music.","like|love|enjoy"],
+  ["It was nice talking to you. Goodbye!","Seninle konuşmak güzeldi. Hoşça kal!","Goodbye! See you soon.","bye|see you|goodbye"]]},
+ {t:"At the café",tr:"Kafede",icon:"☕",lvl:"A1",min:11,turns:[
+  ["Hello! What would you like to drink?","Merhaba! Ne içmek istersiniz?","I'd like a coffee, please.","like|please|coffee|tea|water|juice|want"],
+  ["Small, medium or large?","Küçük, orta mı büyük mü?","Medium, please.","small|medium|large"],
+  ["Anything to eat?","Yiyecek bir şey?","Yes, a sandwich, please.",""],
+  ["That's eight dollars. Cash or card?","Sekiz dolar. Nakit mi kart mı?","Card, please.","cash|card"],
+  ["Here you are. Have a nice day!","Buyurun. İyi günler!","Thank you, you too!","thank"]]},
+ {t:"At the hotel",tr:"Otelde",icon:"🏨",lvl:"A2",min:21,turns:[
+  ["Good evening! Do you have a reservation?","İyi akşamlar! Rezervasyonunuz var mı?","Yes, I have a reservation under Mehmet.","yes|reservation|no|booking"],
+  ["How many nights are you staying?","Kaç gece kalacaksınız?","Three nights.","night"],
+  ["Can I see your passport, please?","Pasaportunuzu görebilir miyim?","Sure, here you are.","here|sure|yes|of course"],
+  ["Breakfast is from seven to ten. Do you need anything else?","Kahvaltı yediden ona kadar. Başka bir şey?","What time is check-out?",""],
+  ["Your room is three oh five. Enjoy your stay!","Odanız 305. İyi konaklamalar!","Thank you very much.","thank"]]},
+ {t:"Asking directions",tr:"Yol sormak",icon:"🧭",lvl:"A2",min:31,turns:[
+  ["Hi! You look lost. Can I help you?","Kaybolmuş gibisin. Yardım edebilir miyim?","Yes, please. Where is the train station?","where|station|how|museum|hotel"],
+  ["Go straight and turn left at the bank.","Düz git ve bankadan sola dön.","Sorry, can you repeat that, please?","left|repeat|sorry|okay|ok|bank"],
+  ["Sure. Go straight, then turn left at the bank. It's five minutes on foot.","Tabii. Düz git, bankadan sola dön. Yürüyerek beş dakika.","Thank you so much!","thank"]]},
+ {t:"At the doctor",tr:"Doktorda",icon:"🩺",lvl:"B1",min:51,turns:[
+  ["Hello, what seems to be the problem?","Merhaba, şikâyetiniz nedir?","I have a headache and a sore throat.","have|hurt|pain|ache|feel|sore"],
+  ["How long have you had these symptoms?","Bu belirtiler ne zamandır var?","For three days.","day|week|since|for"],
+  ["Do you have a fever?","Ateşiniz var mı?","Yes, a little.","yes|no|little"],
+  ["Take this medicine twice a day and get some rest.","Bu ilacı günde iki kez alın ve dinlenin.","Thank you, doctor.","thank|ok|okay"]]},
+ {t:"Job interview",tr:"İş görüşmesi",icon:"💼",lvl:"B1",min:61,turns:[
+  ["Tell me a little about yourself.","Bana biraz kendinden bahset.","I'm a hard-working person with five years of experience.",""],
+  ["Why do you want this job?","Bu işi neden istiyorsun?","Because I want to grow in this field.","because|want|interest|love"],
+  ["What is your biggest strength?","En güçlü yönün nedir?","I'm a good team player.","i'm|i am|good|strength|my"],
+  ["Where do you see yourself in five years?","Beş yıl sonra kendini nerede görüyorsun?","I see myself as a team leader.","see|year|want|hope|would"],
+  ["Do you have any questions for us?","Bize sormak istediğin bir şey var mı?","Yes. What are the next steps?",""]]}
+];
+// Leo müşteriyi (ya da temsilciyi) oynar, sen çağrı merkezi çalışanısın
+const PRO = [
+ {t:"Greeting & verification",tr:"Karşılama ve kimlik doğrulama",icon:"📞",lvl:"B1",role:"CUSTOMER",turns:[
+  ["Hello, I'm calling about my credit card.","Merhaba, kredi kartım için arıyorum.","Thank you for calling. Could you please confirm your full name?","thank|name|confirm|help"],
+  ["It's John Smith.","John Smith.","Thank you, Mr Smith. For security, could you confirm your date of birth?","confirm|date of birth|security|verify|birth"],
+  ["Sure, March fifth, nineteen eighty-five.","Tabii, 5 Mart 1985.","Thank you, you're verified. How can I help you today?","help|thank|verified"]]},
+ {t:"Hold & transfer",tr:"Beklemeye alma ve aktarma",icon:"⏸️",lvl:"B1",role:"CUSTOMER",turns:[
+  ["I need to change my address.","Adresimi değiştirmem gerekiyor.","Of course. May I put you on hold for a moment?","hold|moment|second|minute"],
+  ["Okay, but please don't take too long.","Tamam ama lütfen uzun sürmesin.","Thank you for holding. I'm transferring you to the right department now.","thank|transfer|department"],
+  ["Will I have to explain everything again?","Her şeyi baştan mı anlatacağım?","No, I've added notes to your account, so you won't need to repeat it.","no|note|won't|don't|will not"]]},
+ {t:"Angry customer",tr:"Sinirli müşteri",icon:"😠",lvl:"B2",role:"CUSTOMER",turns:[
+  ["I've noticed an unauthorized transaction on my account, and I want this fixed now!","Hesabımda izinsiz bir işlem var, hemen düzeltilmesini istiyorum!","I'm very sorry to hear that. I understand how worrying this is. Let me check it right away.","sorry|understand|apolog|check"],
+  ["This is the second time! This is unacceptable!","Bu ikinci kez oluyor! Kabul edilemez!","I completely understand your frustration. I'll block the card now so it can't be used again.","understand|block|sorry|frustrat|cancel"],
+  ["And what about my money?","Peki ya param?","I'll open a dispute today. You'll get an update within five business days.","dispute|refund|days|update|investigat|back"],
+  ["Okay... thank you.","Tamam... teşekkürler.","You're welcome. Is there anything else I can help you with?","anything else|welcome|help"]]},
+ {t:"Sales call & objections",tr:"Satış araması ve itiraz karşılama",icon:"📈",lvl:"B2",role:"CUSTOMER",turns:[
+  ["Hello? Who is this?","Alo? Kim arıyor?","Good afternoon, this is Leo from First Bank. Do you have two minutes?","this is|calling from|minute|good"],
+  ["I'm busy. What is it about?","Meşgulüm. Ne hakkında?","I'll be quick. We have a credit card with no annual fee for you.","quick|offer|fee|card|special"],
+  ["I already have a card.","Zaten bir kartım var.","I understand. Many customers keep both, because this one gives cashback.","understand|cashback|benefit|both|also"],
+  ["Hmm, send me the details.","Hmm, detayları gönderin.","Of course. I'll send them by text message today. Thank you for your time!","send|sms|text|email|thank"]]},
+ {t:"Closing the call",tr:"Görüşmeyi sonlandırma",icon:"✅",lvl:"B1",role:"CUSTOMER",turns:[
+  ["That's all, thanks.","Hepsi bu, teşekkürler.","You're welcome. Is there anything else I can help you with today?","anything else|welcome"],
+  ["No, that's it.","Hayır, bu kadar.","Thank you for calling. Have a great day!","thank|have a|day"]]},
+ {t:"Team leader feedback",tr:"Takım lideri geri bildirimi",icon:"🧑‍💼",lvl:"B2",role:"AGENT",turns:[
+  ["My AHT is too high this week. What can I do?","Bu hafta AHT'm çok yüksek. Ne yapabilirim?","Let's listen to some of your calls together and find where you lose time.","listen|call|together|let's|let us|coach"],
+  ["I think my holds are too long.","Sanırım bekletmelerim çok uzun.","Try to use the knowledge base before putting customers on hold.","try|use|knowledge|hold|before"],
+  ["Will this affect our SLA?","Bu SLA'mızı etkiler mi?","Yes. Shorter calls help us answer more calls within the SLA.","yes|sla|answer|calls"],
+  ["Thanks for the feedback!","Geri bildirim için teşekkürler!","You're welcome. Great job on your CSAT this month!","welcome|great|good job|csat"]]}
+];
+const PRO_GLOSSARY = [["AHT","Average Handling Time — ortalama görüşme süresi"],["SLA","Service Level Agreement — hizmet seviyesi"],["FCR","First Contact Resolution — ilk temasta çözüm"],["CSAT","Customer Satisfaction — müşteri memnuniyeti"],["NPS","Net Promoter Score — tavsiye skoru"],["Hold","Beklemeye almak"],["Transfer","Çağrıyı aktarmak"],["Escalate","Üst birime iletmek"],["Dispute","İtiraz kaydı"],["Wrap-up","Görüşme sonrası işlem"]];
 </script>
 <script>// ENGLOW v1.1 — First Class Software
-const VERSION = "v1.1.1";
+const VERSION = "v2.0";
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -594,17 +706,17 @@ const W = s => { const [en, tr, em] = s.split("|"); return { en, tr, em }; };
 const CAP = window.Capacitor;
 const NATIVE = !!(CAP && CAP.isNativePlatform && CAP.isNativePlatform());
 const PL = (NATIVE && CAP.Plugins) || {};
-const NTTS = PL.TextToSpeech, NSR = PL.SpeechRecognition, NSHARE = PL.Share, NFS = PL.Filesystem, NLAUNCH = PL.AppLauncher;
+const NTTS = PL.TextToSpeech, NSR = PL.SpeechRecognition, NSHARE = PL.Share, NFS = PL.Filesystem, NLAUNCH = PL.AppLauncher, NLN = PL.LocalNotifications;
 
 // ---------- Yaş grupları ----------
 const AGES = {
   mini:   { label: "Mini",   ages: "4–6",  icon: "🧸", q: 6,  types: ["listenPic", "picWord", "listenPic", "speak"], grammar: false, typing: false, fs: 1.15, rate: 0.75, kid: true },
   junior: { label: "Junior", ages: "7–12", icon: "🎒", q: 8,  types: ["picWord", "meaningTR", "listen", "letters", "grammar", "speak", "listenPic"], grammar: true, typing: false, fs: 1.05, rate: 0.85, kid: true },
-  teen:   { label: "Teen",   ages: "13–17", icon: "🎧", q: 10, types: ["meaningTR", "meaningEN", "listen", "spell", "grammar", "build", "speak"], grammar: true, typing: true, fs: 1, rate: 0.95 },
-  adult:  { label: "Adult",  ages: "18–59", icon: "💼", q: 12, types: ["meaningTR", "meaningEN", "listen", "spell", "grammar", "build", "speak", "grammar"], grammar: true, typing: true, fs: 1, rate: 0.95 },
-  senior: { label: "Senior", ages: "60+",  icon: "🌿", q: 8,  types: ["meaningTR", "picWord", "listen", "grammar", "speak"], grammar: true, typing: false, fs: 1.25, rate: 0.75 }
+  teen:   { label: "Teen",   ages: "13–17", icon: "🎧", q: 10, types: ["meaningTR", "meaningEN", "listen", "spell", "grammar", "build", "speak", "fixit", "dictate"], grammar: true, typing: true, fs: 1, rate: 0.95 },
+  adult:  { label: "Adult",  ages: "18–59", icon: "💼", q: 12, types: ["meaningTR", "meaningEN", "listen", "spell", "grammar", "build", "speak", "fixit", "dictate"], grammar: true, typing: true, fs: 1, rate: 0.95 },
+  senior: { label: "Senior", ages: "60+",  icon: "🌿", q: 8,  types: ["meaningTR", "picWord", "listen", "grammar", "speak", "fixit"], grammar: true, typing: false, fs: 1.25, rate: 0.75 }
 };
-const DEFAULT_SETTINGS = { sound: true, accent: "en-US", rateAdj: 1, speak: true, trHints: true, typing: true, timer: false, dark: false, large: false, confetti: true, mascot: true, reminder: true, goal: 30, limit: 0, mirror: true, autoplay: true, music: true, sharePrompts: true };
+const DEFAULT_SETTINGS = { sound: true, accent: "en-US", rateAdj: 1, speak: true, trHints: true, typing: true, timer: false, dark: false, large: false, confetti: true, mascot: true, reminder: true, goal: 30, limit: 0, mirror: true, autoplay: true, music: true, sharePrompts: true, goalMin: 10, remindAt: "19:00", chat: true, pro: true, slowBtn: true, dictation: true, report: true, interests: true };
 
 // ---------- 36 karakter (avatar) ----------
 const AVATARS = [["🦁", "#f59e0b"], ["🐯", "#f97316"], ["🐼", "#64748b"], ["🐨", "#94a3b8"], ["🐰", "#f472b6"], ["🦊", "#ea580c"], ["🐸", "#22c55e"], ["🐵", "#a16207"], ["🦉", "#7c3aed"], ["🐧", "#0ea5e9"], ["🐬", "#06b6d4"], ["🦄", "#d946ef"], ["🐲", "#16a34a"], ["🐻", "#92400e"], ["🐱", "#fb923c"], ["🐶", "#ca8a04"], ["🐹", "#fbbf24"], ["🐙", "#e11d48"], ["🦋", "#3b82f6"], ["🐢", "#15803d"], ["🦖", "#65a30d"], ["🐝", "#eab308"], ["🦅", "#78350f"], ["🐳", "#2563eb"], ["🦩", "#ec4899"], ["🐺", "#475569"], ["🦒", "#d97706"], ["🦓", "#334155"], ["🐘", "#6b7280"], ["🦜", "#10b981"], ["🧑‍🚀", "#1e3a8a"], ["🦸", "#dc2626"], ["🧙", "#6d28d9"], ["🥷", "#111827"], ["🧑‍🎤", "#be185d"], ["🤖", "#0f766e"]];
@@ -617,7 +729,7 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (
 const P = () => DB.profiles.find(p => p.id === DB.active);
 const S = () => P().settings;
 const ageCfg = () => AGES[P().age];
-function migrate(p) { p.settings = { ...DEFAULT_SETTINGS, ...(p.settings || {}) }; p.avatar = p.avatar || { t: "c", i: 0 }; p.weekXP = p.weekXP || 0; p.week = p.week || weekKey(); p.badges = p.badges || {}; p.grammarDone = p.grammarDone || {}; p.stories = p.stories || {}; p.scen = p.scen || {}; p.starter = p.starter || {}; return p; }
+function migrate(p) { p.settings = { ...DEFAULT_SETTINGS, ...(p.settings || {}) }; p.avatar = p.avatar || { t: "c", i: 0 }; p.weekXP = p.weekXP || 0; p.week = p.week || weekKey(); p.badges = p.badges || {}; p.grammarDone = p.grammarDone || {}; p.stories = p.stories || {}; p.scen = p.scen || {}; p.starter = p.starter || {}; p.sk = p.sk || {}; p.interests = p.interests || []; p.focus = p.focus || ""; p.chats = p.chats || {}; p.start = p.start || { date: p.created || today(), lvl: p.unlocked || 1, words: Object.keys(p.words || {}).length, xp: p.xp || 0 }; return p; }
 DB.profiles.forEach(migrate);
 function newProfile(name, age, trHints, avatar) {
   return migrate({ id: Date.now().toString(36), name, age, created: today(), settings: { ...DEFAULT_SETTINGS, trHints, typing: AGES[age].typing },
@@ -699,15 +811,19 @@ function makeQuestions(n) {
   NEAR = TOPICS.slice(0, Math.min(72, worldOf(n) * 9)).flatMap(t => t.w.map(W));
   const words = levelWords(n);
   let types = cfg.types.slice();
+  if (isBoss(n) && !cfg.kid) types = ["listen", "meaningTR", "grammar", "fixit", "meaningEN", "build", "speak", "dictate", "spell"];
+  if (!st.dictation) types = types.filter(t => t !== "fixit" && t !== "dictate");
+  if (!cfg.typing || !st.typing) types = types.map(t => t === "dictate" ? "build" : t);
   if (!st.speak || !SR) types = types.filter(t => t !== "speak");
   if (!st.typing) types = types.map(t => t === "spell" ? "letters" : t);
   if (P().age === "mini") types = types.filter(t => t !== "letters");
   const gram = [];
   const gIdxs = isBoss(n) ? [0, 1, 2].map(i => (worldOf(n) - 1) * 3 + i) : [grammarIdx(n)];
   if (cfg.grammar) gIdxs.forEach(gi => GRAMMAR[gi].q.forEach(q => gram.push({ gi, q })));
-  if (!gram.length) types = types.filter(t => t !== "grammar" && t !== "build");
+  const GT = ["grammar", "build", "fixit", "dictate"];
+  if (!gram.length) types = types.filter(t => !GT.includes(t));
   const count = cfg.q + (isBoss(n) ? 4 : 0); const qs = []; const wq = shuffle(words), gq = shuffle(gram); let wi = 0, gi = 0;
-  for (let i = 0; i < count; i++) { const t = types[i % types.length]; if (t === "grammar" || t === "build") qs.push({ t, g: gq[gi++ % gq.length] }); else qs.push({ t, w: wq[wi++ % wq.length], pool: words }); }
+  for (let i = 0; i < count; i++) { const t = types[i % types.length]; if (GT.includes(t)) qs.push({ t, g: gq[gi++ % gq.length] }); else qs.push({ t, w: wq[wi++ % wq.length], pool: words }); }
   return shuffle(qs);
 }
 
@@ -748,62 +864,112 @@ function hero(compact) {
     <svg class="swoosh" viewBox="0 0 200 14"><path d="M4 10 Q100 -4 196 8" stroke="url(#sg)" stroke-width="4" fill="none" stroke-linecap="round"/><defs><linearGradient id="sg"><stop offset="0" stop-color="#38bdf8"/><stop offset=".5" stop-color="#ec4899"/><stop offset="1" stop-color="#facc15"/></linearGradient></defs></svg>
     <div class="sub">AROUND THE WORLD IN 80 LEVELS</div></div><div class="hero-act">${avatarHTML(p, 40)}</div></div>
     ${p.settings.sharePrompts ? `<button class="sharepill" onclick="invite()">📤 Share with friends${showTR() ? " · Arkadaşlarınla paylaş" : ""}</button>` : ""}
-    ${compact ? "" : `<div class="stats"><div>🔥<b>${p.streak}</b>streak</div><div>⚡<b>${p.dayXP}/${p.settings.goal}</b>today XP</div><div>⭐<b>${totalStars()}</b>stars</div><div>📚<b>${Object.keys(p.words).length}</b>words</div></div>`}</header>`;
+    ${compact ? "" : `<div class="stats"><div>🔥<b>${p.streak}</b>streak</div><div>⏱️<b>${todayMin()}/${p.settings.goalMin}</b>min today</div><div>⭐<b>${totalStars()}</b>stars</div><div>📚<b>${Object.keys(p.words).length}</b>words</div></div>`}</header>`;
 }
+const todayMin = () => Math.floor(P().minutes[today()] || 0);
 const mascot = (en, trt) => S().mascot ? `<div class="mascot"><img src="lion.jpg" alt=""><div class="bubble">${en}${tr(trt)}</div></div>` : "";
 const totalStars = () => Object.values(P().stars).reduce((a, b) => a + b, 0);
 
-// ---------- Onboarding (İngilizce, Türkçe destekli) ----------
-let ob = { step: 0, name: "", age: "", tr: true, goal: 0, av: 0 };
+// ---------- Onboarding v2: Leo ile sohbet havasında, adım çubuğu ----------
+const INTERESTS = [["food", "🍔", "Food", [10, 11, 26, 28, 60]], ["travel", "✈️", "Travel", [22, 23, 30, 31, 32, 55]], ["sports", "⚽", "Sports", [24, 61]], ["music", "🎵", "Music & Art", [37, 25]], ["movies", "🎬", "Movies & TV", [38, 52]], ["tech", "💻", "Technology", [36, 53]], ["nature", "🌿", "Nature", [3, 33, 34, 44, 47]], ["business", "💼", "Business", [45, 54, 41, 68]], ["family", "👨‍👩‍👧", "Family & Friends", [4, 50, 19]], ["health", "🩺", "Health", [5, 29, 56]], ["home", "🏠", "Home", [13, 14, 40]], ["shopping", "🛍️", "Shopping", [27, 12, 41]]];
+const FOCUS = [["travel", "✈️", "Travel", "Seyahat"], ["work", "💼", "My career", "Kariyerim"], ["callcenter", "🎧", "Call center job", "Çağrı merkezi işi"], ["school", "🎓", "School & exams", "Okul ve sınavlar"], ["movies", "🎬", "Movies, music, games", "Film, müzik, oyun"], ["family", "💬", "Talk with people", "İnsanlarla konuşmak"]];
+const SELF = [[0, "🔤", "I'm a total beginner", "Hiç bilmiyorum — harflerden başla"], [1, "🙂", "I can say a few basic words", "Birkaç temel kelime biliyorum"], [11, "💬", "I can use simple sentences", "Basit cümleler kurabiliyorum"], [31, "🗣️", "I can have a short conversation", "Kısa bir sohbet edebiliyorum"], [51, "🌍", "I can talk about many topics", "Birçok konuda konuşabiliyorum"], [71, "🚀", "I speak quite fluently", "Oldukça akıcı konuşuyorum"]];
+let ob = { step: 0, name: "", age: "", tr: true, av: 0, accent: "en-US", rate: 1, focus: "", ints: [], lvl: -1, test: false, gm: 0, rem: "19:00" };
+const OBN = 10;
+const leoSay = (lines) => `<div class="obleo"><img src="lion.jpg" alt="">${lines.map(([en, t]) => `<div class="bub">${en}${tr(t)}</div>`).join("")}</div>`;
+function projection(start, gm) {
+  const MIN_PER_LEVEL = 40, ms = [[31, "A1"], [51, "A2"], [71, "B1"], [80, "B2"]].filter(([l]) => l > start).slice(0, 2);
+  const at = l => new Date(Date.now() + Math.ceil((l - start) * MIN_PER_LEVEL / gm) * 864e5);
+  const fmt = d => d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  if (!ms.length) return { html: "", ms };
+  const pts = ms.map(([l, c]) => ({ c, d: at(l) }));
+  const html = `<svg viewBox="0 0 320 170" class="proj"><defs><linearGradient id="pg1" x1="0" x2="1"><stop offset="0" stop-color="#ff2d95"/><stop offset=".5" stop-color="#ff6a2b"/><stop offset="1" stop-color="#ffd21f"/></linearGradient><linearGradient id="pg2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ff6a2b" stop-opacity=".35"/><stop offset="1" stop-color="#ff6a2b" stop-opacity="0"/></linearGradient></defs>
+    <path d="M20 140 C90 128 120 100 ${pts.length > 1 ? "160 90 S260 40 300 22" : "300 30"} L300 150 L20 150Z" fill="url(#pg2)"/><path d="M20 140 C90 128 120 100 ${pts.length > 1 ? "160 90 S260 40 300 22" : "300 30"}" fill="none" stroke="url(#pg1)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="20" cy="140" r="7" fill="#ff2d95"/>${pts.length > 1 ? `<circle cx="160" cy="90" r="7" fill="#ff6a2b"/><text x="160" y="76" text-anchor="middle" class="pl">${pts[0].c}</text>` : ""}<circle cx="300" cy="${pts.length > 1 ? 22 : 30}" r="9" fill="#ffd21f" stroke="#fff" stroke-width="3"/><text x="292" y="${pts.length > 1 ? 50 : 58}" text-anchor="end" class="pl">${pts[pts.length - 1].c}</text></svg>
+    <div class="projx"><span>Today</span>${pts.map(x => `<span>${fmt(x.d)}</span>`).join("")}</div>`;
+  return { html, pts, fmt };
+}
 function renderOnboarding() {
   hideNav(); musicFab(false); const app = $("#app");
-  const back = ob.step > 0 ? `<button class="x" id="obb">←</button>` : "";
+  const top = ob.step > 0 ? `<div class="topbar"><button class="x" id="obb">←</button><div class="prog"><i style="width:${ob.step / OBN * 100}%"></i></div></div>` : "";
+  const nx = (lbl = "Continue", dis = false) => `<div style="height:14px"></div><button class="btn" id="nx" ${dis ? "disabled" : ""}>${lbl}</button>`;
   if (ob.step === 0) {
     app.innerHTML = `<div class="cover"><img src="cover.jpg" alt="Englow"></div>
       <div class="wrap"><div class="center" style="margin:-6px 0 6px"><div class="sub dark">AROUND THE WORLD IN 80 LEVELS</div><div class="muted" style="font-size:12px">80 Seviyede Devr-i Âlem</div><div style="margin-top:8px"><span class="pill">FIRST CLASS</span></div></div>
-      <div class="card"><h2>Welcome! 👋</h2><p class="muted">Pick your age and Englow adapts to you. A world tour of 80 cities — learn English like a game.</p>
+      <div class="card"><h2>Welcome! 👋</h2><p class="muted">A world tour of 80 cities — learn English like a game, at your own level.</p>
       <input class="inp" id="nm" placeholder="What's your name? · Adın ne?" maxlength="20" value="${esc(ob.name)}"><div style="height:12px"></div>
       <button class="btn gold" id="go">Let's go ✨</button></div>${DB.profiles.length ? `<button class="btn ghost" id="bk">Back to profiles</button>` : ""}
       <button class="sharepill light" onclick="invite()">📤 Share Englow with friends</button><div class="credit">by First Class Software · ${VERSION}</div></div>`;
     $("#go").onclick = () => { const v = $("#nm").value.trim(); if (!v) return toast("Please type your name"); ob.name = v; ob.step = 1; render(); };
-    if ($("#bk")) $("#bk").onclick = () => { DB.active = DB.profiles[0].id; ob = { step: 0, tr: true }; save(); render(); };
+    if ($("#bk")) $("#bk").onclick = () => { DB.active = DB.profiles[0].id; ob.step = 0; save(); render(); };
     return;
   }
+  let h = "";
   if (ob.step === 1) {
-    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>Do you want Turkish help?</h2><p class="muted">The app is in English. We can show short Turkish explanations under the texts. You can change this anytime in Settings.</p>
-      <button class="choice ${ob.tr ? "sel" : ""}" data-v="1"><b>🇬🇧 + 🇹🇷 English with Turkish help</b><span>İngilizce + Türkçe açıklamalar</span></button>
-      <button class="choice ${!ob.tr ? "sel" : ""}" data-v="0"><b>🇬🇧 English only</b><span>Only English, no Turkish</span></button>
-      <div style="height:14px"></div><button class="btn" id="nx">Continue</button></div>`;
-    app.querySelectorAll(".choice").forEach(b => b.onclick = () => { ob.tr = b.dataset.v === "1"; render(); });
+    h = leoSay([[`Nice to meet you, <b>${esc(ob.name)}</b>! I'm Leo 🦁`, "Tanıştığıma memnun oldum! Ben Leo."], ["A few quick questions and we can start our world tour.", "Birkaç kısa soru, sonra dünya turuna başlıyoruz."]]) +
+      `<h2>Do you want Turkish help?</h2><button class="choice ${ob.tr ? "sel" : ""}" data-v="1"><b>🇬🇧 + 🇹🇷 English with Turkish help</b><span>İngilizce + Türkçe açıklamalar</span></button>
+      <button class="choice ${!ob.tr ? "sel" : ""}" data-v="0"><b>🇬🇧 English only</b><span>Only English, no Turkish</span></button>` + nx();
   } else if (ob.step === 2) {
-    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>How old are you, ${esc(ob.name)}?</h2>${tr("Kaç yaşındasın? Dersler yaşına göre ayarlanır.")}
-      <div class="agegrid" style="margin-top:12px">${Object.entries(AGES).map(([k, a]) => `<button class="age ${ob.age === k ? "sel" : ""}" data-a="${k}"><b>${a.icon}</b>${a.label}<div class="muted">${a.ages} years</div></button>`).join("")}</div>
-      <div style="height:16px"></div><button class="btn" id="nx" ${ob.age ? "" : "disabled"}>Continue</button></div>`;
-    app.querySelectorAll(".age").forEach(b => b.onclick = () => { ob.age = b.dataset.a; beep("tap"); render(); });
+    h = `<h2>How old are you?</h2>${tr("Kaç yaşındasın? Dersler yaşına göre ayarlanır.")}<div class="agegrid" style="margin-top:12px">${Object.entries(AGES).map(([k, a]) => `<button class="age ${ob.age === k ? "sel" : ""}" data-a="${k}"><b>${a.icon}</b>${a.label}<div class="muted">${a.ages} years</div></button>`).join("")}</div>` + nx("Continue", !ob.age);
   } else if (ob.step === 3) {
-    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>Choose your character</h2>${tr("Karakterini seç. Sonra Profil'den fotoğraf da ekleyebilirsin.")}
-      <div class="avgrid">${AVATARS.map(([e, bg], i) => `<button class="avbtn ${ob.av === i ? "sel" : ""}" data-i="${i}" style="background:${bg}">${e}</button>`).join("")}</div>
-      <div style="height:14px"></div><button class="btn" id="nx">Continue</button></div>`;
-    app.querySelectorAll(".avbtn").forEach(b => b.onclick = () => { ob.av = +b.dataset.i; beep("tap"); render(); });
+    h = `<h2>Which English do you want to hear?</h2>${tr("Hangi aksanı duymak istersin?")}
+      <button class="choice ${ob.accent === "en-US" ? "sel" : ""}" data-ac="en-US"><b>🇺🇸 American English</b></button><button class="choice ${ob.accent === "en-GB" ? "sel" : ""}" data-ac="en-GB"><b>🇬🇧 British English</b></button>
+      <h2 style="margin-top:18px">Leo's speaking speed</h2>${tr("Konuşma hızı — sonra Ayarlar'dan değişir")}
+      ${[[1, "1× Normal", "recommended"], [.8, "0.8× Relaxed", "rahat"], [.6, "0.6× Slow", "yavaş"]].map(([v, l, d]) => `<button class="choice ${ob.rate === v ? "sel" : ""}" data-rt="${v}"><b>${l}</b><span>${d}</span></button>`).join("")}` + nx();
   } else if (ob.step === 4) {
-    const goals = [[10, "Easy", "5 min"], [30, "Regular", "10 min"], [50, "Serious", "15 min"], [80, "Intense", "20+ min"]];
-    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>Your daily goal</h2>${tr("Günlük hedefin")}<div class="agegrid" style="margin-top:12px">${goals.map(([x, l, d]) => `<button class="age ${ob.goal === x ? "sel" : ""}" data-g="${x}"><b>🎯</b>${l}<div class="muted">${x} XP · ${d}</div></button>`).join("")}</div>
-      <div style="height:16px"></div><button class="btn" id="nx" ${ob.goal ? "" : "disabled"}>Continue</button></div>`;
-    app.querySelectorAll(".age").forEach(b => b.onclick = () => { ob.goal = +b.dataset.g; render(); });
+    h = `<h2>Choose your character</h2>${tr("Karakterini seç. Sonra Profil'den fotoğraf da ekleyebilirsin.")}<div class="avgrid">${AVATARS.map(([e, bg], i) => `<button class="avbtn ${ob.av === i ? "sel" : ""}" data-i="${i}" style="background:${bg}">${e}</button>`).join("")}</div>` + nx();
+  } else if (ob.step === 5) {
+    h = `<h2>Why do you want to learn English?</h2>${tr("İngilizceyi neden öğrenmek istiyorsun?")}${FOCUS.map(([k, i, l, t]) => `<button class="choice ${ob.focus === k ? "sel" : ""}" data-f="${k}"><b>${i} ${l}</b>${tr(t)}</button>`).join("")}` + nx("Continue", !ob.focus);
+  } else if (ob.step === 6) {
+    h = `<h2>What do you love?</h2><p class="muted">Pick as many as you like — we'll practise words from these topics.</p>${tr("İlgi alanlarını seç (birden fazla)")}
+      <div class="igrid">${INTERESTS.map(([k, i, l]) => `<button class="ib ${ob.ints.includes(k) ? "sel" : ""}" data-in="${k}"><span>${i}</span>${l}</button>`).join("")}</div>` + nx(ob.ints.length ? "Continue" : "Skip");
+  } else if (ob.step === 7) {
+    h = `<h2>What's your English level?</h2>${tr("İngilizce seviyen ne?")}${SELF.map(([l, i, t, d]) => `<button class="choice ${!ob.test && ob.lvl === l ? "sel" : ""}" data-l="${l}"><b>${i} ${t}</b>${tr(d)}</button>`).join("")}
+      <button class="choice ${ob.test ? "sel" : ""}" id="tst"><b>🧪 Not sure? Take a 3-minute test <span class="tag">Recommended</span></b>${tr("Emin değilim — seviye testine gir")}</button>` + nx("Continue", ob.lvl < 0 && !ob.test);
+  } else if (ob.step === 8) {
+    h = `<h2>What's your daily goal?</h2><p class="muted">The more time you put in, the faster you'll travel.</p>${tr("Günde kaç dakika çalışmak istersin?")}
+      ${[[5, "Easy"], [10, "Regular"], [15, "Serious"], [20, "Intense"]].map(([m, l]) => `<button class="choice ${ob.gm === m ? "sel" : ""}" data-gm="${m}"><b>⏱️ ${m} min / day</b><span>${l}</span></button>`).join("")}` + nx("I'm committed 💪", !ob.gm);
+  } else if (ob.step === 9) {
+    const start = ob.test ? 11 : Math.max(1, ob.lvl), pr = projection(start, ob.gm);
+    h = `<div class="okline">✅ Daily goal is set</div><h1 class="bigpraise" style="text-align:left">Amazing!</h1><p><b>${ob.gm} minutes a day</b> will make a real difference.</p>${tr(`Günde ${ob.gm} dakika gerçek fark yaratır.`)}
+      ${pr.pts ? `<div class="card"><h3>Your goal is set 🎯</h3>${pr.html}<p class="muted" style="font-size:13px">${pr.pts.map(x => `Finish the <b>${x.c}</b> part of your tour around <b>${pr.fmt(x.d)}</b>`).join(" · ")} — an estimate with lessons, reviews and chats every day.</p>${tr("Her gün düzenli çalışırsan tahmini varış tarihleri")}</div>` : ""}` + nx();
   } else {
-    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>Where do you want to start?</h2>${tr("Nereden başlamak istersin?")}
-      <button class="choice sel" id="pt"><b>🧪 Placement test <span class="tag" style="margin-left:6px">Recommended</span></b><span>16 questions · about 3 min · we find your level for you</span>${tr("Seviyeni biz belirleyelim (önerilen)")}</button>
-      <button class="choice" id="zero"><b>🔤 Start Here: letters & numbers</b><span>I'm a total beginner — start with ABC and 1-2-3</span>${tr("Hiç bilmiyorum — harflerden ve sayılardan başla")}</button>
-      <button class="choice" id="pickl"><b>🎯 I'll choose my level</b><span>Jump straight to a level you know</span>${tr("Seviyemi kendim seçeyim")}</button>
-      <div id="lvls" class="hidden">${WORLDS.map(w => `<button class="list-item" data-w="${w.id}"><span class="ic">${w.icon}</span><div><b>${w.cefr} · ${w.name}</b><div class="muted">Start in ${city((w.id - 1) * 10 + 1).flag} ${esc(city((w.id - 1) * 10 + 1).name)}</div></div></button>`).join("")}</div></div>`;
-    const create = () => { const p = newProfile(ob.name, ob.age, ob.tr, { t: "c", i: ob.av }); p.settings.goal = ob.goal || 30; DB.profiles.push(p); DB.active = p.id; ob = { step: 0, tr: true }; save(); return p; };
-    $("#zero").onclick = () => { const p = create(); p.starterMode = true; save(); tab = "map"; render(); };
-    $("#pt").onclick = () => { create(); placement(); };
-    $("#pickl").onclick = () => { $("#lvls").classList.toggle("hidden"); };
-    app.querySelectorAll("[data-w]").forEach(b => b.onclick = () => { const p = create(); p.unlocked = (+b.dataset.w - 1) * 10 + 1; save(); tab = "map"; render(); toast(`Your tour starts in ${city(p.unlocked).name}! ✈️`); });
+    h = `<h2>Set your daily reminder ⏰</h2><p class="muted">A small nudge every day helps you keep your streak.</p>${tr("Her gün aynı saatte hatırlatalım mı?")}
+      <div class="center" style="margin:26px 0"><input type="time" id="rt" value="${ob.rem}" class="timepick"></div>
+      <button class="btn gold" id="setr">Set reminder</button><div style="height:8px"></div><button class="ghostbtn" id="later">Maybe later</button>`;
   }
-  if ($("#obb")) $("#obb").onclick = () => { ob.step--; render(); };
-  if ($("#nx")) $("#nx").onclick = () => { ob.step++; render(); };
+  app.innerHTML = top + `<div class="wrap">${h}</div>`;
+  $("#obb").onclick = () => { ob.step--; render(); };
+  if ($("#nx")) $("#nx").onclick = () => { ob.step++; render(); scrollTo(0, 0); };
+  const sel = (q, f) => app.querySelectorAll(q).forEach(b => b.onclick = () => { f(b); beep("tap"); render(); });
+  sel(".choice[data-v]", b => ob.tr = b.dataset.v === "1");
+  sel(".age", b => ob.age = b.dataset.a);
+  sel("[data-ac]", b => { ob.accent = b.dataset.ac; });
+  sel("[data-rt]", b => { ob.rate = +b.dataset.rt; });
+  app.querySelectorAll("[data-ac],[data-rt]").forEach(b => { const o = b.onclick; b.onclick = () => { o(); setTimeout(() => sayRaw("Hello! I'm Leo. Let's learn English together.", ob.accent, .95 * ob.rate), 50); }; });
+  sel(".avbtn", b => ob.av = +b.dataset.i);
+  sel("[data-f]", b => ob.focus = b.dataset.f);
+  sel("[data-in]", b => { const k = b.dataset.in; ob.ints = ob.ints.includes(k) ? ob.ints.filter(x => x !== k) : [...ob.ints, k]; });
+  sel("[data-l]", b => { ob.lvl = +b.dataset.l; ob.test = false; });
+  if ($("#tst")) $("#tst").onclick = () => { ob.test = true; ob.lvl = -1; render(); };
+  sel("[data-gm]", b => ob.gm = +b.dataset.gm);
+  const finishOb = remind => {
+    const p = newProfile(ob.name, ob.age, ob.tr, { t: "c", i: ob.av });
+    Object.assign(p.settings, { accent: ob.accent, rateAdj: ob.rate, goalMin: ob.gm || 10, remindAt: ob.rem, reminder: remind });
+    p.focus = ob.focus; p.interests = ob.ints.slice();
+    if (ob.lvl === 0) p.starterMode = true; else if (ob.lvl > 0) p.unlocked = ob.lvl;
+    p.start = { date: today(), lvl: p.unlocked, words: 0, xp: 0 };
+    DB.profiles.push(p); DB.active = p.id; const test = ob.test;
+    ob = { step: 0, name: "", age: "", tr: true, av: 0, accent: "en-US", rate: 1, focus: "", ints: [], lvl: -1, test: false, gm: 0, rem: "19:00" }; save();
+    if (remind) scheduleReminder(true);
+    if (test) return placement();
+    tab = "map"; render(); if (p.unlocked > 1) toast(`Your tour starts in ${city(p.unlocked).name}! ✈️`);
+  };
+  if ($("#setr")) { $("#rt").onchange = e => ob.rem = e.target.value || "19:00"; $("#setr").onclick = () => { ob.rem = $("#rt").value || "19:00"; finishOb(true); }; $("#later").onclick = () => finishOb(false); }
+}
+function sayRaw(text, lang, r) {
+  if (NTTS) { NTTS.stop().catch(() => {}).finally(() => NTTS.speak({ text, lang, rate: r, pitch: 1, volume: 1, category: "playback" }).catch(() => {})); return; }
+  if (!("speechSynthesis" in window)) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = lang; const v = voices.find(v => v.lang === lang); if (v) u.voice = v; u.rate = r; speechSynthesis.speak(u);
 }
 
 // ---------- Seviye testi (anında geri bildirim) ----------
@@ -813,7 +979,7 @@ function placement() {
   const step = () => {
     if (i >= qs.length) {
       let passed = 0; for (let w = 1; w <= 8; w++) { if ((score[w] || 0) >= 2) passed = w; else break; }
-      P().unlocked = Math.max(P().unlocked || 1, Math.min(passed * 10 + 1, TOTAL)); if (!passed && Object.values(score).reduce((x, y) => x + y, 0) < 3) P().starterMode = true; save();
+      P().unlocked = Math.max(P().unlocked || 1, Math.min(passed * 10 + 1, TOTAL)); if (!passed && Object.values(score).reduce((x, y) => x + y, 0) < 3) P().starterMode = true; if (!P().stats.lessons) P().start.lvl = P().unlocked; save();
       const c = city(P().unlocked);
       $("#app").innerHTML = `<div class="wrap center" style="padding-top:30px"><div class="emoji">🎯</div><h1 class="bigpraise">${passed ? "Great job!" : "Let's start!"}</h1><h2>${passed ? `You passed ${WORLDS[passed - 1].cefr}` : "Your world tour begins"}</h2>
         <p class="muted">Your journey starts in ${c.flag} ${esc(c.name)}.</p>${tr(passed ? "Bildiğin seviyeler açıldı." : "Yolculuğun İstanbul'dan başlıyor.")}
@@ -904,8 +1070,11 @@ function starterMap() {
 function renderMap() {
   const p = P(), cur = Math.min(p.unlocked, TOTAL), due = dueWords().length;
   let h = hero() + `<div class="wrap">`;
-  if (S().reminder && p.dayXP < p.settings.goal) h += mascot(p.dayXP ? `Great job ${esc(p.name)}! <b>${p.settings.goal - p.dayXP} XP</b> left for today's goal.` : `Hi ${esc(p.name)}! 🦁 Ready for today's lesson? Keep your streak alive!`, p.dayXP ? "Günlük hedefe az kaldı!" : "Serini korumak için bir ders yapalım mı?");
-  else if (p.dayXP >= p.settings.goal) h += mascot(`Daily goal complete! 🎉 Streak: <b>${p.streak} days</b>.`, "Günlük hedef tamam!");
+  const tm = todayMin(), gm = p.settings.goalMin;
+  if (tm < gm) h += mascot(tm ? `Great job ${esc(p.name)}! <b>${gm - tm} min</b> left for today's goal.` : `Hi ${esc(p.name)}! 🦁 Ready for today's lesson? Keep your streak alive!`, tm ? "Günlük hedefe az kaldı!" : "Serini korumak için bir ders yapalım mı?");
+  else h += mascot(`Daily goal complete! 🎉 Streak: <b>${p.streak} days</b>.`, "Günlük hedef tamam!");
+  const quick = [S().chat ? ["qc", "💬", "Chat with Leo", "Speak or type — real conversations", "Leo ile sohbet et"] : null, S().pro && (p.focus === "work" || p.focus === "callcenter") ? ["qp", "🎧", "Pro English", "Call center & business talk", "Çağrı merkezi İngilizcesi"] : null, S().interests && p.interests.length ? ["qi", "⭐", "My interests", p.interests.map(k => (INTERESTS.find(x => x[0] === k) || [, ""])[1]).join(" "), "İlgi alanlarım"] : null].filter(Boolean);
+  if (quick.length) h += `<div class="quick">${quick.map(([id, i, t, d]) => `<button class="qk" id="${id}"><span>${i}</span><b>${t}</b><small>${esc(d)}</small></button>`).join("")}</div>`;
   if (due) h += `<button class="list-item" id="dueBtn"><span class="ic">🔁</span><div><b>${due} words to review</b><div class="muted">Review them before you forget</div>${tr("Tekrar zamanı gelen kelimeler")}</div></button>`;
   const sNext = nextStarter();
   h += sNext ? `<button class="btn gold" id="cont">▶ Continue: ${STARTER[sNext - 1].icon} ${STARTER[sNext - 1].t}</button></div>` : `<button class="btn gold" id="cont">▶ Continue: ${city(cur).flag} ${esc(city(cur).name)} · Level ${cur}</button></div>`;
@@ -914,6 +1083,7 @@ function renderMap() {
   h += `<div class="credit">by First Class Software · ${VERSION}</div>`;
   $("#app").innerHTML = h;
   $("#cont").onclick = () => sNext ? startStarter(sNext) : levelIntro(cur);
+  if ($("#qc")) $("#qc").onclick = () => chatList(false); if ($("#qp")) $("#qp").onclick = () => chatList(true); if ($("#qi")) $("#qi").onclick = interestPractice;
   $("#app").querySelectorAll("[data-s]").forEach(b => b.onclick = () => startStarter(+b.dataset.s));
   if ($("#dueBtn")) $("#dueBtn").onclick = () => startReview();
   $("#app").querySelectorAll(".node:not(.lock)").forEach(b => b.onclick = () => levelIntro(+b.dataset.n));
@@ -989,6 +1159,8 @@ const TYPE_UI = {
   speak: ["🎤", "SPEAKING", "#ef4444", "Say it out loud", "Sesli söyle"],
   grammar: ["🧩", "GRAMMAR", "#2563eb", "Fill in the blank", "Boşluğu doldur"],
   build: ["🧱", "SENTENCE", "#16a34a", "Build the sentence", "Cümleyi kur"],
+  dictate: ["📝", "DICTATION", "#0891b2", "Listen and write the sentence", "Dinle ve cümleyi yaz"],
+  fixit: ["🔍", "FIND THE MISTAKE", "#dc2626", "Tap the wrong word", "Yanlış kelimeye dokun"],
   match: ["🎧", "LISTEN & MATCH", "#14b8a6", "Tap a sound, then its word", "Sese dokun, sonra kelimesine"],
   letterListen: ["🔤", "LETTERS", "#0ea5e9", "Listen and pick the letter", "Dinle ve harfi seç"],
   caseMatch: ["🔡", "BIG & SMALL", "#8b5cf6", "Find the small letter", "Küçük harfini bul"],
@@ -1065,6 +1237,13 @@ function showQ() {
     case "grammar": { const [s, a, o] = q.g.q; q.ans = a; const G = q.story ? null : GRAMMAR[q.g.gi];
       card = `${G ? `<div class="muted">${esc(G.t)}</div>` : ""}<div class="qrow"><div class="qtext">${esc(s)}</div><button class="spk sm" id="pl">🔊</button></div>`;
       body = opt(shuffle(o).map(x => ({ v: x, h: esc(x) }))); q.read = s.replace(/___/g, "...").replace(/\s*\(.*?\)\s*$/, ""); break; }
+    case "dictate": { const [s0, a0] = q.g.q; const full = s0.replace(/\s*\(.*?\)\s*$/, "").replace("___", a0); q.ans = full; q.read = full;
+      card = `<div class="center"><button class="spk xl" id="pl">🔊</button></div><div class="muted center">Listen as many times as you like</div>`;
+      body = `<input class="inp" id="ti" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type what you hear…"><div style="height:12px"></div><button class="btn" id="ck">Check</button>`; break; }
+    case "fixit": { if (!q.toks) { const [s0, a0, o0] = q.g.q; const wrong = pick(o0.filter(x => x !== a0), 1)[0] || a0; const base = s0.replace(/\s*\(.*?\)\s*$/, ""); const [pre, post] = base.split("___");
+        q.toks = [...pre.trim().split(/\s+/).filter(Boolean), "§" + wrong, ...(post || "").trim().split(/\s+/).filter(Boolean)]; q.full = base.replace("___", a0); }
+      q.ans = q.full; q.read = q.full;
+      card = `<div class="toks">${q.toks.map((t, i) => `<button class="tok" data-i="${i}">${esc(t.replace("§", ""))}</button>`).join(" ")}</div>`; body = ""; break; }
     case "match": { const pics = P().age === "mini"; q.L = q.L || shuffle(q.pool.map((x, i) => i)); q.Rr = q.Rr || shuffle(q.pool.map((x, i) => i));
       card = `<div class="muted">${pics ? "Listen and find the picture" : "Listen and find the word"}</div>`;
       body = `<div class="match"><div>${q.L.map(i => `<button class="opt msnd" data-i="${i}">🔊 ${q.L.indexOf(i) + 1}</button>`).join("")}</div><div>${q.Rr.map(i => `<button class="opt mword ${pics ? "pic" : ""}" data-i="${i}">${pics ? q.pool[i].em : esc(q.pool[i].en)}</button>`).join("")}</div></div>`; break; }
@@ -1093,9 +1272,13 @@ function showQ() {
     `<div class="wrap"><span class="chip" style="--cc:${col}">${ic} ${label}${q.attempt ? " · TRY AGAIN" : ""}</span><div class="qtitle">${title}${tr(titleTR)}</div><div class="qcard" style="--cc:${col}">${card}</div>${body}</div>`;
   bindTop(); q.shown = Date.now();
   const playTxt = q.read || (q.t === "build" ? q.ans : q.say ? q.say : (w ? w.en : ""));
-  if ($("#pl")) { $("#pl").onclick = () => say(playTxt); if (["listenPic", "listen", "build", "letterListen", "numListen"].includes(q.t) || (S().autoplay && q.t === "meaningTR")) setTimeout(() => say(playTxt), 300); }
+  if ($("#pl")) { $("#pl").onclick = () => say(playTxt); if (["listenPic", "listen", "build", "letterListen", "numListen", "dictate"].includes(q.t) || (S().autoplay && q.t === "meaningTR")) setTimeout(() => say(playTxt), 300); }
   if ($("#sl")) $("#sl").onclick = () => say(playTxt, .6);
   $("#app").querySelectorAll(".opt").forEach(b => b.onclick = () => answer(b.dataset.v === q.ans, q, b));
+  if (q.t === "fixit") $("#app").querySelectorAll(".tok").forEach(b => b.onclick = () => answer(q.toks[+b.dataset.i].startsWith("§"), q, b, `Correct sentence: “${q.full}”`));
+  if (q.t === "dictate") { const i = $("#ti"); const go = () => answer(norm(i.value) === norm(q.ans), q, i, i.value ? `You wrote: “${i.value}”` : ""); $("#ck").onclick = go; i.onkeydown = e => { if (e.key === "Enter") go(); }; }
+  if (S().slowBtn && $("#pl") && !$("#sl")) { const b = document.createElement("button"); b.className = "spk sm"; b.id = "sl"; b.textContent = "🐢"; b.title = "Slow"; $("#pl").after(b); }
+  if ($("#sl")) $("#sl").onclick = () => say(playTxt, .6);
   if (q.t === "spell") { const i = $("#ti"); i.focus(); const go = () => answer(norm(i.value) === norm(q.ans), q, i); $("#ck").onclick = go; i.onkeydown = e => { if (e.key === "Enter") go(); }; }
   if (q.t === "letters" || q.t === "build") tileGame(q);
   if (q.t === "match") matchGame(q);
@@ -1110,7 +1293,7 @@ function matchGame(q) {
     if (sel === null) { toast("Tap a 🔊 sound first"); return; }
     const sb = snd.find(x => +x.dataset.i === sel);
     if (+b.dataset.i === sel) { beep("ok"); [b, sb].forEach(x => { x.classList.remove("sel"); x.classList.add("right"); x.disabled = true; }); done++; sel = null;
-      if (done === q.pool.length) setTimeout(() => { L.total++; if (!errs) L.first++; q.attempt = 1; L.combo = errs ? 0 : L.combo + 1; answer(true, q, null, errs ? `${errs} mistake${errs > 1 ? "s" : ""} — keep practising!` : "All matched on the first try! 🎯"); }, 350);
+      if (done === q.pool.length) setTimeout(() => { L.total++; if (!errs) L.first++; q.attempt = 1; skillMark("listening", !errs); L.combo = errs ? 0 : L.combo + 1; answer(true, q, null, errs ? `${errs} mistake${errs > 1 ? "s" : ""} — keep practising!` : "All matched on the first try! 🎯"); }, 350);
     } else { errs++; beep("bad"); [b, sb].forEach(x => { x.classList.add("wrong", "shake"); setTimeout(() => x.classList.remove("wrong", "shake"), 500); }); }
   });
 }
@@ -1148,6 +1331,7 @@ function answer(ok, q, el, extra) {
   if (firstTry) { L.total++; if (ok) L.first++; }
   if (ok) { L.combo++; p.stats.correct++; beep("ok"); } else { L.combo = 0; p.stats.wrong++; beep("bad"); }
   if (q.w && firstTry) srsMark(q.w, ok);
+  if (firstTry && q.t !== "match") skillMark(q.story ? "reading" : SKMAP[q.t] || "vocab", ok);
   let head, sub = "";
   if (ok) {
     const fast = Date.now() - q.shown < 3000 && q.t !== "speak";
@@ -1180,8 +1364,10 @@ function finish() {
     if (!isBoss(n)) levelWords(n).forEach(w => { if (!p.words[w.en]) p.words[w.en] = { box: 1, due: Date.now() + 864e5, tr: w.tr, em: w.em, ok: 0 }; });
     xp = 10 + stars * 5 + (isBoss(n) ? 20 : 0) + (acc === 1 ? 10 : 0); p.stats.lessons++; if (acc === 1) p.stats.perfect++;
   } else xp = 5 + L.first;
+  if (mode === "grammar" && acc >= .5) p.grammarDone[L.gi] = true;
+  if (mode === "story" && acc >= .5) p.stories[L.si] = true;
   addXP(xp); save();
-  const perfect = acc === 1, pass = mode !== "lesson" || stars >= 1;
+  const perfect = acc === 1, pass = (mode === "grammar" || mode === "story") ? acc >= .5 : mode !== "lesson" || stars >= 1;
   let big = pass ? (perfect ? "PERFECT! 💯" : stars === 3 ? "Excellent! 🌟" : "Well done! 👏") : "Almost there!";
   let bigTR = pass ? (perfect ? "Kusursuz!" : stars === 3 ? "Harikasın!" : "Aferin sana!") : "Neredeyse oldu!";
   if (worldDone) { big = `World ${worldOf(n)} complete! 🏆`; bigTR = "Dünyayı tamamladın!"; }
@@ -1225,6 +1411,11 @@ function addXP(x) {
 setInterval(() => { if (document.visibilityState === "visible" && DB.active && P()) { const p = P(); p.minutes[today()] = (p.minutes[today()] || 0) + .25; save(); } }, 15000);
 
 // ---------- Aralıklı tekrar (Leitner) ----------
+const SKMAP = { picWord: "vocab", meaningTR: "vocab", meaningEN: "vocab", listenPic: "listening", listen: "listening", match: "listening", dictate: "listening", spell: "writing", letters: "writing", build: "writing", grammar: "grammar", fixit: "grammar", speak: "speaking" };
+const SKILLS = [["vocab", "📚", "Vocabulary", "Kelime"], ["grammar", "🧩", "Grammar", "Gramer"], ["listening", "🎧", "Listening", "Dinleme"], ["speaking", "🎤", "Speaking", "Konuşma"], ["writing", "✍️", "Writing", "Yazma"], ["reading", "📖", "Reading", "Okuma"]];
+function skillMark(k, ok) { const p = P(); const s = p.sk[k] = p.sk[k] || { f: [0, 0], r: [], n: 0, ok: 0 }; if (s.f[1] < 20) { s.f[0] += ok ? 1 : 0; s.f[1]++; } s.r.push(ok ? 1 : 0); if (s.r.length > 20) s.r.shift(); s.n++; if (ok) s.ok++; }
+const skBefore = s => s && s.f[1] ? Math.round(s.f[0] / s.f[1] * 100) : null;
+const skNow = s => s && s.r.length ? Math.round(s.r.reduce((a, b) => a + b, 0) / s.r.length * 100) : null;
 const BOX_DAYS = [0, 1, 2, 4, 7, 15, 30];
 function srsMark(w, ok) { const r = P().words[w.en]; if (!r) return; r.box = ok ? Math.min(r.box + 1, 6) : 1; r.due = Date.now() + BOX_DAYS[r.box] * 864e5; if (ok) r.ok++; }
 const dueWords = () => Object.entries(P().words).filter(([, r]) => r.due <= Date.now()).map(([en, r]) => ({ en, tr: r.tr, em: r.em }));
@@ -1250,7 +1441,8 @@ function renderReview() {
 // ---------- Keşfet ----------
 function renderExplore() {
   $("#app").innerHTML = hero(true) + `<div class="wrap"><h2>🧭 Explore</h2>
-   ${[["gA", "📘", "Grammar Academy", "24 topics · A1→B2 · practice", "Gramer Akademisi"], ["sT", "📖", "Story Library", "Graded stories · tap a word to see its meaning", "Hikâye Kütüphanesi"], ["sC", "🎭", "Real-Life Talk", "Café, airport, hotel, job interview", "Gerçek hayat simülasyonu"], S().mirror ? ["mR", "🪞", "English Mirror", "Compare your first and latest recording", "Ses Aynası"] : null, ["aB", "🔤", "Alphabet & Sounds", "26 letters — listen and repeat", "Alfabe ve sesler"], S().music ? ["mS", "🎵", "Study Music", "Background music while you learn", "Ders müziği"] : null].filter(Boolean).map(([id, i, t, d, trt]) => `<button class="list-item" id="${id}"><span class="ic">${i}</span><div><b>${t}</b><div class="muted">${d}</div>${tr(trt)}</div></button>`).join("")}</div>`;
+   ${[["gA", "📘", "Grammar Academy", "24 topics · A1→B2 · practice", "Gramer Akademisi"], ["sT", "📖", "Story Library", "Graded stories · tap a word to see its meaning", "Hikâye Kütüphanesi"], ["sC", "🎭", "Real-Life Talk", "Café, airport, hotel, job interview", "Gerçek hayat simülasyonu"], S().chat ? ["cH", "💬", "Chat with Leo", "Speak or type · 🌐 translate · 🐢 slow · 💡 hints", "Leo ile sesli/yazılı sohbet"] : null, S().pro ? ["pE", "🎧", "Pro English: Call Center", "Greeting, hold, angry customer, sales, KPIs", "Çağrı merkezi ve iş İngilizcesi"] : null, S().interests ? ["iN", "⭐", "My Interests", "Words from topics you love", "İlgi alanlarından kelimeler"] : null, S().report ? ["rP", "📈", "My Progress Report", "Before & after · download anytime", "Gelişim raporum"] : null, S().mirror ? ["mR", "🪞", "English Mirror", "Compare your first and latest recording", "Ses Aynası"] : null, ["aB", "🔤", "Alphabet & Sounds", "26 letters — listen and repeat", "Alfabe ve sesler"], S().music ? ["mS", "🎵", "Study Music", "Background music while you learn", "Ders müziği"] : null].filter(Boolean).map(([id, i, t, d, trt]) => `<button class="list-item" id="${id}"><span class="ic">${i}</span><div><b>${t}</b><div class="muted">${d}</div>${tr(trt)}</div></button>`).join("")}</div>`;
+  if ($("#cH")) $("#cH").onclick = () => chatList(false); if ($("#pE")) $("#pE").onclick = () => chatList(true); if ($("#iN")) $("#iN").onclick = interestPractice; if ($("#rP")) $("#rP").onclick = renderReport;
   $("#gA").onclick = grammarAcademy; $("#sT").onclick = storiesList; $("#sC").onclick = scenList; $("#aB").onclick = alphabet; if ($("#mS")) $("#mS").onclick = musicSheet; if ($("#mR")) $("#mR").onclick = mirror;
 }
 function sub(title, html, back) { clearOver(); hideNav(); musicFab(false); scrollTo(0, 0); $("#app").innerHTML = `<div class="topbar"><button class="x" id="bk">←</button><b>${title}</b></div><div class="wrap">${html}</div>`; $("#bk").onclick = back || (() => { tab = "explore"; render(); }); }
@@ -1262,7 +1454,7 @@ function grammarUnit(i) {
   const g = GRAMMAR[i];
   sub(g.t, `<div class="card"><span class="tag">${WORLDS[Math.floor(i / 3)].cefr}</span>${showTR() ? `<p style="font-size:1.1em">${esc(g.x)}</p>` : ""}${g.ex.map(e => `<div class="row"><b>${esc(e)}</b><button class="spk sm" data-say="${esc(e)}">🔊</button></div>`).join("")}</div><button class="btn gold" id="pr">Practice (6 questions)</button>`, grammarAcademy);
   $("#app").querySelectorAll("[data-say]").forEach(b => b.onclick = () => say(b.dataset.say));
-  $("#pr").onclick = () => { hideNav(); P().grammarDone[i] = true; save(); L = { n: 0, mode: "grammar", qs: shuffle(g.q.map(q => ({ t: "grammar", g: { gi: i, q } }))), i: 0, first: 0, total: 0, combo: 0, world: null }; lessonBg(); showQ(); };
+  $("#pr").onclick = () => { hideNav(); L = { gi: i, n: 0, mode: "grammar", qs: shuffle(g.q.map(q => ({ t: "grammar", g: { gi: i, q } }))), i: 0, first: 0, total: 0, combo: 0, world: null }; lessonBg(); showQ(); };
 }
 const DICT = Object.fromEntries(ALLWORDS.map(w => [w.en.toLowerCase(), w.tr]));
 function storiesList() {
@@ -1279,7 +1471,7 @@ function story(i) {
   $("#app").querySelectorAll("[data-say]").forEach(b => b.onclick = () => say(b.dataset.say));
   $("#app").querySelectorAll(".word").forEach(w => w.onclick = () => { if (showTR()) toast(`${esc(w.textContent)} = ${esc(w.dataset.tr)}`); say(w.textContent); });
   $("#all").onclick = () => say(s.s.map(x => x[0]).join(" "));
-  $("#qz").onclick = () => { hideNav(); P().stories[i] = true; save(); L = { n: 0, mode: "story", qs: s.q.map(([qq, a, o]) => ({ t: "grammar", g: { gi: 0, q: [qq, a, o] }, story: true })), i: 0, first: 0, total: 0, combo: 0, world: null }; lessonBg(); showQ(); };
+  $("#qz").onclick = () => { hideNav(); L = { si: i, n: 0, mode: "story", qs: s.q.map(([qq, a, o]) => ({ t: "grammar", g: { gi: 0, q: [qq, a, o] }, story: true })), i: 0, first: 0, total: 0, combo: 0, world: null }; lessonBg(); showQ(); };
 }
 function scenList() {
   const p = P();
@@ -1348,10 +1540,10 @@ async function canvasCard(title, line1, line2) {
   x.save(); x.beginPath(); x.roundRect ? x.roundRect(X, Y, S2, S2, r) : x.rect(X, Y, S2, S2); x.clip(); x.drawImage(img, X, Y, S2, S2); x.restore();
   x.textAlign = "center"; x.font = '800 100px "Baloo", sans-serif'; const tg = x.createLinearGradient(200, 0, 880, 0); tg.addColorStop(0, "#ff2d95"); tg.addColorStop(.5, "#ff6a2b"); tg.addColorStop(1, "#ffd21f"); x.fillStyle = tg; x.fillText(title, 540, 700);
   x.fillStyle = "#fff"; x.font = '800 46px "Nunito", sans-serif'; x.fillText(line1, 540, 790); x.fillStyle = "#bfdbfe"; x.font = '800 40px "Nunito", sans-serif'; x.fillText(line2, 540, 860);
-  x.fillStyle = "#facc15"; x.font = '800 34px "Nunito", sans-serif'; x.fillText("ENGLOW · English for Every Age", 540, 1000);
+  x.fillStyle = "#facc15"; x.font = '800 34px "Nunito", sans-serif'; x.fillText("ENGLOW · Around the World in 80 Levels", 540, 1000);
   return c.toDataURL("image/png");
 }
-const SHARE_TXT = "I'm learning English with Englow 🦁 — English for every age! / Englow ile İngilizce öğreniyorum!";
+const SHARE_TXT = "I'm learning English with Englow 🦁 — Around the World in 80 Levels! / Englow ile İngilizce öğreniyorum!";
 async function shareOut(text, dataUrl, fname = "englow-share.png") {
   try {
     if (NATIVE && NSHARE) {
@@ -1447,10 +1639,12 @@ function renderMe() {
    <div class="card" style="display:flex;align-items:center;gap:12px">${avatarHTML(p, 64)}<div style="flex:1"><h2 style="margin:0">${esc(p.name)}</h2><div class="muted">${AGES[p.age].label} (${AGES[p.age].ages}) · Level ${p.unlocked}/80 · ${WORLDS[worldOf(p.unlocked) - 1].cefr}</div></div><button class="btn ghost" style="width:auto;padding:8px 12px" id="ch">Edit</button></div>
    <div class="card"><h3>📊 Last 7 days (minutes)</h3><div class="bars gold">${days.map(([d, m]) => `<div><i style="height:${Math.max(3, Math.min(60, m * 3))}px"></i>${d}</div>`).join("")}</div>
    <div class="row"><span>Total XP</span><b>${p.xp}</b></div><div class="row"><span>Lessons</span><b>${p.stats.lessons}</b></div><div class="row"><span>Accuracy</span><b>${Math.round(p.stats.correct / Math.max(1, p.stats.correct + p.stats.wrong) * 100)}%</b></div></div>
+   ${S().report ? `<button class="btn gold" id="rpt2">📈 My Progress Report · before & after</button><div style="height:12px"></div>` : ""}
    <div class="card"><h3>🛂 My Passport · ${Object.keys(p.stars).filter(k => p.stars[k]).length}/80 cities</h3>${tr("Pasaportum — ziyaret ettiğin şehirler")}<div class="passport">${CITIES.map((c, i) => `<div class="stamp ${p.stars[i + 1] ? "on" : ""}" title="${esc(c[0])}"><b>${c[1]}</b>${esc(c[0].replace(" · Grand Final", ""))}</div>`).join("")}</div></div>
    <div class="card"><h3>🏅 Badges</h3><div class="badges">${BADGES.map(([k, i, l]) => `<div class="badge ${p.badges[k] ? "" : "off"}"><b>${i}</b>${l}</div>`).join("")}</div></div>
    ${[["st", "⚙️", "Settings", "Turn every feature on or off", "Ayarlar"], ["pa", "👨‍👩‍👧", "Parent Panel", "Profiles, time limit, PIN", "Ebeveyn paneli"], ["sw", "🔄", "Switch / add profile", DB.profiles.length + " profiles", "Profil değiştir"], S().sharePrompts ? ["sh", "📤", "Share Englow", "Invite your friends", "Arkadaşını davet et"] : null].filter(Boolean).map(([id, i, t, d, trt]) => `<button class="list-item" id="${id}"><span class="ic">${i}</span><div><b>${t}</b><div class="muted">${d}</div>${tr(trt)}</div></button>`).join("")}
    <div class="credit">ENGLOW ${VERSION} · by First Class Software</div></div>`;
+  if ($("#rpt2")) $("#rpt2").onclick = renderReport;
   $("#st").onclick = settings; $("#pa").onclick = () => pinGate(parentPanel); $("#sw").onclick = switchProfile; $("#ch").onclick = editProfile; if ($("#sh")) $("#sh").onclick = invite;
 }
 function editProfile() {
@@ -1471,19 +1665,22 @@ function settings() {
    <div class="row"><b>Accent</b><select id="acc"><option value="en-US" ${s.accent === "en-US" ? "selected" : ""}>🇺🇸 American</option><option value="en-GB" ${s.accent === "en-GB" ? "selected" : ""}>🇬🇧 British</option></select></div>
    <div class="row"><b>Voice speed</b><select id="rt">${[[.7, "Slow"], [1, "Normal"], [1.2, "Fast"]].map(([v, l]) => `<option value="${v}" ${s.rateAdj == v ? "selected" : ""}>${l}</option>`).join("")}</select></div>${sw("music", "Study music", "Ders müziği")}</div>
    <div class="card"><h3>📝 Learning</h3>${sw("speak", "Speaking exercises", "Mikrofonla konuşma alıştırmaları")}${sw("typing", "Typing exercises", "Yazma alıştırmaları")}${sw("timer", "Timed mode (15 sec)", "Soru başına süre")}${sw("mirror", "English Mirror", "Ses aynası")}
-   <div class="row"><b>Daily goal</b><select id="gl">${[10, 30, 50, 80].map(v => `<option ${s.goal == v ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+   <div class="row"><b>Daily goal</b><select id="gl">${[5, 10, 15, 20, 30].map(v => `<option value="${v}" ${s.goalMin == v ? "selected" : ""}>${v} min / day</option>`).join("")}</select></div>
+   ${sw("dictation", "Dictation & find the mistake", "Dikte ve hatayı bul soruları")}${sw("slowBtn", "🐢 Slow-listen buttons", "Yavaş dinleme düğmeleri")}${sw("chat", "Chat with Leo", "Leo ile sohbet")}${sw("pro", "Pro English (call center)", "Çağrı merkezi İngilizcesi")}${sw("interests", "My interests", "İlgi alanlarım")}${sw("report", "Progress report", "Gelişim raporu")}
+   <div class="row"><b>Reminder time</b><input type="time" id="rat" value="${s.remindAt}" class="inp" style="width:auto;padding:6px 10px;font-size:16px"></div>
    <div class="row"><b>Retake placement test</b><button class="btn ghost" style="width:auto;padding:8px 12px" id="rpt">Start</button></div>
    <div class="row"><b>Start Here (letters & numbers)</b><button class="btn ghost" style="width:auto;padding:8px 12px" id="sth">Open</button></div>
    <div class="row"><b>Jump to level</b><select id="jl"><option value="">—</option>${WORLDS.map(w => `<option value="${(w.id - 1) * 10 + 1}">${w.cefr} · ${city((w.id - 1) * 10 + 1).name}</option>`).join("")}</select></div>
    <div class="row"><b>Age group</b><select id="ag">${Object.entries(AGES).map(([k, a]) => `<option value="${k}" ${P().age === k ? "selected" : ""}>${a.label} (${a.ages})</option>`).join("")}</select></div></div>
-   <div class="card"><h3>🎨 Look</h3>${sw("dark", "Dark mode", "Karanlık mod")}${sw("large", "Large text", "Büyük yazı")}${sw("confetti", "Fireworks & confetti", "Havai fişek ve konfeti")}${sw("mascot", "Leo's messages", "Aslan Leo'nun mesajları")}${sw("reminder", "Daily reminder", "Günlük hatırlatma")}${sw("sharePrompts", "Share buttons", "Paylaş düğmeleri")}</div>
+   <div class="card"><h3>🎨 Look</h3>${sw("dark", "Dark mode", "Karanlık mod")}${sw("large", "Large text", "Büyük yazı")}${sw("confetti", "Fireworks & confetti", "Havai fişek ve konfeti")}${sw("mascot", "Leo's messages", "Aslan Leo'nun mesajları")}${sw("reminder", "Daily reminder (notification)", "Günlük hatırlatma bildirimi")}${sw("sharePrompts", "Share buttons", "Paylaş düğmeleri")}</div>
    <div class="card"><h3>💾 Data</h3><p class="muted">Your progress is saved on this phone only.</p>${tr("İlerlemen sadece bu telefonda saklanır.")}<div style="height:8px"></div><button class="btn ghost" id="ex">Download backup</button><div style="height:8px"></div><button class="btn ghost" id="im">Restore from backup</button><input type="file" id="fi" accept=".json,application/json" class="hidden"><div style="height:8px"></div><button class="btn bad" id="rs">Reset this profile</button></div>
    <div class="card"><h3>🔒 Privacy</h3><p class="muted">No ads, no account, no chat rooms. Speaking exercises use your phone's speech service (for example Google), which may process your voice online. English Mirror recordings stay on this phone. Levels are organised along CEFR levels; they are not an official certificate.</p>${tr("Konuşma alıştırmalarında telefonunun ses tanıma servisi (örn. Google) sesini internet üzerinden işleyebilir. Ses aynası kayıtları telefonda kalır. Seviyeler CEFR'e göre düzenlenmiştir, resmi sertifika değildir.")}</div>
    <div class="credit">ENGLOW ${VERSION} · by First Class Software</div>`, () => { tab = "me"; render(); });
-  $("#app").querySelectorAll("[data-k]").forEach(i => i.onchange = () => { s[i.dataset.k] = i.checked; save(); applyTheme(); if (i.dataset.k === "music" && !i.checked) musicStop(); if (i.dataset.k === "trHints") settings(); });
+  $("#app").querySelectorAll("[data-k]").forEach(i => i.onchange = () => { s[i.dataset.k] = i.checked; save(); applyTheme(); if (i.dataset.k === "music" && !i.checked) musicStop(); if (i.dataset.k === "trHints") settings(); if (i.dataset.k === "reminder") scheduleReminder(true); });
   $("#acc").onchange = e => { s.accent = e.target.value; save(); say("Hello! Welcome to Englow."); };
   $("#rt").onchange = e => { s.rateAdj = +e.target.value; save(); say("This is my speed."); };
-  $("#gl").onchange = e => { s.goal = +e.target.value; save(); };
+  $("#gl").onchange = e => { s.goalMin = +e.target.value; save(); };
+  $("#rat").onchange = e => { s.remindAt = e.target.value || "19:00"; save(); scheduleReminder(true); };
   $("#rpt").onclick = () => placement();
   $("#sth").onclick = () => { P().starterMode = true; save(); tab = "map"; render(); };
   $("#jl").onchange = e => { const v = +e.target.value; if (!v) return; P().unlocked = Math.max(P().unlocked, v); save(); toast(`Unlocked up to ${city(v).name} ✈️`); };
@@ -1529,9 +1726,159 @@ function checkLimit() {
   $("#ul").onclick = () => pinGate(() => { s.limit = 0; save(); render(); }); return true;
 }
 
+// ---------- Günlük hatırlatma bildirimi (Android) ----------
+async function scheduleReminder(ask) {
+  if (!NATIVE || !NLN) { if (ask && !NATIVE) toast("Reminders work in the Android app ⏰"); return; }
+  try {
+    await NLN.cancel({ notifications: [{ id: 1 }] }).catch(() => {});
+    if (!DB.active || !P() || !S().reminder) return;
+    let pm = await NLN.checkPermissions();
+    if (pm.display !== "granted") { if (!ask) return; pm = await NLN.requestPermissions(); if (pm.display !== "granted") return toast("Notifications are turned off"); }
+    const [hh, mm] = (S().remindAt || "19:00").split(":").map(Number);
+    await NLN.schedule({ notifications: [{ id: 1, title: "Englow 🦁", body: `Time for English, ${P().name}! Keep your 🔥 streak alive.`, schedule: { on: { hour: hh, minute: mm }, allowWhileIdle: true } }] });
+    if (ask) toast(`Reminder set for ${S().remindAt} ⏰`);
+  } catch (e) {}
+}
+
+// ---------- Ses tanıma (ortak) ----------
+async function listenOnce(onStart, onEnd) {
+  if (!SR) throw new Error("no-sr");
+  if (SR === "native") {
+    const pm = await NSR.requestPermissions(); if (pm && pm.speechRecognition && pm.speechRecognition !== "granted") throw new Error("perm");
+    onStart(); try { const r = await NSR.start({ language: S().accent, maxResults: 5, partialResults: false, popup: false }); onEnd(); return (r && r.matches) || []; } catch (e) { onEnd(); throw e; }
+  }
+  return new Promise((res, rej) => { const r = new SR(); r.lang = S().accent; r.interimResults = false; r.maxAlternatives = 5; onStart();
+    r.onresult = e => { onEnd(); res([...e.results[0]].map(a => a.transcript)); }; r.onerror = e => { onEnd(); rej(e); }; r.onend = onEnd; try { r.start(); } catch (e) { onEnd(); rej(e); } });
+}
+
+// ---------- Chat with Leo & Pro English ----------
+function chatList(pro) {
+  const p = P(), list = pro ? PRO : CHATS;
+  sub(pro ? "🎧 Pro English" : "💬 Chat with Leo", (pro ? `<div class="card"><b>📞 Call Center English</b><p class="muted">Leo plays the customer. You are the agent. Speak or type your answer.</p>${tr("Leo müşteriyi oynar, sen temsilcisin. Cevabını söyle ya da yaz.")}</div>` :
+    mascot("Let's talk! Answer me with your voice or type. Tap 💡 if you need an idea.", "Sesinle ya da yazarak cevap ver. Fikir lazımsa 💡'ye dokun.")) +
+    list.map((c, i) => `<button class="list-item" data-c="${i}"><span class="ic">${c.icon}</span><div><b>${esc(c.t)}</b> ${p.chats[(pro ? "p" : "c") + i] ? "✅" : ""}<div class="muted">${c.lvl} · ${c.turns.length} turns</div>${tr(c.tr)}</div></button>`).join("") +
+    (pro ? `<div class="card"><h3>📘 Glossary</h3>${PRO_GLOSSARY.map(([k, v]) => `<div class="row"><b>${k}</b><span class="muted" style="text-align:right">${esc(v)}</span></div>`).join("")}</div>` : ""));
+  $("#app").querySelectorAll("[data-c]").forEach(b => b.onclick = () => chat(pro, +b.dataset.c));
+}
+function chat(pro, ci) {
+  const c = (pro ? PRO : CHATS)[ci]; let k = 0, tries = 0, score = 0, hint = false, kb = false; const log = [];
+  const leoB = (txt, t, live) => `<div class="cb cleo"><img src="lion.jpg" alt=""><div class="cbody">${pro ? `<div class="who">LEO · ${c.role}</div>` : ""}<div>${esc(txt)}</div>${live ? `<div class="ctr hidden" id="ctr">${esc(t)}</div><div class="cbtn"><button id="cTr" title="Translate">🌐</button><button id="cRe" title="Repeat">🔁</button><button id="cSl" title="Slow">🐢</button></div>` : ""}</div></div>`;
+  const youB = (txt, ok) => `<div class="cb cyou ${ok ? "ok" : "bad"}"><div class="cbody">${esc(txt)} ${ok ? "✓" : ""}</div></div>`;
+  const end = () => {
+    const xp = 10 + score * 3; P().chats[(pro ? "p" : "c") + ci] = true; addXP(xp); P().stats.spoken += score; save(); fireworks(3); beep("win");
+    sub(`${c.icon} ${esc(c.t)}`, `${log.join("")}<div class="center"><h1 class="bigpraise">Great conversation!</h1>${tr("Harika bir sohbetti!")}<p>${score}/${c.turns.length} on the first try · +${xp} XP</p></div>
+      <button class="btn gold" id="again">Talk again ↻</button><div style="height:8px"></div><button class="btn ghost" id="bb">Back</button>`, () => chatList(pro));
+    $("#again").onclick = () => chat(pro, ci); $("#bb").onclick = () => chatList(pro); checkBadges();
+  };
+  const step = (fresh) => {
+    if (k >= c.turns.length) return end();
+    const [leo, lt, sample, keys] = c.turns[k];
+    sub(`${c.icon} ${esc(c.t)}`, `<div class="chatbox">${pro && !k ? `<div class="rolebar">${c.role === "AGENT" ? "🧑‍💼 You are the team leader. Leo is your agent." : "🎧 You are the agent. Leo is the customer."}</div>` : ""}${log.join("")}${leoB(leo, lt, true)}
+      ${hint ? `<div class="hintbox">💡 You could say: <b>${esc(sample)}</b> <button class="spk sm" id="hS">🔊</button></div>` : ""}<div id="fbk"></div></div>
+      <div class="cbar"><button class="cbic" id="cH" title="Hint">💡</button><button class="spk mic" id="cM">🎤</button><button class="cbic" id="cK" title="Keyboard">⌨️</button></div>
+      <p class="muted center" id="cS" style="margin:6px 0">${SR ? "Tap 🎤 and answer" : "Type your answer"}</p>
+      <div id="kbx" class="${kb || !SR ? "" : "hidden"}"><input class="inp" id="cI" placeholder="Type in English…" autocomplete="off" autocapitalize="sentences"><div style="height:8px"></div><button class="btn" id="cG">Send</button></div>`, () => chatList(pro));
+    const sp = (t, r = 1) => say(t, r);
+    if (fresh) sp(leo);
+    $("#cTr").onclick = () => $("#ctr").classList.toggle("hidden"); $("#cRe").onclick = () => sp(leo); $("#cSl").onclick = () => sp(leo, .6);
+    $("#cH").onclick = () => { hint = true; step(false); setTimeout(() => sp(sample), 200); }; if ($("#hS")) $("#hS").onclick = () => sp(sample);
+    $("#cK").onclick = () => { kb = !kb; $("#kbx").classList.toggle("hidden"); if (kb) $("#cI").focus(); };
+    const judge = (alts, typed) => {
+      const said = alts[0] || ""; if (!said.trim()) return;
+      const ok = !keys ? norm(said).length > 0 : alts.some(a => keys.split("|").some(x => norm(a).includes(norm(x))));
+      if (!tries) { skillMark(typed ? "writing" : "speaking", ok); if (ok) score++; }
+      if (ok) { beep("ok"); log.push(leoB(leo), youB(said, true)); k++; tries = 0; hint = false; toast(PRAISE[Math.random() * PRAISE.length | 0][0] + " 🦁"); setTimeout(() => step(true), 700); }
+      else { tries++; beep("bad"); $("#fbk").innerHTML = youB(said, false) + `<div class="hintbox">Good try! 💪 You could say: <b>${esc(sample)}</b> <button class="spk sm" id="fS">🔊</button>${tr("İyi deneme! Şöyle diyebilirsin.")}<div class="row" style="border:0;gap:8px;margin-top:8px"><button class="btn ghost" id="tA" style="padding:10px">Try again ↻</button><button class="btn" id="nX" style="padding:10px">Next ▶</button></div></div>`;
+        $("#fS").onclick = () => sp(sample); $("#tA").onclick = () => step(false); $("#nX").onclick = () => { log.push(leoB(leo), youB(said, false)); k++; tries = 0; hint = false; step(true); };
+        $("#fbk").scrollIntoView({ block: "center", behavior: "smooth" }); }
+    };
+    $("#cG").onclick = () => judge([$("#cI").value], true); $("#cI").onkeydown = e => { if (e.key === "Enter") judge([$("#cI").value], true); };
+    $("#cM").onclick = async () => {
+      if (!SR) { kb = true; $("#kbx").classList.remove("hidden"); return; }
+      try { const alts = await listenOnce(() => { $("#cS").textContent = "Listening… 👂"; $("#cM").classList.add("live"); musicDuck(true); }, () => { const m = $("#cM"); if (m) m.classList.remove("live"); musicDuck(false); });
+        judge(alts, false); } catch (e) { $("#cS").textContent = "I couldn't hear you. Tap 🎤 again or use ⌨️."; }
+    };
+    const cb = document.querySelectorAll(".cb"); if (cb.length) cb[cb.length - 1].scrollIntoView({ block: "center" });
+  };
+  step(true);
+}
+
+// ---------- İlgi alanları pratiği ----------
+function interestPractice() {
+  const p = P();
+  sub("⭐ My Interests", `<p class="muted">Pick your favourite topics. We'll practise 10 words from them.</p>${tr("Sevdiğin konuları seç, onlardan 10 kelime çalışalım.")}
+    <div class="igrid">${INTERESTS.map(([k, i, l]) => `<button class="ib ${p.interests.includes(k) ? "sel" : ""}" data-in="${k}"><span>${i}</span>${l}</button>`).join("")}</div><div style="height:12px"></div>
+    <button class="btn gold" id="go" ${p.interests.length ? "" : "disabled"}>Practise 10 words ▶</button>`);
+  $("#app").querySelectorAll("[data-in]").forEach(b => b.onclick = () => { const k = b.dataset.in; p.interests = p.interests.includes(k) ? p.interests.filter(x => x !== k) : [...p.interests, k]; save(); interestPractice(); });
+  $("#go").onclick = () => {
+    const maxT = Math.min(72, Math.max(18, worldOf(p.unlocked) * 9 + 9));
+    let pool = p.interests.flatMap(k => INTERESTS.find(x => x[0] === k)[3]).filter(t => t < maxT).flatMap(t => TOPICS[t].w.map(W));
+    if (pool.length < 4) pool = p.interests.flatMap(k => INTERESTS.find(x => x[0] === k)[3]).flatMap(t => TOPICS[t].w.map(W));
+    const ws = pick(pool, 10); ws.forEach(w => { if (!p.words[w.en]) p.words[w.en] = { box: 1, due: Date.now() + 864e5, tr: w.tr, em: w.em, ok: 0 }; }); save();
+    const types = p.age === "mini" ? ["listenPic", "picWord"] : ["picWord", "meaningTR", "listen", "meaningEN"];
+    hideNav(); L = { n: 0, mode: "review", qs: ws.map((w, i) => ({ t: types[i % types.length], w, pool })), i: 0, first: 0, total: 0, combo: 0, world: null }; lessonBg(); showQ();
+  };
+}
+
+// ---------- Gelişim raporu: önce / şimdi, indirilebilir ----------
+const cefrOf = l => WORLDS[worldOf(Math.max(1, Math.min(80, l))) - 1].cefr;
+function weekMinutes(n = 8) {
+  const p = P(), out = []; const ws = new Date(weekKey()); 
+  for (let i = n - 1; i >= 0; i--) { const st = new Date(ws); st.setDate(st.getDate() - i * 7); let m = 0; for (let d = 0; d < 7; d++) { const x = new Date(st); x.setDate(x.getDate() + d); m += p.minutes[dayKey(x)] || 0; } out.push([`${pad2(st.getDate())}.${pad2(st.getMonth() + 1)}`, Math.round(m)]); }
+  return out;
+}
+function reportData() {
+  const p = P(), totalMin = Math.round(Object.values(p.minutes).reduce((a, b) => a + b, 0)), cities = Object.keys(p.stars).filter(k => p.stars[k]).length;
+  const days = Math.max(1, Math.round((new Date(today()) - new Date(p.start.date)) / 864e5) + 1);
+  return { p, totalMin, cities, days, startL: p.start.lvl, nowL: p.unlocked, words0: p.start.words, words: Object.keys(p.words).length,
+    skills: SKILLS.map(([k, i, l, t]) => ({ k, i, l, t, b: skBefore(p.sk[k]), n: skNow(p.sk[k]), cnt: p.sk[k] ? p.sk[k].n : 0 })), weeks: weekMinutes() };
+}
+function renderReport() {
+  const d = reportData(), p = d.p, mx = Math.max(10, ...d.weeks.map(w => w[1]));
+  sub("📈 My Progress Report", `<div class="card rephead"><div style="display:flex;gap:12px;align-items:center">${avatarHTML(p, 56)}<div><h2 style="margin:0">${esc(p.name)}</h2><div class="muted">Learning since ${p.start.date} · day ${d.days}</div></div></div></div>
+   <div class="ba"><div class="bcol"><small>BEFORE</small><b>${cefrOf(d.startL)}</b><span>Level ${d.startL}</span><span>${d.words0} words</span><span>${p.start.date}</span></div><div class="barrow">➜</div>
+   <div class="bcol now"><small>NOW</small><b>${cefrOf(d.nowL)}</b><span>Level ${d.nowL}</span><span>${d.words} words</span><span>${today()}</span></div></div>${tr("Başladığın gün ve bugün")}
+   <div class="card"><h3>🎯 Skills · first 20 answers → last 20</h3>${tr("Her beceride ilk 20 cevabın ve son 20 cevabın doğruluk oranı")}
+    ${d.skills.map(x => `<div class="skrow"><div class="skl">${x.i} <b>${x.l}</b>${showTR() ? ` <span class="muted">${x.t}</span>` : ""}</div>${x.n === null ? `<div class="muted" style="font-size:13px">Not practised yet</div>` : `<div class="skb"><i class="b" style="width:${x.b}%"></i><i class="n" style="width:${x.n}%"></i></div><div class="skv">${x.b}% → <b>${x.n}%</b> ${x.n > x.b ? "📈" : x.n < x.b ? "📉" : "➖"}</div>`}</div>`).join("")}</div>
+   <div class="card"><h3>⏱️ Minutes per week</h3><div class="bars gold">${d.weeks.map(([l, m]) => `<div><i style="height:${Math.max(3, m / mx * 60)}px"></i>${l}</div>`).join("")}</div>
+    <div class="row"><span>Total time</span><b>${d.totalMin} min</b></div><div class="row"><span>Lessons</span><b>${p.stats.lessons}</b></div><div class="row"><span>Cities visited</span><b>🛂 ${d.cities}/80</b></div><div class="row"><span>Best streak now</span><b>🔥 ${p.streak} days</b></div><div class="row"><span>Words spoken</span><b>🎤 ${p.stats.spoken}</b></div></div>
+   <button class="btn gold" id="dl">📥 Download report</button><div style="height:8px"></div>${S().sharePrompts ? `<button class="btn share" id="sr">📤 Share report</button>` : ""}
+   <p class="muted center" style="font-size:12px;margin-top:10px">Englow levels follow CEFR as a guide. This report is not an official certificate.</p>`, () => { tab = "me"; render(); });
+  $("#dl").onclick = async () => { toast("Preparing your report…"); const img = await reportImage(); downloadImg(img, `Englow-Report-${p.name}-${today()}.png`); };
+  if ($("#sr")) $("#sr").onclick = async () => { toast("Preparing your report…"); const link = shareLink(); shareOut(`📈 My Englow progress: ${cefrOf(d.startL)} → ${cefrOf(d.nowL)} · ${d.words} words · ${d.cities} cities 🦁${link ? "\n👉 " + link : ""}`, await reportImage(), "englow-report.png"); };
+}
+async function downloadImg(dataUrl, fname) {
+  if (NATIVE && NFS) { try { await NFS.writeFile({ path: fname, data: dataUrl.split(",")[1], directory: "DOCUMENTS", recursive: true }); toast("Saved to Documents 📁"); return; } catch (e) { return shareOut("Englow progress report", dataUrl, fname); } }
+  const a = document.createElement("a"); a.href = dataUrl; a.download = fname; a.click(); toast("Downloaded 📥");
+}
+async function reportImage() {
+  try { await document.fonts.load('800 60px "Baloo"'); await document.fonts.load('800 40px "Nunito"'); } catch (e) {}
+  const d = reportData(), p = d.p, W2 = 1080, H = 1560, c = document.createElement("canvas"); c.width = W2; c.height = H; const x = c.getContext("2d");
+  const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, "#0b1f5c"); g.addColorStop(1, "#050b24"); x.fillStyle = g; x.fillRect(0, 0, W2, H);
+  const img = new Image(); img.src = "icon-192.png"; await new Promise(r => { img.onload = r; img.onerror = r; }); x.save(); x.beginPath(); x.roundRect ? x.roundRect(60, 50, 150, 150, 32) : x.rect(60, 50, 150, 150); x.clip(); x.drawImage(img, 60, 50, 150, 150); x.restore();
+  const grad = (x0, x1) => { const t = x.createLinearGradient(x0, 0, x1, 0); t.addColorStop(0, "#ff2d95"); t.addColorStop(.5, "#ff6a2b"); t.addColorStop(1, "#ffd21f"); return t; };
+  x.textAlign = "left"; x.font = '800 74px "Baloo", sans-serif'; x.fillStyle = "#fff"; x.fillText("ENG", 240, 130); const w1 = x.measureText("ENG").width; x.fillStyle = grad(240 + w1, 240 + w1 + 180); x.fillText("LOW", 240 + w1, 130);
+  x.fillStyle = "#bfdbfe"; x.font = '800 32px "Nunito", sans-serif'; x.fillText("PROGRESS REPORT · " + today(), 240, 180);
+  x.fillStyle = "#fff"; x.font = '800 54px "Nunito", sans-serif'; x.fillText(p.name, 60, 290); x.fillStyle = "#93c5fd"; x.font = '700 30px "Nunito", sans-serif'; x.fillText(`Learning since ${p.start.date} · day ${d.days}`, 60, 336);
+  const box = (bx, label, cefr, l1, l2, hi) => { x.fillStyle = hi ? "rgba(250,204,21,.15)" : "rgba(255,255,255,.07)"; x.beginPath(); x.roundRect ? x.roundRect(bx, 380, 430, 250, 30) : x.rect(bx, 380, 430, 250); x.fill(); x.strokeStyle = hi ? "#facc15" : "rgba(255,255,255,.25)"; x.lineWidth = 3; x.stroke();
+    x.textAlign = "center"; x.fillStyle = hi ? "#facc15" : "#cbd5e1"; x.font = '800 30px "Nunito", sans-serif'; x.fillText(label, bx + 215, 430); x.fillStyle = "#fff"; x.font = '800 84px "Baloo", sans-serif'; x.fillText(cefr, bx + 215, 525); x.font = '700 30px "Nunito", sans-serif'; x.fillStyle = "#e2e8f0"; x.fillText(l1, bx + 215, 572); x.fillText(l2, bx + 215, 610); };
+  box(60, "BEFORE", cefrOf(d.startL), `Level ${d.startL}`, `${d.words0} words`, false); box(590, "NOW", cefrOf(d.nowL), `Level ${d.nowL}`, `${d.words} words`, true);
+  x.textAlign = "center"; x.fillStyle = "#facc15"; x.font = '800 60px "Nunito", sans-serif'; x.fillText("➜", 540, 525);
+  x.textAlign = "left"; x.fillStyle = "#fff"; x.font = '800 40px "Nunito", sans-serif'; x.fillText("Skills  (first 20 answers → last 20)", 60, 710);
+  d.skills.forEach((s, i) => { const y = 770 + i * 92; x.fillStyle = "#fff"; x.font = '800 34px "Nunito", sans-serif'; x.fillText(`${s.i} ${s.l}`, 60, y + 10);
+    x.fillStyle = "rgba(255,255,255,.12)"; x.fillRect(420, y - 18, 440, 34);
+    if (s.n !== null) { x.fillStyle = "rgba(148,163,184,.7)"; x.fillRect(420, y - 18, 440 * s.b / 100, 14); x.fillStyle = grad(420, 860); x.fillRect(420, y - 2, 440 * s.n / 100, 18); x.fillStyle = "#fff"; x.font = '800 30px "Nunito", sans-serif'; x.fillText(`${s.b}→${s.n}%`, 880, y + 10); }
+    else { x.fillStyle = "#94a3b8"; x.font = '700 26px "Nunito", sans-serif'; x.fillText("not practised yet", 430, y + 8); } });
+  const st = [["⏱️", `${d.totalMin} min`, "total time"], ["🛂", `${d.cities}/80`, "cities"], ["📚", `${p.stats.lessons}`, "lessons"], ["🔥", `${p.streak}`, "day streak"]];
+  st.forEach(([ic, v, l], i) => { const bx = 60 + i * 245; x.fillStyle = "rgba(255,255,255,.07)"; x.fillRect(bx, 1340, 225, 120); x.textAlign = "center"; x.fillStyle = "#fff"; x.font = '800 40px "Nunito", sans-serif'; x.fillText(`${ic} ${v}`, bx + 112, 1395); x.fillStyle = "#93c5fd"; x.font = '700 26px "Nunito", sans-serif'; x.fillText(l, bx + 112, 1435); });
+  x.textAlign = "center"; x.fillStyle = "#64748b"; x.font = '700 24px "Nunito", sans-serif'; x.fillText("Around the World in 80 Levels · by First Class Software · not an official certificate", 540, 1510);
+  return c.toDataURL("image/png");
+}
+
 // ---------- Başlat ----------
 window.addEventListener("load", () => {
   migratePin();
+  if (DB.active && P()) scheduleReminder(false);
   setTimeout(() => { const sp = $("#splash"); if (sp) { sp.style.opacity = 0; setTimeout(() => sp.remove(), 500); } }, 1800);
   if ("serviceWorker" in navigator && !NATIVE) navigator.serviceWorker.register("sw.js").catch(() => {});
   render();

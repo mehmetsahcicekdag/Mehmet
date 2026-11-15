@@ -1,8 +1,8 @@
 {
   "name": "englow",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "private": true,
-  "description": "Englow v1.1 \u2013 English for Every Age",
+  "description": "Englow v2.0 \u2013 Around the World in 80 Levels",
   "dependencies": {
     "@capacitor/android": "8.6.2",
     "@capacitor/cli": "8.6.2",
@@ -11,6 +11,7 @@
     "@capacitor-community/speech-recognition": "7.0.1",
     "@capacitor/share": "8.0.3",
     "@capacitor/filesystem": "8.1.5",
-    "@capacitor/app-launcher": "8.0.1"
+    "@capacitor/app-launcher": "8.0.1",
+    "@capacitor/local-notifications": "8.3.1"
   }
 }
