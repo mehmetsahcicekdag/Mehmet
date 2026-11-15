@@ -262,10 +262,35 @@ input[type=range]{width:55%;accent-color:#8b5cf6}
 canvas.fx{position:fixed;inset:0;pointer-events:none;z-index:60}
 .lockscreen img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:top;border:5px solid #facc15}
 .mascot img{object-fit:cover;object-position:top}
+
+.hero-act{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hshare{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-size:18px;box-shadow:0 3px 0 #14532d}
+.hero-row .av{margin-left:0}
+
+.sharepill{display:block;margin:12px auto 0;padding:9px 18px;border-radius:999px;background:linear-gradient(90deg,#22c55e,#16a34a);color:#fff;font-size:14px;box-shadow:0 4px 0 #14532d;position:relative}
+.sharepill.light{margin:14px auto 0}
+.postcard{background:var(--card);border-radius:22px;padding:14px;margin-bottom:12px;border:3px solid color-mix(in srgb,var(--w) 45%,#fff);box-shadow:0 6px 0 color-mix(in srgb,var(--w) 30%,#fff),0 10px 24px rgba(0,0,0,.08);background-image:repeating-linear-gradient(45deg,transparent 0 10px,color-mix(in srgb,var(--w) 6%,transparent) 10px 20px)}
+.pc-top{display:flex;align-items:center;gap:12px}.pc-top h2{margin:0}
+.pc-top .bigflag{font-size:52px;line-height:1}
+.pc-sub{color:var(--muted);font-weight:800}
+.capb{color:#ca8a04}
+.pc-stamp{margin-left:auto;font-size:30px;transform:rotate(-12deg)}
+.pc-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--line)}.pc-row>span{font-size:22px}
+.pc-fact{margin-top:10px;padding:12px;border-radius:14px;background:color-mix(in srgb,var(--w) 10%,var(--card))}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px}.match>div{display:grid;gap:10px}
+.msnd{background:linear-gradient(135deg,#ccfbf1,#99f6e4);border-color:#14b8a6}
+body.dark .msnd{background:#134e4a}
+.opt.sel{border-color:#2563eb;background:#dbeafe}
+.passport{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-height:300px;overflow:auto;margin-top:8px}
+.stamp{text-align:center;font-size:9px;padding:6px 2px;border-radius:10px;border:2px dashed var(--line);color:var(--muted);filter:grayscale(1);opacity:.5;line-height:1.2}
+.stamp b{display:block;font-size:22px}
+.stamp.on{filter:none;opacity:1;border-color:#16a34a;color:var(--text);background:#f0fdf4;transform:rotate(-3deg)}
+body.dark .stamp.on{background:#0f3d24}
+.choice .tag{background:#22c55e!important;color:#fff!important}
 </style>
 </head>
 <body>
-<div id="splash"><img src="cover.jpg" alt="Englow"><div class="slog">English for Every Age</div><div style="margin-top:18px"><span class="pill">FIRST CLASS</span></div></div>
+<div id="splash"><img src="cover.jpg" alt="Englow"><div class="slog">Around the World in 80 Levels</div><div style="margin-top:18px"><span class="pill">FIRST CLASS</span></div></div>
 <div id="app"></div>
 <script>// ENGLOW v1.0 — içerik (CEFR Pre-A1 → B2)
 // Kelime formatı: "english|türkçe|emoji"
@@ -279,23 +304,96 @@ const WORLDS = [
   {id:7, name:"Asia & Middle East", tr:"Asya ve Orta Doğu", cefr:"B1.2", color:"#e11d48", icon:"🌏", scene:"as"},
   {id:8, name:"Oceania & Africa", tr:"Okyanusya ve Afrika", cefr:"B2", color:"#ca8a04", icon:"🌍", scene:"oc"}
 ];
-// 80 şehir — dünya turu (her 10. şehir Boss)
+// 80 şehir — dünya turu; her şehir o seviyenin konusuna göre seçildi (her 10. şehir Boss)
+// [şehir, bayrak, ülke, başkent mi, görülecek yerler, bilgi, wikidata başlığı]
 const CITIES = [
- ["İstanbul","🇹🇷"],["Ankara","🇹🇷"],["Antalya","🇹🇷"],["Athens","🇬🇷"],["Santorini","🇬🇷"],["Thessaloniki","🇬🇷"],["Sofia","🇧🇬"],["Bucharest","🇷🇴"],["Belgrade","🇷🇸"],["Budapest","🇭🇺"],
- ["Rome","🇮🇹"],["Venice","🇮🇹"],["Milan","🇮🇹"],["Florence","🇮🇹"],["Naples","🇮🇹"],["Pisa","🇮🇹"],["Verona","🇮🇹"],["Turin","🇮🇹"],["Bologna","🇮🇹"],["Amalfi","🇮🇹"],
- ["London","🇬🇧"],["Manchester","🇬🇧"],["Liverpool","🇬🇧"],["Oxford","🇬🇧"],["Cambridge","🇬🇧"],["Edinburgh","🇬🇧"],["Glasgow","🇬🇧"],["Cardiff","🇬🇧"],["Dublin","🇮🇪"],["Belfast","🇬🇧"],
- ["Paris","🇫🇷"],["Nice","🇫🇷"],["Barcelona","🇪🇸"],["Madrid","🇪🇸"],["Lisbon","🇵🇹"],["Amsterdam","🇳🇱"],["Brussels","🇧🇪"],["Berlin","🇩🇪"],["Vienna","🇦🇹"],["Zurich","🇨🇭"],
- ["New York","🇺🇸"],["Washington","🇺🇸"],["Boston","🇺🇸"],["Chicago","🇺🇸"],["Miami","🇺🇸"],["Orlando","🇺🇸"],["Las Vegas","🇺🇸"],["Los Angeles","🇺🇸"],["San Francisco","🇺🇸"],["Seattle","🇺🇸"],
- ["Toronto","🇨🇦"],["Vancouver","🇨🇦"],["Montreal","🇨🇦"],["Mexico City","🇲🇽"],["Cancún","🇲🇽"],["Havana","🇨🇺"],["Rio de Janeiro","🇧🇷"],["Buenos Aires","🇦🇷"],["Lima","🇵🇪"],["Santiago","🇨🇱"],
- ["Dubai","🇦🇪"],["Doha","🇶🇦"],["Cairo","🇪🇬"],["Mumbai","🇮🇳"],["Bangkok","🇹🇭"],["Singapore","🇸🇬"],["Tokyo","🇯🇵"],["Seoul","🇰🇷"],["Beijing","🇨🇳"],["Hong Kong","🇭🇰"],
- ["Sydney","🇦🇺"],["Melbourne","🇦🇺"],["Auckland","🇳🇿"],["Cape Town","🇿🇦"],["Nairobi","🇰🇪"],["Marrakech","🇲🇦"],["Kyoto","🇯🇵"],["Bali","🇮🇩"],["Reykjavik","🇮🇸"],["İstanbul · Grand Final","🇹🇷"]
+ ["İstanbul","🇹🇷","Türkiye",0,"Hagia Sophia · Galata Tower · the Bosphorus","İstanbul is on two continents: Europe and Asia. People say 'Merhaba!' here — in English, 'Hello!'","Istanbul"],
+ ["Ankara","🇹🇷","Türkiye",1,"Anıtkabir · Ankara Castle · Atakule","Ankara is the capital of Türkiye and a big university city — lots of classrooms!","Ankara"],
+ ["Santorini","🇬🇷","Greece",0,"Oia · white houses · blue domes","Santorini is famous for its white houses and blue roofs. What colours can you see?","Santorini"],
+ ["Belgrade","🇷🇸","Serbia",1,"Belgrade Fortress · Belgrade Zoo · Knez Mihailova","Belgrade Zoo, inside an old fortress, is one of the oldest zoos in the Balkans.","Belgrade"],
+ ["Thessaloniki","🇬🇷","Greece",0,"White Tower · the seafront · Rotunda","In Greece, big family lunches on Sunday are a tradition.","Thessaloniki"],
+ ["Sofia","🇧🇬","Bulgaria",1,"Alexander Nevsky Cathedral · Vitosha Mountain","Sofia's name means 'wisdom'. Use your head, eyes and ears today!","Sofia"],
+ ["Antalya","🇹🇷","Türkiye",0,"Kaleiçi · Düden Waterfalls · the beaches","Antalya is famous for its oranges and sunny weather.","Antalya"],
+ ["Athens","🇬🇷","Greece",1,"The Acropolis · the Parthenon · Plaka","Plato's Academy was in Athens — one of the first schools in the world.","Athens"],
+ ["Bucharest","🇷🇴","Romania",1,"Palace of the Parliament · Old Town","Bucharest has many big parks — great places to play!","Bucharest"],
+ ["Budapest","🇭🇺","Hungary",1,"Parliament · Chain Bridge · thermal baths","Budapest is two cities in one: Buda and Pest, with the Danube between them.","Budapest"],
+ ["Rome","🇮🇹","Italy",1,"Colosseum · Trevi Fountain · Vatican","The Romans wrote numbers like this: I, V, X, L, C. X means ten!","Rome"],
+ ["Naples","🇮🇹","Italy",0,"Mount Vesuvius · Pompeii · the old town","Naples is the home of pizza. Margherita pizza was created here.","Naples"],
+ ["Turin","🇮🇹","Italy",0,"Mole Antonelliana · Egyptian Museum","Turin is famous for coffee and hot chocolate.","Turin"],
+ ["Milan","🇮🇹","Italy",0,"Duomo · Galleria · La Scala","Milan is one of the fashion capitals of the world. What are you wearing today?","Milan"],
+ ["Verona","🇮🇹","Italy",0,"Juliet's House · the Arena","In Verona you can visit 'Juliet's House' from Shakespeare's Romeo and Juliet.","Verona"],
+ ["Florence","🇮🇹","Italy",0,"Uffizi · Ponte Vecchio · the Duomo","Florence is famous for art and beautiful handmade furniture.","Florence"],
+ ["Bologna","🇮🇹","Italy",0,"Two Towers · the porticoes","Bologna has the oldest university in the Western world — opened in 1088.","Bologna"],
+ ["Pisa","🇮🇹","Italy",0,"Leaning Tower · Piazza dei Miracoli","The Leaning Tower of Pisa took almost 200 years to build!","Pisa"],
+ ["Venice","🇮🇹","Italy",0,"St Mark's Square · gondolas · Rialto Bridge","Venice has no cars — only boats! When it rains a lot, the streets can flood.","Venice"],
+ ["Amalfi","🇮🇹","Italy",0,"Amalfi Coast · lemon gardens","The Amalfi Coast is famous for its giant lemons.","Amalfi"],
+ ["Manchester","🇬🇧","United Kingdom",0,"Old Trafford · Science and Industry Museum","Manchester was a centre of the Industrial Revolution — the city of factories and jobs.","Manchester"],
+ ["Dublin","🇮🇪","Ireland",1,"Trinity College · Temple Bar · the River Liffey","Irish people are known for being friendly and full of feelings — and for great music!","Dublin"],
+ ["Oxford","🇬🇧","United Kingdom",0,"Oxford University · the Bodleian Library","Oxford students have a busy daily routine: lectures, libraries and long walks.","Oxford"],
+ ["London","🇬🇧","United Kingdom",1,"Big Ben · Tower Bridge · the British Museum","Big Ben is the name of the bell in the famous clock tower. What time is it?","London"],
+ ["Edinburgh","🇬🇧","United Kingdom",1,"Edinburgh Castle · the Royal Mile","Edinburgh is the capital of Scotland, with a castle on top of an old volcano.","Edinburgh"],
+ ["Glasgow","🇬🇧","United Kingdom",0,"The Clockwork Orange subway · Kelvingrove","Glasgow's underground train is called 'the Clockwork Orange'.","Glasgow"],
+ ["Liverpool","🇬🇧","United Kingdom",0,"Anfield · the Beatles Story · Albert Dock","Liverpool is a football city — and the home of the Beatles.","Liverpool"],
+ ["Cambridge","🇬🇧","United Kingdom",0,"King's College · punting on the river","A favourite hobby in Cambridge is 'punting' — riding a long boat on the river.","Cambridge"],
+ ["Cardiff","🇬🇧","United Kingdom",1,"Cardiff Castle · Cardiff Bay","Welsh cakes are small sweet cakes cooked in a pan. Yummy!","Cardiff"],
+ ["Belfast","🇬🇧","United Kingdom",1,"Titanic Belfast · City Hall","The Titanic ship was built in Belfast.","Belfast"],
+ ["Madrid","🇪🇸","Spain",1,"Prado Museum · Retiro Park · Gran Vía","Gran Vía in Madrid is a long street full of shops and theatres.","Madrid"],
+ ["Paris","🇫🇷","France",1,"Eiffel Tower · the Louvre · cafés","Paris has thousands of cafés and restaurants. 'A table for two, please!'","Paris"],
+ ["Vienna","🇦🇹","Austria",1,"Schönbrunn Palace · the Opera","Vienna is often called one of the best cities in the world to live in.","Vienna"],
+ ["Lisbon","🇵🇹","Portugal",1,"Belém Tower · yellow trams · Alfama","Many great sea explorers started their trips from Lisbon.","Lisbon"],
+ ["Nice","🇫🇷","France",0,"Promenade des Anglais · the old town","Nice is on the French Riviera — full of hotels by the sea.","Nice"],
+ ["Amsterdam","🇳🇱","Netherlands",1,"Canals · Rijksmuseum · bicycles","Amsterdam has more bicycles than people! Turn left at the canal.","Amsterdam"],
+ ["Barcelona","🇪🇸","Spain",0,"Sagrada Família · Park Güell · the beach","Barcelona has mountains, parks and the sea — all in one city.","Barcelona"],
+ ["Berlin","🇩🇪","Germany",1,"Brandenburg Gate · the Berlin Wall","Berlin has cold winters with snow and warm, sunny summers.","Berlin"],
+ ["Brussels","🇧🇪","Belgium",1,"Grand-Place · Atomium","Brussels is home to big buildings and tiny statues — like the little Manneken Pis.","Brussels"],
+ ["Zurich","🇨🇭","Switzerland",0,"Lake Zurich · the Old Town · the Alps","Swiss chocolate and watches are famous all over the world.","Zürich"],
+ ["San Francisco","🇺🇸","United States",0,"Golden Gate Bridge · cable cars","Silicon Valley, near San Francisco, is home to many big tech companies.","San Francisco"],
+ ["Chicago","🇺🇸","United States",0,"Millennium Park · Cloud Gate · blues clubs","Chicago is famous for jazz and blues music.","Chicago"],
+ ["Los Angeles","🇺🇸","United States",0,"Hollywood · Santa Monica · Griffith Observatory","Hollywood, in Los Angeles, is the home of the movies.","Los Angeles"],
+ ["Boston","🇺🇸","United States",0,"Freedom Trail · Harvard · MIT","Boston is a city of students — clever, kind and friendly people!","Boston"],
+ ["Washington","🇺🇸","United States",1,"The White House · the Capitol · Smithsonian museums","Washington, D.C. is the capital of the USA. The President lives in the White House.","Washington, D.C."],
+ ["New York","🇺🇸","United States",0,"Statue of Liberty · Times Square · Central Park","Wall Street in New York is one of the money centres of the world.","New York City"],
+ ["Las Vegas","🇺🇸","United States",0,"The Strip · desert views · shows","Las Vegas is a city that never sleeps — always busy, day and night.","Las Vegas"],
+ ["Miami","🇺🇸","United States",0,"South Beach · Little Havana","In Miami people run, swim and play sports on the beach all year.","Miami"],
+ ["Orlando","🇺🇸","United States",0,"Theme parks · lakes · wildlife","Florida, around Orlando, is home to alligators, dolphins and manatees.","Orlando, Florida"],
+ ["Seattle","🇺🇸","United States",0,"Space Needle · Pike Place Market","Seattle is known for coffee, rain and the Space Needle.","Seattle"],
+ ["Toronto","🇨🇦","Canada",0,"CN Tower · the Financial District","Toronto is Canada's biggest city and a business centre.","Toronto"],
+ ["Montreal","🇨🇦","Canada",0,"Old Montreal · McGill University","In Montreal people speak French and English — and many students study here.","Montreal"],
+ ["Vancouver","🇨🇦","Canada",0,"Stanley Park · mountains · the ocean","Vancouver is one of the greenest cities in the world.","Vancouver"],
+ ["Mexico City","🇲🇽","Mexico",1,"Zócalo · Frida Kahlo Museum · Teotihuacan","Mexico City is one of the biggest Spanish-speaking cities in the world.","Mexico City"],
+ ["Buenos Aires","🇦🇷","Argentina",1,"La Boca · Teatro Colón · tango","Tango, a dance full of emotion, was born in Buenos Aires.","Buenos Aires"],
+ ["Havana","🇨🇺","Cuba",1,"Old Havana · the Malecón · classic cars","In Havana families and neighbours often meet and talk in the streets.","Havana"],
+ ["Cancún","🇲🇽","Mexico",0,"White beaches · Mayan ruins","Cancún is a top place to 'take off' on holiday and 'chill out' on the beach.","Cancún"],
+ ["Rio de Janeiro","🇧🇷","Brazil",0,"Christ the Redeemer · Copacabana · Carnival","Rio's Carnival is shown on TV and social media all around the world.","Rio de Janeiro"],
+ ["Lima","🇵🇪","Peru",1,"Historic centre · Miraflores","Peru's scientists study ancient cultures like the Incas.","Lima"],
+ ["Santiago","🇨🇱","Chile",1,"Andes mountains · Plaza de Armas","Chile has some of the best places on Earth to look at the stars.","Santiago"],
+ ["Dubai","🇦🇪","UAE",0,"Burj Khalifa · Dubai Mall · the desert","Dubai is a big business city with the tallest building in the world.","Dubai"],
+ ["Doha","🇶🇦","Qatar",1,"Museum of Islamic Art · the Corniche","Doha's airport is a huge travel hub. Flights can be delayed — stay calm!","Doha"],
+ ["Singapore","🇸🇬","Singapore",1,"Gardens by the Bay · Marina Bay","Singapore is known for its clean streets and top hospitals.","Singapore"],
+ ["Seoul","🇰🇷","South Korea",1,"Gyeongbokgung Palace · Gangnam · N Seoul Tower","Seoul is famous for K-pop and very fast internet.","Seoul"],
+ ["Tokyo","🇯🇵","Japan",1,"Shibuya Crossing · Tokyo Tower · Senso-ji","Tokyo is one of the biggest cities on Earth — trains are always on time!","Tokyo"],
+ ["Cairo","🇪🇬","Egypt",1,"The Pyramids of Giza · the Nile · the Egyptian Museum","The Great Pyramid near Cairo is more than 4,500 years old.","Cairo"],
+ ["Bangkok","🇹🇭","Thailand",1,"Grand Palace · floating markets","Bangkok is famous for street food: noodles, curry and mango sticky rice.","Bangkok"],
+ ["Beijing","🇨🇳","China",1,"The Great Wall · Forbidden City","Beijing hosted both the Summer (2008) and Winter (2022) Olympic Games.","Beijing"],
+ ["Mumbai","🇮🇳","India",0,"Gateway of India · Bollywood","Mumbai is the home of Bollywood. However, it's also a huge business city.","Mumbai"],
+ ["Hong Kong","🇭🇰","China",0,"Victoria Peak · the harbour · skyscrapers","Hong Kong has more skyscrapers than almost any city in the world.","Hong Kong"],
+ ["Kyoto","🇯🇵","Japan",0,"Temples · Fushimi Inari · gardens","Kyoto is a city of old temples, quiet gardens and wisdom.","Kyoto"],
+ ["Sydney","🇦🇺","Australia",0,"Opera House · Harbour Bridge · Bondi Beach","Australians say 'No worries!' — it means 'It's OK, don't worry'.","Sydney"],
+ ["Melbourne","🇦🇺","Australia",0,"Laneways · street art · the MCG","Melbourne people love to make coffee and do sport.","Melbourne"],
+ ["Auckland","🇳🇿","New Zealand",0,"Sky Tower · volcanoes · harbours","Auckland is built on about 50 old volcanoes.","Auckland"],
+ ["Cape Town","🇿🇦","South Africa",1,"Table Mountain · Robben Island","South Africa's Parliament meets in Cape Town — a place of big debates.","Cape Town"],
+ ["Nairobi","🇰🇪","Kenya",1,"Nairobi National Park · giraffe centre","Nairobi is called 'Silicon Savannah' because of its tech companies.","Nairobi"],
+ ["Reykjavik","🇮🇸","Iceland",1,"Hallgrímskirkja · the Northern Lights","Iceland is often called one of the happiest and most equal countries.","Reykjavík"],
+ ["Bali","🇮🇩","Indonesia",0,"Rice terraces · temples · beaches","Bali works hard to stop plastic pollution on its beaches.","Bali"],
+ ["Marrakech","🇲🇦","Morocco",0,"Jemaa el-Fnaa · the souks · gardens","Hard work and patience are the secret of Marrakech's famous craftspeople.","Marrakesh"],
+ ["İstanbul · Grand Final","🇹🇷","Türkiye",0,"You came back home!","You travelled around the world in 80 levels. Welcome back to İstanbul — you did it!","Istanbul"]
 ];
 
 // 72 konu (her dünyada 9 ders + 10. seviye Boss tekrar sınavı)
 const TOPICS = [
  // DÜNYA 1
  {t:"Greetings",tr:"Selamlaşma",w:["hello|merhaba|👋","goodbye|hoşça kal|🙋","please|lütfen|🙏","thank you|teşekkürler|💐","yes|evet|✅","no|hayır|❌","good morning|günaydın|🌅","good night|iyi geceler|🌙"]},
- {t:"Numbers 1-10",tr:"Sayılar 1-10",w:["one|bir|1️⃣","two|iki|2️⃣","three|üç|3️⃣","four|dört|4️⃣","five|beş|5️⃣","six|altı|6️⃣","seven|yedi|7️⃣","ten|on|🔟"]},
+ {t:"Classroom",tr:"Sınıf Komutları",w:["sit down|otur|🪑","stand up|ayağa kalk|🧍","open|aç|📖","close|kapat|📕","listen|dinle|👂","look|bak|👀","write|yaz|✍️","read|oku|📚"]},
  {t:"Colors",tr:"Renkler",w:["red|kırmızı|🔴","blue|mavi|🔵","green|yeşil|🟢","yellow|sarı|🟡","black|siyah|⚫","white|beyaz|⚪","orange|turuncu|🟠","purple|mor|🟣"]},
  {t:"Animals",tr:"Hayvanlar",w:["cat|kedi|🐱","dog|köpek|🐶","bird|kuş|🐦","fish|balık|🐟","horse|at|🐴","cow|inek|🐮","lion|aslan|🦁","rabbit|tavşan|🐰"]},
  {t:"Family",tr:"Aile",w:["mother|anne|👩","father|baba|👨","sister|kız kardeş|👧","brother|erkek kardeş|👦","baby|bebek|👶","grandmother|büyükanne|👵","grandfather|büyükbaba|👴","family|aile|👨‍👩‍👧"]},
@@ -466,9 +564,20 @@ const SCENARIOS = [
   ["What is your biggest strength?","En büyük güçlü yönünüz nedir?","I'm a good communicator and I stay calm under pressure.",["I'm a good communicator and I stay calm under pressure.","I am strong man.","My strength is gym."]],
   ["Do you have any questions for us?","Bize sormak istediğiniz bir şey var mı?","Yes, what does a typical day look like in this role?",["Yes, what does a typical day look like in this role?","No questions never.","What is your name salary?"]]]}
 ];
+
+// Start Here: harfler ve sayılar
+const ABC = {A:["apple","🍎"],B:["ball","⚽"],C:["cat","🐱"],D:["dog","🐶"],E:["egg","🥚"],F:["fish","🐟"],G:["grape","🍇"],H:["horse","🐴"],I:["ice cream","🍦"],J:["juice","🧃"],K:["kite","🪁"],L:["lion","🦁"],M:["milk","🥛"],N:["nose","👃"],O:["orange","🍊"],P:["pen","🖊️"],Q:["queen","👑"],R:["rabbit","🐰"],S:["sun","☀️"],T:["tree","🌳"],U:["umbrella","☂️"],V:["violin","🎻"],W:["water","💧"],X:["box","📦"],Y:["yellow","🟡"],Z:["zebra","🦓"]};
+const NUMS = ["zero","one","two","three","four","five","six","seven","eight","nine","ten"];
+const NUMS_TR = ["sıfır","bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz","on"];
+const STARTER = [
+ {t:"Letters A–I",tr:"Harfler A–I",icon:"🔤",letters:"ABCDEFGHI"},
+ {t:"Letters J–R",tr:"Harfler J–R",icon:"🔡",letters:"JKLMNOPQR"},
+ {t:"Letters S–Z",tr:"Harfler S–Z",icon:"🔠",letters:"STUVWXYZ"},
+ {t:"Numbers 0–10",tr:"Sayılar 0–10",icon:"🔢",nums:true}
+];
 </script>
 <script>// ENGLOW v1.1 — First Class Software
-const VERSION = "v1.1";
+const VERSION = "v1.1.1";
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -508,12 +617,12 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (
 const P = () => DB.profiles.find(p => p.id === DB.active);
 const S = () => P().settings;
 const ageCfg = () => AGES[P().age];
-function migrate(p) { p.settings = { ...DEFAULT_SETTINGS, ...(p.settings || {}) }; p.avatar = p.avatar || { t: "c", i: 0 }; p.weekXP = p.weekXP || 0; p.week = p.week || weekKey(); p.badges = p.badges || {}; p.grammarDone = p.grammarDone || {}; p.stories = p.stories || {}; p.scen = p.scen || {}; return p; }
+function migrate(p) { p.settings = { ...DEFAULT_SETTINGS, ...(p.settings || {}) }; p.avatar = p.avatar || { t: "c", i: 0 }; p.weekXP = p.weekXP || 0; p.week = p.week || weekKey(); p.badges = p.badges || {}; p.grammarDone = p.grammarDone || {}; p.stories = p.stories || {}; p.scen = p.scen || {}; p.starter = p.starter || {}; return p; }
 DB.profiles.forEach(migrate);
 function newProfile(name, age, trHints, avatar) {
   return migrate({ id: Date.now().toString(36), name, age, created: today(), settings: { ...DEFAULT_SETTINGS, trHints, typing: AGES[age].typing },
     stars: {}, unlocked: 1, xp: 0, weekXP: 0, week: weekKey(), streak: 0, lastDay: "", dayXP: 0, day: today(), minutes: {}, words: {}, avatar,
-    stats: { lessons: 0, correct: 0, wrong: 0, spoken: 0, perfect: 0 }, stories: {}, scen: {}, mirror: null, grammarDone: {}, badges: {} });
+    stats: { lessons: 0, correct: 0, wrong: 0, spoken: 0, perfect: 0 }, stories: {}, scen: {}, mirror: null, grammarDone: {}, badges: {}, starter: {}, starterMode: false });
 }
 // İngilizce metin + isteğe bağlı Türkçe açıklama
 const showTR = () => DB.active && P() ? S().trHints : (ob.tr !== false);
@@ -570,7 +679,7 @@ const worldOf = n => Math.ceil(n / 10);
 const isBoss = n => n % 10 === 0;
 const topicIdx = n => (worldOf(n) - 1) * 9 + (n % 10) - 1;
 const grammarIdx = n => isBoss(n) ? null : (worldOf(n) - 1) * 3 + Math.floor(((n % 10) - 1) / 3);
-const city = n => ({ name: CITIES[n - 1][0], flag: CITIES[n - 1][1] });
+const city = n => { const c = CITIES[n - 1]; return { name: c[0], flag: c[1], country: c[2], capital: !!c[3], see: c[4], fact: c[5], wiki: c[6] }; };
 const topicIcon = n => isBoss(n) ? "👑" : W(TOPICS[topicIdx(n)].w[0]).em;
 function levelWords(n) {
   if (!isBoss(n)) return TOPICS[topicIdx(n)].w.map(W);
@@ -637,7 +746,8 @@ function hero(compact) {
   const p = P();
   return `<header class="hero"><div class="hero-row"><img class="hero-logo" src="icon-192.png" alt="Englow"><div>${WM}
     <svg class="swoosh" viewBox="0 0 200 14"><path d="M4 10 Q100 -4 196 8" stroke="url(#sg)" stroke-width="4" fill="none" stroke-linecap="round"/><defs><linearGradient id="sg"><stop offset="0" stop-color="#38bdf8"/><stop offset=".5" stop-color="#ec4899"/><stop offset="1" stop-color="#facc15"/></linearGradient></defs></svg>
-    <div class="sub">ENGLISH FOR EVERY AGE</div></div>${avatarHTML(p, 40)}</div>
+    <div class="sub">AROUND THE WORLD IN 80 LEVELS</div></div><div class="hero-act">${avatarHTML(p, 40)}</div></div>
+    ${p.settings.sharePrompts ? `<button class="sharepill" onclick="invite()">📤 Share with friends${showTR() ? " · Arkadaşlarınla paylaş" : ""}</button>` : ""}
     ${compact ? "" : `<div class="stats"><div>🔥<b>${p.streak}</b>streak</div><div>⚡<b>${p.dayXP}/${p.settings.goal}</b>today XP</div><div>⭐<b>${totalStars()}</b>stars</div><div>📚<b>${Object.keys(p.words).length}</b>words</div></div>`}</header>`;
 }
 const mascot = (en, trt) => S().mascot ? `<div class="mascot"><img src="lion.jpg" alt=""><div class="bubble">${en}${tr(trt)}</div></div>` : "";
@@ -650,11 +760,11 @@ function renderOnboarding() {
   const back = ob.step > 0 ? `<button class="x" id="obb">←</button>` : "";
   if (ob.step === 0) {
     app.innerHTML = `<div class="cover"><img src="cover.jpg" alt="Englow"></div>
-      <div class="wrap"><div class="center" style="margin:-6px 0 6px"><div class="sub dark">LEARN ENGLISH. THINK ENGLISH. LIVE ENGLISH.</div><div style="margin-top:8px"><span class="pill">FIRST CLASS</span></div></div>
+      <div class="wrap"><div class="center" style="margin:-6px 0 6px"><div class="sub dark">AROUND THE WORLD IN 80 LEVELS</div><div class="muted" style="font-size:12px">80 Seviyede Devr-i Âlem</div><div style="margin-top:8px"><span class="pill">FIRST CLASS</span></div></div>
       <div class="card"><h2>Welcome! 👋</h2><p class="muted">Pick your age and Englow adapts to you. A world tour of 80 cities — learn English like a game.</p>
       <input class="inp" id="nm" placeholder="What's your name? · Adın ne?" maxlength="20" value="${esc(ob.name)}"><div style="height:12px"></div>
       <button class="btn gold" id="go">Let's go ✨</button></div>${DB.profiles.length ? `<button class="btn ghost" id="bk">Back to profiles</button>` : ""}
-      <div class="credit">by First Class Software · ${VERSION}</div></div>`;
+      <button class="sharepill light" onclick="invite()">📤 Share Englow with friends</button><div class="credit">by First Class Software · ${VERSION}</div></div>`;
     $("#go").onclick = () => { const v = $("#nm").value.trim(); if (!v) return toast("Please type your name"); ob.name = v; ob.step = 1; render(); };
     if ($("#bk")) $("#bk").onclick = () => { DB.active = DB.profiles[0].id; ob = { step: 0, tr: true }; save(); render(); };
     return;
@@ -681,12 +791,16 @@ function renderOnboarding() {
       <div style="height:16px"></div><button class="btn" id="nx" ${ob.goal ? "" : "disabled"}>Continue</button></div>`;
     app.querySelectorAll(".age").forEach(b => b.onclick = () => { ob.goal = +b.dataset.g; render(); });
   } else {
-    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>Find your level</h2>
-      <div class="card"><h3>🧪 Placement test</h3><p class="muted">16 questions, about 3 minutes. Skip the levels you already know.</p>${tr("Seviye testi: bildiğin seviyeleri atlarsın.")}<div style="height:10px"></div><button class="btn gold" id="pt">Start the test</button></div>
-      <div class="card"><h3>🌱 Start from zero</h3><p class="muted">Begin your world tour in İstanbul.</p>${tr("En baştan, İstanbul'dan başla.")}<div style="height:10px"></div><button class="btn ghost" id="zero">Start from the beginning</button></div></div>`;
-    const create = () => { const p = newProfile(ob.name, ob.age, ob.tr, { t: "c", i: ob.av }); p.settings.goal = ob.goal || 30; DB.profiles.push(p); DB.active = p.id; ob = { step: 0, tr: true }; save(); };
-    $("#zero").onclick = () => { create(); tab = "map"; render(); };
+    app.innerHTML = `<div class="topbar">${back}</div><div class="wrap"><h2>Where do you want to start?</h2>${tr("Nereden başlamak istersin?")}
+      <button class="choice sel" id="pt"><b>🧪 Placement test <span class="tag" style="margin-left:6px">Recommended</span></b><span>16 questions · about 3 min · we find your level for you</span>${tr("Seviyeni biz belirleyelim (önerilen)")}</button>
+      <button class="choice" id="zero"><b>🔤 Start Here: letters & numbers</b><span>I'm a total beginner — start with ABC and 1-2-3</span>${tr("Hiç bilmiyorum — harflerden ve sayılardan başla")}</button>
+      <button class="choice" id="pickl"><b>🎯 I'll choose my level</b><span>Jump straight to a level you know</span>${tr("Seviyemi kendim seçeyim")}</button>
+      <div id="lvls" class="hidden">${WORLDS.map(w => `<button class="list-item" data-w="${w.id}"><span class="ic">${w.icon}</span><div><b>${w.cefr} · ${w.name}</b><div class="muted">Start in ${city((w.id - 1) * 10 + 1).flag} ${esc(city((w.id - 1) * 10 + 1).name)}</div></div></button>`).join("")}</div></div>`;
+    const create = () => { const p = newProfile(ob.name, ob.age, ob.tr, { t: "c", i: ob.av }); p.settings.goal = ob.goal || 30; DB.profiles.push(p); DB.active = p.id; ob = { step: 0, tr: true }; save(); return p; };
+    $("#zero").onclick = () => { const p = create(); p.starterMode = true; save(); tab = "map"; render(); };
     $("#pt").onclick = () => { create(); placement(); };
+    $("#pickl").onclick = () => { $("#lvls").classList.toggle("hidden"); };
+    app.querySelectorAll("[data-w]").forEach(b => b.onclick = () => { const p = create(); p.unlocked = (+b.dataset.w - 1) * 10 + 1; save(); tab = "map"; render(); toast(`Your tour starts in ${city(p.unlocked).name}! ✈️`); });
   }
   if ($("#obb")) $("#obb").onclick = () => { ob.step--; render(); };
   if ($("#nx")) $("#nx").onclick = () => { ob.step++; render(); };
@@ -699,7 +813,7 @@ function placement() {
   const step = () => {
     if (i >= qs.length) {
       let passed = 0; for (let w = 1; w <= 8; w++) { if ((score[w] || 0) >= 2) passed = w; else break; }
-      P().unlocked = Math.min(passed * 10 + 1, TOTAL); save();
+      P().unlocked = Math.max(P().unlocked || 1, Math.min(passed * 10 + 1, TOTAL)); if (!passed && Object.values(score).reduce((x, y) => x + y, 0) < 3) P().starterMode = true; save();
       const c = city(P().unlocked);
       $("#app").innerHTML = `<div class="wrap center" style="padding-top:30px"><div class="emoji">🎯</div><h1 class="bigpraise">${passed ? "Great job!" : "Let's start!"}</h1><h2>${passed ? `You passed ${WORLDS[passed - 1].cefr}` : "Your world tour begins"}</h2>
         <p class="muted">Your journey starts in ${c.flag} ${esc(c.name)}.</p>${tr(passed ? "Bildiğin seviyeler açıldı." : "Yolculuğun İstanbul'dan başlıyor.")}
@@ -774,17 +888,33 @@ function worldMap(w) {
       ${done ? `<path d="${done}" stroke="#f5b301" stroke-width="22" fill="none" stroke-linecap="round"/><path d="${done}" stroke="#fff3b0" stroke-width="7" fill="none" stroke-linecap="round" opacity=".9"/>` : ""}
     </svg><div class="nodes" style="width:${CW}px">${nodes}</div>${leo}</div></section>`;
 }
+const nextStarter = () => { const p = P(); if (!p.starterMode) return 0; for (let k = 1; k <= 4; k++) if (!p.starter[k]) return k; return 0; };
+function starterMap() {
+  const p = P(), H = 4 * ROW + 10, xs = [0, 80, 0, -80];
+  const pts = xs.map((x, k) => [CW / 2 + x, 66 + k * ROW]);
+  let path = "", done = "";
+  for (let k = 0; k < 3; k++) { const [x1, y1] = pts[k], [x2, y2] = pts[k + 1]; const seg = `M${x1},${y1} C${x1},${y1 + ROW * .55} ${x2},${y2 - ROW * .55} ${x2},${y2}`; path += seg; if (p.starter[k + 1]) done += seg; }
+  const sn = nextStarter() || (p.starterMode ? 0 : -1);
+  const nodes = STARTER.map((st, k) => { const [x, y] = pts[k], stars = p.starter[k + 1] || 0; return `<div class="nwrap" style="left:${x}px;top:${y}px">${stars ? `<div class="nstars">${"⭐".repeat(stars)}</div>` : ""}<button class="node ${sn === k + 1 ? "cur" : ""}" style="--nc:${["#0ea5e9", "#8b5cf6", "#ec4899", "#f59e0b"][k]}" data-s="${k + 1}"><span class="nicon">${st.icon}</span><span class="nflag">✈️</span></button><div class="nlabel"><b>S${k + 1} · ${st.t}</b><small>${showTR() ? st.tr : "Start Here"}</small></div></div>`; }).join("");
+  return `<section class="wmap" style="--sky1:#e0f2fe;--sky2:#f0f9ff;--w:#0ea5e9"><div class="world" style="background:linear-gradient(135deg,#0ea5e9,#0b1f5c)"><span class="wi">✈️</span><div><b>Start Here: Airport</b><br><small>Letters & numbers · Harfler ve sayılar${p.starterMode ? "" : " · optional"}</small></div></div>
+    <div class="scene" style="height:${H}px"><span class="deco" style="top:60px;left:8px">🛫</span><span class="deco" style="top:${H / 2}px;right:10px">🧳</span><span class="deco" style="top:${H - 90}px;left:12px">🛂</span>
+    <svg class="road" width="${CW}" height="${H}" viewBox="0 0 ${CW} ${H}"><path d="${path}" stroke="rgba(255,255,255,.7)" stroke-width="34" fill="none" stroke-linecap="round"/><path d="${path}" stroke="#67e8f9" stroke-width="22" fill="none" stroke-linecap="round" opacity=".85"/>${done ? `<path d="${done}" stroke="#f5b301" stroke-width="22" fill="none" stroke-linecap="round"/>` : ""}</svg>
+    <div class="nodes" style="width:${CW}px">${nodes}</div></div></section>`;
+}
 function renderMap() {
   const p = P(), cur = Math.min(p.unlocked, TOTAL), due = dueWords().length;
   let h = hero() + `<div class="wrap">`;
   if (S().reminder && p.dayXP < p.settings.goal) h += mascot(p.dayXP ? `Great job ${esc(p.name)}! <b>${p.settings.goal - p.dayXP} XP</b> left for today's goal.` : `Hi ${esc(p.name)}! 🦁 Ready for today's lesson? Keep your streak alive!`, p.dayXP ? "Günlük hedefe az kaldı!" : "Serini korumak için bir ders yapalım mı?");
   else if (p.dayXP >= p.settings.goal) h += mascot(`Daily goal complete! 🎉 Streak: <b>${p.streak} days</b>.`, "Günlük hedef tamam!");
   if (due) h += `<button class="list-item" id="dueBtn"><span class="ic">🔁</span><div><b>${due} words to review</b><div class="muted">Review them before you forget</div>${tr("Tekrar zamanı gelen kelimeler")}</div></button>`;
-  h += `<button class="btn gold" id="cont">▶ Continue: ${city(cur).flag} ${esc(city(cur).name)} · Level ${cur}</button></div>`;
+  const sNext = nextStarter();
+  h += sNext ? `<button class="btn gold" id="cont">▶ Continue: ${STARTER[sNext - 1].icon} ${STARTER[sNext - 1].t}</button></div>` : `<button class="btn gold" id="cont">▶ Continue: ${city(cur).flag} ${esc(city(cur).name)} · Level ${cur}</button></div>`;
+  h += starterMap();
   WORLDS.forEach(w => h += worldMap(w));
   h += `<div class="credit">by First Class Software · ${VERSION}</div>`;
   $("#app").innerHTML = h;
-  $("#cont").onclick = () => levelIntro(cur);
+  $("#cont").onclick = () => sNext ? startStarter(sNext) : levelIntro(cur);
+  $("#app").querySelectorAll("[data-s]").forEach(b => b.onclick = () => startStarter(+b.dataset.s));
   if ($("#dueBtn")) $("#dueBtn").onclick = () => startReview();
   $("#app").querySelectorAll(".node:not(.lock)").forEach(b => b.onclick = () => levelIntro(+b.dataset.n));
   setTimeout(() => { const c = $(".node.cur"); if (c && scrollY < 10) c.scrollIntoView({ block: "center", behavior: "smooth" }); }, 150);
@@ -794,15 +924,56 @@ function levelIntro(n) {
   const boss = isBoss(n), w = WORLDS[worldOf(n) - 1], c = city(n);
   const t = boss ? null : TOPICS[topicIdx(n)], g = grammarIdx(n) != null && ageCfg().grammar ? GRAMMAR[grammarIdx(n)] : null;
   hideNav(); musicFab(false);
-  $("#app").innerHTML = `<div class="topbar"><button class="x" id="cl">✕</button><b>Level ${n}</b></div><div class="wrap">
-   <div class="card center intro" style="background:linear-gradient(135deg,${w.color},#0b1f5c);color:#fff"><div class="bigflag">${c.flag}</div><h2 style="margin:4px 0">${esc(c.name)}</h2><div class="emoji" style="font-size:60px">${topicIcon(n)}</div>
-   <h3>${boss ? "Boss Battle: " + w.name : esc(t.t)}</h3>${tr(boss ? "Bu dünyanın tüm kelime ve gramerinden karışık sınav" : t.tr)}<div style="margin-top:6px">${"⭐".repeat(P().stars[n] || 0)}${"☆".repeat(3 - (P().stars[n] || 0))} · ${w.cefr}</div></div>
+  $("#app").innerHTML = `<div class="topbar"><button class="x" id="cl">✕</button><b>Level ${n} · ${w.cefr}</b></div><div class="wrap">
+   <div class="postcard" style="--w:${w.color}"><div class="pc-top"><span class="bigflag">${c.flag}</span><div><h2>${esc(c.name)}</h2><div class="pc-sub">${esc(c.country)}${c.capital ? ` · <span class="capb">★ Capital city</span>` : ""}</div></div><span class="pc-stamp">${P().stars[n] ? "✅" : "✈️"}</span></div>
+    <div class="pc-row"><span>👥</span><div><b>Population</b><div id="pop" class="muted">${popText(c.wiki) || "Loading…"}</div></div></div>
+    <div class="pc-row"><span>📍</span><div><b>Must see</b><div class="muted">${esc(c.see)}</div></div></div>
+    <div class="pc-fact"><b>💡 Did you know?</b><div class="qrow" style="justify-content:flex-start;flex-wrap:nowrap"><div style="flex:1">${esc(c.fact)}</div><button class="spk sm" id="fs">🔊</button></div></div>
+    ${S().sharePrompts ? `<button class="btn share" id="pcs" style="margin-top:10px">📤 Share this city</button>` : ""}</div>
+   <div class="card center intro" style="background:linear-gradient(135deg,${w.color},#0b1f5c);color:#fff"><div class="emoji" style="font-size:54px">${topicIcon(n)}</div>
+   <h3 style="margin:4px 0">${boss ? "Boss Battle: " + w.name : esc(t.t)}</h3>${tr(boss ? "Bu dünyanın tüm kelime ve gramerinden karışık sınav" : t.tr)}<div style="margin-top:6px">${"⭐".repeat(P().stars[n] || 0)}${"☆".repeat(3 - (P().stars[n] || 0))}</div></div>
    ${g ? `<div class="card"><span class="tag">Grammar</span><h3>${esc(g.t)}</h3>${showTR() ? `<p>${esc(g.x)}</p>` : ""}${g.ex.map(e => `<div class="row"><span>${esc(e)}</span><button class="spk sm" data-say="${esc(e)}">🔊</button></div>`).join("")}</div>` : ""}
-   <div class="card"><h3>In this lesson</h3><p class="muted">${ageCfg().q + (boss ? 4 : 0)} questions · ${boss ? "mixed review" : "8 new words"} · ⭐ 50% to pass, 70% two stars, 90% three stars</p></div>
-   <button class="btn gold" id="go">Start ▶</button></div>`;
+   <div class="card"><h3>In this lesson</h3><p class="muted">🎧 Listen & match warm-up · ${ageCfg().q + (boss ? 4 : 0)} questions · ${boss ? "mixed review" : "8 new words"} · ⭐ 50% to pass</p></div>
+   <button class="btn gold" id="go">Start in ${esc(c.name)} ▶</button></div>`;
   $("#cl").onclick = () => render();
+  $("#fs").onclick = () => say(c.fact);
   $("#app").querySelectorAll("[data-say]").forEach(b => b.onclick = () => say(b.dataset.say));
+  if ($("#pcs")) $("#pcs").onclick = async () => { toast("Preparing your postcard…"); const link = shareLink(); shareOut(`${c.flag} ${c.name} — ${c.fact}\n\n${SHARE_TXT}${link ? "\n👉 " + link : ""}`, await canvasCard(`${c.name}`, `${c.flag} ${c.country}${c.capital ? " · Capital" : ""}`, "Around the World in 80 Levels")); };
   $("#go").onclick = () => startLesson(n);
+  loadPop(c.wiki);
+}
+// Canlı nüfus (Wikidata) — internet varsa kendini günceller, 30 günde bir yeniler
+function popText(title) { const r = (DB.pop || {})[title]; if (!r) return ""; const v = r.v >= 1e6 ? (r.v / 1e6).toFixed(1).replace(/\.0$/, "") + " million" : Math.round(r.v).toLocaleString("en-US"); return `≈ ${v}${r.y ? ` (${r.y})` : ""}`; }
+async function loadPop(title) {
+  DB.pop = DB.pop || {}; const r = DB.pop[title];
+  if (r && Date.now() - r.t < 30 * 864e5) return;
+  try {
+    const u = `https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&titles=${encodeURIComponent(title)}&props=claims&format=json&origin=*`;
+    const d = await (await fetch(u)).json(); const ent = Object.values(d.entities || {})[0]; const cl = ent && ent.claims && ent.claims.P1082; if (!cl) throw 0;
+    let best = null; cl.forEach(x => { const a = x.mainsnak && x.mainsnak.datavalue && +x.mainsnak.datavalue.value.amount; const tq = x.qualifiers && x.qualifiers.P585 && x.qualifiers.P585[0].datavalue.value.time; const y = tq ? +tq.slice(1, 5) : 0; if (a && (!best || y > best.y || (x.rank === "preferred" && y >= best.y))) best = { v: a, y }; });
+    if (!best) throw 0; DB.pop[title] = { v: best.v, y: best.y, t: Date.now() }; save();
+  } catch (e) { if (!r) { const el = $("#pop"); if (el) el.textContent = "Connect to the internet to see the latest number"; } return; }
+  const el = $("#pop"); if (el) el.textContent = popText(title);
+}
+
+// ---------- Start Here dersleri ----------
+function startStarter(k) {
+  L = null; hideNav(); musicFab(false); clearOver();
+  const st = STARTER[k - 1], kid = AGES[P().age].kid, mini = P().age === "mini";
+  let cards = [], qs = [];
+  if (st.letters) {
+    const ls = st.letters.split("");
+    cards = ls.map(l => ({ starter: true, big: l + l.toLowerCase(), em: ABC[l][1], line: `${l} is for ${ABC[l][0]}`, say: `${l}. ${l} is for ${ABC[l][0]}` }));
+    const types = mini ? ["letterListen", "letterPic", "letterListen", "caseMatch"] : ["letterListen", "caseMatch", "letterPic", "firstLetter"];
+    const n = mini ? 8 : 10;
+    for (let i = 0; i < n; i++) qs.push({ t: types[i % types.length], letter: ls[i % ls.length], group: ls });
+  } else {
+    cards = NUMS.map((w, i) => ({ starter: true, big: String(i), em: i ? "🍎".repeat(Math.min(i, 10)) : "🚫", line: w, tr: NUMS_TR[i], say: w }));
+    const types = mini ? ["numListen", "count", "numListen", "count"] : ["numListen", "numWord", "count", "wordNum"];
+    for (let i = 0; i < (mini ? 8 : 10); i++) qs.push({ t: types[i % types.length], num: (i * 7 + 3) % 11 });
+  }
+  L = { n: 0, sk: k, mode: "starter", qs: shuffle(qs), i: 0, first: 0, total: 0, combo: 0, cards, ci: 0, world: { color: ["#0ea5e9", "#8b5cf6", "#ec4899", "#f59e0b"][k - 1] } };
+  lessonBg(); showCard();
 }
 
 // ---------- Ders motoru ----------
@@ -817,12 +988,22 @@ const TYPE_UI = {
   letters: ["🔠", "SPELLING", "#f59e0b", "Put the letters in order", "Harfleri sırala"],
   speak: ["🎤", "SPEAKING", "#ef4444", "Say it out loud", "Sesli söyle"],
   grammar: ["🧩", "GRAMMAR", "#2563eb", "Fill in the blank", "Boşluğu doldur"],
-  build: ["🧱", "SENTENCE", "#16a34a", "Build the sentence", "Cümleyi kur"]
+  build: ["🧱", "SENTENCE", "#16a34a", "Build the sentence", "Cümleyi kur"],
+  match: ["🎧", "LISTEN & MATCH", "#14b8a6", "Tap a sound, then its word", "Sese dokun, sonra kelimesine"],
+  letterListen: ["🔤", "LETTERS", "#0ea5e9", "Listen and pick the letter", "Dinle ve harfi seç"],
+  caseMatch: ["🔡", "BIG & SMALL", "#8b5cf6", "Find the small letter", "Küçük harfini bul"],
+  letterPic: ["🖼️", "LETTERS", "#ec4899", "Which picture starts with this letter?", "Hangi resim bu harfle başlar?"],
+  firstLetter: ["🔠", "FIRST LETTER", "#f97316", "Which letter is missing?", "Eksik harf hangisi?"],
+  numListen: ["🔢", "NUMBERS", "#f59e0b", "Listen and pick the number", "Dinle ve sayıyı seç"],
+  numWord: ["🔢", "NUMBERS", "#16a34a", "How do you write it?", "Nasıl yazılır?"],
+  wordNum: ["🔢", "NUMBERS", "#2563eb", "Which number is it?", "Hangi sayı?"],
+  count: ["🍎", "COUNT", "#ef4444", "How many apples?", "Kaç tane elma var?"]
 };
 function startLesson(n) {
   hideNav(); musicFab(false);
   const words = isBoss(n) ? [] : levelWords(n).slice(0, P().age === "mini" ? 6 : 8);
-  L = { n, qs: makeQuestions(n), i: 0, first: 0, total: 0, combo: 0, cards: words, ci: 0, mode: "lesson", world: WORLDS[worldOf(n) - 1] };
+  const qs = makeQuestions(n); qs.unshift({ t: "match", pool: pick(levelWords(n).filter((w, i, a) => a.findIndex(x => x.em === w.em) === i), 4) });
+  L = { n, qs, i: 0, first: 0, total: 0, combo: 0, cards: words, ci: 0, mode: "lesson", world: WORLDS[worldOf(n) - 1] };
   lessonBg(); words.length ? showCard() : showQ();
 }
 function lessonBg() { musicFab(false); scrollTo(0, 0); document.body.classList.add("inlesson"); document.body.style.setProperty("--wc", L && L.world ? L.world.color : "#2563eb"); }
@@ -832,6 +1013,16 @@ function topbar(pct) {
 function bindTop() { $("#cl").onclick = quitLesson; if ($("#mu")) $("#mu").onclick = musicSheet; }
 function showCard() {
   const w = L.cards[L.ci]; scrollTo(0, 0);
+  if (w.starter) {
+    $("#app").innerHTML = topbar(L.ci / L.cards.length * 25) + `<div class="wrap"><span class="chip" style="--cc:#f5b301">✨ ${L.ci + 1}/${L.cards.length}</span>
+     <div class="qcard flash" style="--cc:#f5b301"><div class="big" style="font-size:calc(80px*var(--fs))">${esc(w.big)}</div><div class="emoji" style="font-size:${w.em.length > 8 ? 30 : 70}px;line-height:1.2;word-break:break-all">${w.em}</div><div class="big" style="font-size:1.6em">${esc(w.line)}</div>${w.tr && showTR() ? `<div class="trbig">${esc(w.tr)}</div>` : ""}
+     <div style="display:flex;gap:12px;margin-top:8px"><button class="spk" id="sp">🔊</button><button class="spk" id="sl">🐢</button></div></div></div>
+     <div class="footer-act"><button class="btn" id="nx">${L.ci + 1 < L.cards.length ? "Next ▶" : "Start practice ▶"}</button><div style="height:6px"></div><button class="ghostbtn" id="sk">Skip cards</button></div>`;
+    bindTop(); if (S().autoplay) setTimeout(() => say(w.say), 250);
+    $("#sp").onclick = () => say(w.say); $("#sl").onclick = () => say(w.say, .6);
+    $("#nx").onclick = () => { L.ci++; L.ci < L.cards.length ? showCard() : showQ(); };
+    $("#sk").onclick = () => showQ(); return;
+  }
   $("#app").innerHTML = topbar(L.ci / L.cards.length * 25) + `<div class="wrap"><span class="chip" style="--cc:#f5b301">✨ NEW WORD ${L.ci + 1}/${L.cards.length}</span>
    <div class="qcard flash" style="--cc:#f5b301"><div class="emoji">${w.em}</div><div class="big">${esc(w.en)}</div>${showTR() ? `<div class="trbig">${esc(w.tr)}</div>` : ""}
    <div style="display:flex;gap:12px;margin-top:8px"><button class="spk" id="sp">🔊</button><button class="spk" id="sl">🐢</button></div></div></div>
@@ -874,6 +1065,25 @@ function showQ() {
     case "grammar": { const [s, a, o] = q.g.q; q.ans = a; const G = q.story ? null : GRAMMAR[q.g.gi];
       card = `${G ? `<div class="muted">${esc(G.t)}</div>` : ""}<div class="qrow"><div class="qtext">${esc(s)}</div><button class="spk sm" id="pl">🔊</button></div>`;
       body = opt(shuffle(o).map(x => ({ v: x, h: esc(x) }))); q.read = s.replace(/___/g, "...").replace(/\s*\(.*?\)\s*$/, ""); break; }
+    case "match": { const pics = P().age === "mini"; q.L = q.L || shuffle(q.pool.map((x, i) => i)); q.Rr = q.Rr || shuffle(q.pool.map((x, i) => i));
+      card = `<div class="muted">${pics ? "Listen and find the picture" : "Listen and find the word"}</div>`;
+      body = `<div class="match"><div>${q.L.map(i => `<button class="opt msnd" data-i="${i}">🔊 ${q.L.indexOf(i) + 1}</button>`).join("")}</div><div>${q.Rr.map(i => `<button class="opt mword ${pics ? "pic" : ""}" data-i="${i}">${pics ? q.pool[i].em : esc(q.pool[i].en)}</button>`).join("")}</div></div>`; break; }
+    case "letterListen": { q.ans = q.letter; q.say = q.letter + "."; q.opts = q.opts || [q.letter, ...pick(Object.keys(ABC).filter(x => x !== q.letter), 3)]; q.opts = shuffle(q.opts);
+      card = `<div class="center"><button class="spk xl" id="pl">🔊</button></div>`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${x}" style="font-family:Baloo">${x}</button>`).join("")}</div>`; break; }
+    case "caseMatch": { q.ans = q.letter.toLowerCase(); q.say = q.letter + "."; const o = q.opts || [q.letter, ...pick(Object.keys(ABC).filter(x => x !== q.letter), 3)]; q.opts = shuffle(o);
+      card = `<div class="big" style="font-size:90px">${q.letter}</div>`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${x.toLowerCase()}" style="font-family:Baloo">${x.toLowerCase()}</button>`).join("")}</div>`; break; }
+    case "letterPic": { q.ans = ABC[q.letter][0]; q.say = `${q.letter} is for ${ABC[q.letter][0]}`; const o = q.opts || [q.letter, ...pick(Object.keys(ABC).filter(x => x !== q.letter), 3)]; q.opts = shuffle(o);
+      card = `<div class="qrow"><div class="big" style="font-size:80px">${q.letter}${q.letter.toLowerCase()}</div><button class="spk sm" id="pl">🔊</button></div>`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${ABC[x][0]}">${ABC[x][1]}</button>`).join("")}</div>`; q.read = q.letter + "."; break; }
+    case "firstLetter": { const wd = ABC[q.letter][0]; q.ans = q.letter; q.say = wd; const o = q.opts || [q.letter, ...pick(Object.keys(ABC).filter(x => x !== q.letter), 3)]; q.opts = shuffle(o);
+      card = `<div class="qrow"><span class="qem">${ABC[q.letter][1]}</span><div class="big">_${esc(wd.slice(1))}</div><button class="spk sm" id="pl">🔊</button></div>`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${x}" style="font-family:Baloo">${x.toLowerCase()}</button>`).join("")}</div>`; q.read = wd; break; }
+    case "numListen": { q.ans = String(q.num); q.say = NUMS[q.num]; const o = q.opts || [q.num, ...pick([...Array(11).keys()].filter(x => x !== q.num), 3)]; q.opts = shuffle(o);
+      card = `<div class="center"><button class="spk xl" id="pl">🔊</button></div>`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${x}" style="font-family:Baloo">${x}</button>`).join("")}</div>`; break; }
+    case "numWord": { q.ans = NUMS[q.num]; q.say = NUMS[q.num]; const o = q.opts || [q.num, ...pick([...Array(11).keys()].filter(x => x !== q.num), 3)]; q.opts = shuffle(o);
+      card = `<div class="big" style="font-size:90px">${q.num}</div>`; body = `<div class="opts">${q.opts.map(x => `<button class="opt" data-v="${NUMS[x]}">${NUMS[x]}</button>`).join("")}</div>`; break; }
+    case "wordNum": { q.ans = String(q.num); q.say = NUMS[q.num]; const o = q.opts || [q.num, ...pick([...Array(11).keys()].filter(x => x !== q.num), 3)]; q.opts = shuffle(o);
+      card = `<div class="qrow"><div class="big">${NUMS[q.num]}</div><button class="spk sm" id="pl">🔊</button></div>${tr(NUMS_TR[q.num])}`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${x}" style="font-family:Baloo">${x}</button>`).join("")}</div>`; q.read = NUMS[q.num]; break; }
+    case "count": { const n = q.num || 1; q.num = n; q.ans = String(n); q.say = NUMS[n]; const o = q.opts || [n, ...pick([...Array(10).keys()].map(x => x + 1).filter(x => x !== n), 3)]; q.opts = shuffle(o);
+      card = `<div style="font-size:36px;line-height:1.3">${"🍎".repeat(n)}</div>`; body = `<div class="opts g2">${q.opts.map(x => `<button class="opt pic" data-v="${x}" style="font-family:Baloo">${x}</button>`).join("")}</div>`; break; }
     case "build": { const [s, a] = q.g.q; const full = s.replace(/\s*\(.*?\)\s*$/, "").replace("___", a); q.ans = full; const parts = full.split(" ");
       card = `<div class="qrow"><button class="spk" id="pl">🔊</button><div class="muted">Listen and build the sentence</div></div>`;
       body = `<div class="tiles ans" id="an"></div><div class="tiles" id="src">${shuffle(parts).map(x => `<button class="tile">${esc(x)}</button>`).join("")}</div><button class="btn" id="ck">Check</button>`; break; }
@@ -882,14 +1092,27 @@ function showQ() {
   $("#app").innerHTML = topbar(pct) + (S().timer && q.t !== "speak" ? `<div style="padding:0 14px"><div class="timer" id="tm" style="width:100%"></div></div>` : "") +
     `<div class="wrap"><span class="chip" style="--cc:${col}">${ic} ${label}${q.attempt ? " · TRY AGAIN" : ""}</span><div class="qtitle">${title}${tr(titleTR)}</div><div class="qcard" style="--cc:${col}">${card}</div>${body}</div>`;
   bindTop(); q.shown = Date.now();
-  const playTxt = q.t === "build" ? q.ans : q.t === "grammar" ? q.read : (w ? w.en : "");
-  if ($("#pl")) { $("#pl").onclick = () => say(playTxt); if (["listenPic", "listen", "build"].includes(q.t) || (S().autoplay && q.t === "meaningTR")) setTimeout(() => say(playTxt), 300); }
+  const playTxt = q.read || (q.t === "build" ? q.ans : q.say ? q.say : (w ? w.en : ""));
+  if ($("#pl")) { $("#pl").onclick = () => say(playTxt); if (["listenPic", "listen", "build", "letterListen", "numListen"].includes(q.t) || (S().autoplay && q.t === "meaningTR")) setTimeout(() => say(playTxt), 300); }
   if ($("#sl")) $("#sl").onclick = () => say(playTxt, .6);
   $("#app").querySelectorAll(".opt").forEach(b => b.onclick = () => answer(b.dataset.v === q.ans, q, b));
   if (q.t === "spell") { const i = $("#ti"); i.focus(); const go = () => answer(norm(i.value) === norm(q.ans), q, i); $("#ck").onclick = go; i.onkeydown = e => { if (e.key === "Enter") go(); }; }
   if (q.t === "letters" || q.t === "build") tileGame(q);
+  if (q.t === "match") matchGame(q);
   if (q.t === "speak") speakQ(q);
   if ($("#tm")) { const tm = $("#tm"); requestAnimationFrame(() => { tm.style.transition = "width 15s linear"; tm.style.width = "0%"; }); timerH = setTimeout(() => answer(false, q, null, "Time's up! ⏰"), 15000); }
+}
+function matchGame(q) {
+  let sel = null, errs = 0, done = 0;
+  const snd = [...document.querySelectorAll(".msnd")], wds = [...document.querySelectorAll(".mword")];
+  snd.forEach(b => b.onclick = () => { snd.forEach(x => x.classList.remove("sel")); b.classList.add("sel"); sel = +b.dataset.i; say(q.pool[sel].en); });
+  wds.forEach(b => b.onclick = () => {
+    if (sel === null) { toast("Tap a 🔊 sound first"); return; }
+    const sb = snd.find(x => +x.dataset.i === sel);
+    if (+b.dataset.i === sel) { beep("ok"); [b, sb].forEach(x => { x.classList.remove("sel"); x.classList.add("right"); x.disabled = true; }); done++; sel = null;
+      if (done === q.pool.length) setTimeout(() => { L.total++; if (!errs) L.first++; q.attempt = 1; L.combo = errs ? 0 : L.combo + 1; answer(true, q, null, errs ? `${errs} mistake${errs > 1 ? "s" : ""} — keep practising!` : "All matched on the first try! 🎯"); }, 350);
+    } else { errs++; beep("bad"); [b, sb].forEach(x => { x.classList.add("wrong", "shake"); setTimeout(() => x.classList.remove("wrong", "shake"), 500); }); }
+  });
 }
 function tileGame(q) {
   const an = $("#an"), src = $("#src");
@@ -931,7 +1154,7 @@ function answer(ok, q, el, extra) {
     let [en, t] = PRAISE[Math.random() * PRAISE.length | 0];
     if (fast) [en, t] = ["Great timing! ⏱️", "Çok hızlıydın!"];
     if (L.combo >= 5 && L.combo % 5 === 0) { [en, t] = [`You're on fire! 🔥 ${L.combo} in a row`, `Üst üste ${L.combo} doğru!`]; confetti(); }
-    if (!firstTry) [en, t] = ["Now you got it! 💪", "İşte şimdi oldu!"];
+    if (!firstTry) [en, t] = q.t === "match" ? PRAISE[Math.random() * PRAISE.length | 0] : ["Now you got it! 💪", "İşte şimdi oldu!"];
     head = en + tr(t);
   } else {
     head = (AGES[p.age].kid ? "Oops! Let's try again 💪" : "Not quite! Try again") + tr("Yanlış — düzeltip tekrar dene.");
@@ -942,12 +1165,13 @@ function answer(ok, q, el, extra) {
   f.innerHTML = `<h3>${head}</h3>${sub}${extra ? `<div class="fbx">${esc(extra)}</div>` : ""}<div style="height:10px"></div>
     <button class="btn ${ok ? "ok" : "bad"}" id="cn">${ok ? "Continue" : "Try again ↻"}</button>${!ok && q.t === "speak" && q.attempt >= 1 ? `<button class="ghostbtn" id="sk2">Skip this one</button>` : ""}`;
   document.body.appendChild(f);
-  if (!ok && (q.w || q.t === "build")) say(q.w ? q.w.en : q.ans);
+  if (!ok && (q.w || q.t === "build" || q.say)) say(q.w ? q.w.en : q.say || q.ans);
   $("#cn").onclick = () => { f.remove(); if (ok) L.i++; else q.attempt++; showQ(); };
   if ($("#sk2")) $("#sk2").onclick = () => { f.remove(); L.i++; showQ(); };
   save();
 }
 function finish() {
+  if (L.mode === "starter") return finishStarter();
   const p = P(), n = L.n, acc = L.total ? L.first / L.total : 0, mode = L.mode;
   const stars = acc >= .9 ? 3 : acc >= .7 ? 2 : acc >= .5 ? 1 : 0;
   let xp = 0, worldDone = false;
@@ -961,6 +1185,7 @@ function finish() {
   let big = pass ? (perfect ? "PERFECT! 💯" : stars === 3 ? "Excellent! 🌟" : "Well done! 👏") : "Almost there!";
   let bigTR = pass ? (perfect ? "Kusursuz!" : stars === 3 ? "Harikasın!" : "Aferin sana!") : "Neredeyse oldu!";
   if (worldDone) { big = `World ${worldOf(n)} complete! 🏆`; bigTR = "Dünyayı tamamladın!"; }
+  if (pass && mode === "lesson") setTimeout(() => toast(`🛂 Passport stamp: ${city(n).flag} ${esc(city(n).name)}`), 1200);
   if (perfect || worldDone) { fireworks(worldDone ? 10 : 6); beep("win"); } else if (pass) { confetti(); beep("win"); }
   const c = mode === "lesson" ? city(n) : null; scrollTo(0, 0);
   $("#app").innerHTML = `<div class="wrap center result"><div class="resleo"><img src="lion.jpg" alt=""></div>
@@ -974,6 +1199,21 @@ function finish() {
   $("#nx").onclick = () => { if (mode === "review") return startReview(); if (mode !== "lesson") { L = null; tab = "explore"; return render(); } pass && n < TOTAL ? levelIntro(n + 1) : startLesson(n); };
   $("#mp").onclick = () => { tab = mode === "lesson" ? "map" : mode === "review" ? "review" : "explore"; L = null; render(); };
   if ($("#sh")) $("#sh").onclick = () => shareCard(perfect ? "PERFECT! 💯" : `${stars} STARS ⭐`, `${p.name} completed ${c.name} · Level ${n}`, `${Math.round(acc * 100)}% · +${xp} XP · 🔥 ${p.streak} days`);
+  checkBadges();
+}
+function finishStarter() {
+  const p = P(), k = L.sk, acc = L.total ? L.first / L.total : 0, stars = acc >= .9 ? 3 : acc >= .7 ? 2 : acc >= .5 ? 1 : 0;
+  if (stars) p.starter[k] = Math.max(p.starter[k] || 0, stars);
+  const xp = 10 + stars * 5; addXP(xp); p.stats.lessons++; save(); scrollTo(0, 0);
+  const allDone = [1, 2, 3, 4].every(i => p.starter[i]);
+  if (stars === 3 || allDone) { fireworks(allDone && k === 4 ? 10 : 5); beep("win"); } else if (stars) { confetti(); beep("win"); }
+  const big = !stars ? "Almost there!" : allDone && k === 4 ? "Ready for take-off! ✈️" : stars === 3 ? "Excellent! 🌟" : "Well done! 👏";
+  $("#app").innerHTML = `<div class="wrap center result"><div class="resleo"><img src="lion.jpg" alt=""></div><h1 class="bigpraise">${big}</h1>${tr(!stars ? "Neredeyse oldu!" : allDone && k === 4 ? "Harfleri ve sayıları bitirdin, şimdi İstanbul'a uçuyoruz!" : "Aferin sana!")}
+   <div class="muted" style="margin-top:6px">${STARTER[k - 1].icon} ${STARTER[k - 1].t}</div><div class="resstars">${"⭐".repeat(stars)}<span>${"⭐".repeat(3 - stars)}</span></div>
+   <div class="card"><div class="row"><span>First-try accuracy</span><b>${Math.round(acc * 100)}%</b></div><div class="row"><span>XP earned</span><b>+${xp} ⚡</b></div></div>
+   <button class="btn gold" id="nx">${!stars ? "Try again ↻" : k < 4 ? `Next: ${STARTER[k].t} ▶` : "Fly to İstanbul ✈️"}</button><div style="height:10px"></div><button class="ghostbtn" id="mp">Back to map</button></div>`;
+  $("#nx").onclick = () => { if (!stars) return startStarter(k); if (k < 4) return startStarter(k + 1); p.starterMode = false; save(); levelIntro(1); };
+  $("#mp").onclick = () => { L = null; tab = "map"; render(); };
   checkBadges();
 }
 function rollDay() { const p = P(); let ch = false; if (p.day !== today()) { p.day = today(); p.dayXP = 0; ch = true; } if (p.week !== weekKey()) { p.week = weekKey(); p.weekXP = 0; ch = true; } if (ch) save(); }
@@ -1112,20 +1352,23 @@ async function canvasCard(title, line1, line2) {
   return c.toDataURL("image/png");
 }
 const SHARE_TXT = "I'm learning English with Englow 🦁 — English for every age! / Englow ile İngilizce öğreniyorum!";
-async function shareOut(text, dataUrl) {
+async function shareOut(text, dataUrl, fname = "englow-share.png") {
   try {
     if (NATIVE && NSHARE) {
-      let files; if (dataUrl && NFS) { const r = await NFS.writeFile({ path: "englow-share.png", data: dataUrl.split(",")[1], directory: "CACHE" }); files = [r.uri]; }
+      let files; if (dataUrl && NFS) { const r = await NFS.writeFile({ path: fname, data: dataUrl.split(",")[1], directory: "CACHE" }); files = [r.uri]; }
       await NSHARE.share({ title: "Englow", text, files, dialogTitle: "Share Englow" }); return;
     }
-    if (dataUrl && navigator.canShare) { const b = await (await fetch(dataUrl)).blob(); const f = new File([b], "englow.png", { type: "image/png" }); if (navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text, title: "Englow" }); return; } }
+    if (dataUrl && navigator.canShare) { const b = await (await fetch(dataUrl)).blob(); const f = new File([b], fname, { type: b.type || "image/png" }); if (navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text, title: "Englow" }); return; } }
     if (navigator.share) { await navigator.share({ title: "Englow", text, url: location.href }); return; }
     if (dataUrl) { const a = document.createElement("a"); a.href = dataUrl; a.download = "englow.png"; a.click(); }
     await navigator.clipboard.writeText(text + " " + location.href); toast("Copied! 📋");
   } catch (e) {}
 }
-async function shareCard(title, l1, l2) { toast("Preparing your card…"); shareOut(SHARE_TXT, await canvasCard(title, l1, l2)); }
-function invite() { shareOut(SHARE_TXT + (NATIVE ? "" : " " + location.href), null); }
+async function shareCard(title, l1, l2) { toast("Preparing your card…"); const link = shareLink(); shareOut(SHARE_TXT + (link ? "\n👉 " + link : ""), await canvasCard(title, l1, l2)); }
+const SITE_URL = ""; // Netlify adresi gelince doldurulacak
+const shareLink = () => SITE_URL || (NATIVE ? "" : location.origin + location.pathname);
+async function coverData() { try { const b = await (await fetch("cover.jpg")).blob(); return await new Promise(r => { const f = new FileReader(); f.onload = () => r(f.result); f.readAsDataURL(b); }); } catch (e) { return null; } }
+async function invite() { const link = shareLink(); shareOut(SHARE_TXT + (link ? "\n👉 " + link : ""), await coverData(), "englow.jpg"); }
 
 // ---------- Müzik (telifsiz, uygulama içinde üretilen) ----------
 const MUSIC = { on: false, mood: "chill", vol: .5, timer: null, step: 0, master: null, duck: false, next: 0 };
@@ -1204,6 +1447,7 @@ function renderMe() {
    <div class="card" style="display:flex;align-items:center;gap:12px">${avatarHTML(p, 64)}<div style="flex:1"><h2 style="margin:0">${esc(p.name)}</h2><div class="muted">${AGES[p.age].label} (${AGES[p.age].ages}) · Level ${p.unlocked}/80 · ${WORLDS[worldOf(p.unlocked) - 1].cefr}</div></div><button class="btn ghost" style="width:auto;padding:8px 12px" id="ch">Edit</button></div>
    <div class="card"><h3>📊 Last 7 days (minutes)</h3><div class="bars gold">${days.map(([d, m]) => `<div><i style="height:${Math.max(3, Math.min(60, m * 3))}px"></i>${d}</div>`).join("")}</div>
    <div class="row"><span>Total XP</span><b>${p.xp}</b></div><div class="row"><span>Lessons</span><b>${p.stats.lessons}</b></div><div class="row"><span>Accuracy</span><b>${Math.round(p.stats.correct / Math.max(1, p.stats.correct + p.stats.wrong) * 100)}%</b></div></div>
+   <div class="card"><h3>🛂 My Passport · ${Object.keys(p.stars).filter(k => p.stars[k]).length}/80 cities</h3>${tr("Pasaportum — ziyaret ettiğin şehirler")}<div class="passport">${CITIES.map((c, i) => `<div class="stamp ${p.stars[i + 1] ? "on" : ""}" title="${esc(c[0])}"><b>${c[1]}</b>${esc(c[0].replace(" · Grand Final", ""))}</div>`).join("")}</div></div>
    <div class="card"><h3>🏅 Badges</h3><div class="badges">${BADGES.map(([k, i, l]) => `<div class="badge ${p.badges[k] ? "" : "off"}"><b>${i}</b>${l}</div>`).join("")}</div></div>
    ${[["st", "⚙️", "Settings", "Turn every feature on or off", "Ayarlar"], ["pa", "👨‍👩‍👧", "Parent Panel", "Profiles, time limit, PIN", "Ebeveyn paneli"], ["sw", "🔄", "Switch / add profile", DB.profiles.length + " profiles", "Profil değiştir"], S().sharePrompts ? ["sh", "📤", "Share Englow", "Invite your friends", "Arkadaşını davet et"] : null].filter(Boolean).map(([id, i, t, d, trt]) => `<button class="list-item" id="${id}"><span class="ic">${i}</span><div><b>${t}</b><div class="muted">${d}</div>${tr(trt)}</div></button>`).join("")}
    <div class="credit">ENGLOW ${VERSION} · by First Class Software</div></div>`;
@@ -1228,6 +1472,9 @@ function settings() {
    <div class="row"><b>Voice speed</b><select id="rt">${[[.7, "Slow"], [1, "Normal"], [1.2, "Fast"]].map(([v, l]) => `<option value="${v}" ${s.rateAdj == v ? "selected" : ""}>${l}</option>`).join("")}</select></div>${sw("music", "Study music", "Ders müziği")}</div>
    <div class="card"><h3>📝 Learning</h3>${sw("speak", "Speaking exercises", "Mikrofonla konuşma alıştırmaları")}${sw("typing", "Typing exercises", "Yazma alıştırmaları")}${sw("timer", "Timed mode (15 sec)", "Soru başına süre")}${sw("mirror", "English Mirror", "Ses aynası")}
    <div class="row"><b>Daily goal</b><select id="gl">${[10, 30, 50, 80].map(v => `<option ${s.goal == v ? "selected" : ""}>${v}</option>`).join("")}</select></div>
+   <div class="row"><b>Retake placement test</b><button class="btn ghost" style="width:auto;padding:8px 12px" id="rpt">Start</button></div>
+   <div class="row"><b>Start Here (letters & numbers)</b><button class="btn ghost" style="width:auto;padding:8px 12px" id="sth">Open</button></div>
+   <div class="row"><b>Jump to level</b><select id="jl"><option value="">—</option>${WORLDS.map(w => `<option value="${(w.id - 1) * 10 + 1}">${w.cefr} · ${city((w.id - 1) * 10 + 1).name}</option>`).join("")}</select></div>
    <div class="row"><b>Age group</b><select id="ag">${Object.entries(AGES).map(([k, a]) => `<option value="${k}" ${P().age === k ? "selected" : ""}>${a.label} (${a.ages})</option>`).join("")}</select></div></div>
    <div class="card"><h3>🎨 Look</h3>${sw("dark", "Dark mode", "Karanlık mod")}${sw("large", "Large text", "Büyük yazı")}${sw("confetti", "Fireworks & confetti", "Havai fişek ve konfeti")}${sw("mascot", "Leo's messages", "Aslan Leo'nun mesajları")}${sw("reminder", "Daily reminder", "Günlük hatırlatma")}${sw("sharePrompts", "Share buttons", "Paylaş düğmeleri")}</div>
    <div class="card"><h3>💾 Data</h3><p class="muted">Your progress is saved on this phone only.</p>${tr("İlerlemen sadece bu telefonda saklanır.")}<div style="height:8px"></div><button class="btn ghost" id="ex">Download backup</button><div style="height:8px"></div><button class="btn ghost" id="im">Restore from backup</button><input type="file" id="fi" accept=".json,application/json" class="hidden"><div style="height:8px"></div><button class="btn bad" id="rs">Reset this profile</button></div>
@@ -1237,6 +1484,9 @@ function settings() {
   $("#acc").onchange = e => { s.accent = e.target.value; save(); say("Hello! Welcome to Englow."); };
   $("#rt").onchange = e => { s.rateAdj = +e.target.value; save(); say("This is my speed."); };
   $("#gl").onchange = e => { s.goal = +e.target.value; save(); };
+  $("#rpt").onclick = () => placement();
+  $("#sth").onclick = () => { P().starterMode = true; save(); tab = "map"; render(); };
+  $("#jl").onchange = e => { const v = +e.target.value; if (!v) return; P().unlocked = Math.max(P().unlocked, v); save(); toast(`Unlocked up to ${city(v).name} ✈️`); };
   $("#ag").onchange = e => { P().age = e.target.value; save(); applyTheme(); toast("Age group updated"); };
   $("#ex").onclick = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([JSON.stringify({ app: "englow", v: VERSION, data: DB })], { type: "application/json" })); a.download = `englow-backup-${today()}.json`; a.click(); };
   $("#im").onclick = () => $("#fi").click();

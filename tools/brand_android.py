@@ -15,7 +15,7 @@ for f in glob.glob(os.path.join(RES, "drawable*", "splash.png")):
     lg = logo.resize((s, s), Image.LANCZOS)
     bg.paste(lg, ((w - s) // 2, (h - s) // 2), lg); bg.save(f)
 g = "android/app/build.gradle"; t = open(g).read()
-t = re.sub(r"versionCode \d+", "versionCode 2", t); t = re.sub(r'versionName "[^"]*"', 'versionName "1.1"', t)
+t = re.sub(r"versionCode \d+", "versionCode 3", t); t = re.sub(r'versionName "[^"]*"', 'versionName "1.1.1"', t)
 sign = """
     signingConfigs {
         debug {
