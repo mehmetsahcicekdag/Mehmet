@@ -571,9 +571,9 @@ const GRAMMAR = [
 
 // Hikâyeler (seviyeli okuma, kelimeye dokununca anlam)
 const STORIES = [
- {title:"Leo the Lion",cefr:"A1",minLevel:5,emoji:"🦁",s:[
-  ["Leo is a young lion.","Leo genç bir aslandır."],["He lives in a big forest.","Büyük bir ormanda yaşar."],["Every morning he wakes up and drinks water.","Her sabah uyanır ve su içer."],["His best friend is a small bird.","En iyi arkadaşı küçük bir kuştur."],["The bird teaches Leo English words.","Kuş Leo'ya İngilizce kelimeler öğretir."],["Now Leo can say hello to everyone!","Artık Leo herkese merhaba diyebilir!"]],
-  q:[["Where does Leo live?","in a forest",["in a forest","in a city","in a school"]],["Who is Leo's best friend?","a bird",["a cat","a bird","a fish"]],["What can Leo say now?","hello",["goodbye","hello","thank you"]]]},
+ {title:"Aslan the Lion",cefr:"A1",minLevel:5,emoji:"🦁",s:[
+  ["Aslan is a young lion.","Aslan genç bir aslandır."],["He lives in a big forest.","Büyük bir ormanda yaşar."],["Every morning he wakes up and drinks water.","Her sabah uyanır ve su içer."],["His best friend is a small bird.","En iyi arkadaşı küçük bir kuştur."],["The bird teaches Aslan English words.","Kuş Aslan'a İngilizce kelimeler öğretir."],["Now Aslan can say hello to everyone!","Artık Aslan herkese merhaba diyebilir!"]],
+  q:[["Where does Aslan live?","in a forest",["in a forest","in a city","in a school"]],["Who is Aslan's best friend?","a bird",["a cat","a bird","a fish"]],["What can Aslan say now?","hello",["goodbye","hello","thank you"]]]},
  {title:"A Day at the Market",cefr:"A1",minLevel:15,emoji:"🛒",s:[
   ["It is Saturday.","Bugün cumartesi."],["Ayşe goes to the market with her mother.","Ayşe annesiyle markete gider."],["They buy apples, bread and cheese.","Elma, ekmek ve peynir alırlar."],["The apples are red and cheap.","Elmalar kırmızı ve ucuzdur."],["Ayşe pays with a card.","Ayşe kartla öder."],["They go home and make a big breakfast.","Eve gidip büyük bir kahvaltı hazırlarlar."]],
   q:[["What day is it?","Saturday",["Monday","Saturday","Sunday"]],["How does Ayşe pay?","with a card",["with cash","with a card","with coins"]],["What colour are the apples?","red",["green","yellow","red"]]]},
@@ -620,11 +620,11 @@ const STARTER = [
  {t:"Numbers 0–10",tr:"Sayılar 0–10",icon:"🔢",nums:true}
 ];
 
-// ---------- v2.0: Chat with Leo + Pro English (Call Center) ----------
-// tur: [Leo'nun cümlesi, Türkçesi, örnek cevap, anahtar kelimeler ("" = her cevap olur)]
+// ---------- v2.0: Chat with Aslan + Pro English (Call Center) ----------
+// tur: [Aslan'ın cümlesi, Türkçesi, örnek cevap, anahtar kelimeler ("" = her cevap olur)]
 const CHATS = [
- {t:"Meet Leo",tr:"Leo ile tanış",icon:"👋",lvl:"A1",min:1,turns:[
-  ["Hi! I'm Leo. What's your name?","Merhaba! Ben Leo. Adın ne?","My name is Mehmet.",""],
+ {t:"Meet Aslan",tr:"Aslan ile tanış",icon:"👋",lvl:"A1",min:1,turns:[
+  ["Hi! I'm Aslan. What's your name?","Merhaba! Ben Aslan. Adın ne?","My name is Mehmet.",""],
   ["Nice to meet you! Where are you from?","Tanıştığıma memnun oldum! Nerelisin?","I'm from Turkey.","from|turkey|türkiye|istanbul|i'm|i am"],
   ["Cool! What do you do?","Harika! Ne iş yapıyorsun?","I'm a teacher.",""],
   ["What do you like doing in your free time?","Boş zamanında ne yapmayı seversin?","I like reading and listening to music.","like|love|enjoy"],
@@ -657,7 +657,7 @@ const CHATS = [
   ["Where do you see yourself in five years?","Beş yıl sonra kendini nerede görüyorsun?","I see myself as a team leader.","see|year|want|hope|would"],
   ["Do you have any questions for us?","Bize sormak istediğin bir şey var mı?","Yes. What are the next steps?",""]]}
 ];
-// Leo müşteriyi (ya da temsilciyi) oynar, sen çağrı merkezi çalışanısın
+// Aslan müşteriyi (ya da temsilciyi) oynar, sen çağrı merkezi çalışanısın
 const PRO = [
  {t:"Greeting & verification",tr:"Karşılama ve kimlik doğrulama",icon:"📞",lvl:"B1",role:"CUSTOMER",turns:[
   ["Hello, I'm calling about my credit card.","Merhaba, kredi kartım için arıyorum.","Thank you for calling. Could you please confirm your full name?","thank|name|confirm|help"],
@@ -673,7 +673,7 @@ const PRO = [
   ["And what about my money?","Peki ya param?","I'll open a dispute today. You'll get an update within five business days.","dispute|refund|days|update|investigat|back"],
   ["Okay... thank you.","Tamam... teşekkürler.","You're welcome. Is there anything else I can help you with?","anything else|welcome|help"]]},
  {t:"Sales call & objections",tr:"Satış araması ve itiraz karşılama",icon:"📈",lvl:"B2",role:"CUSTOMER",turns:[
-  ["Hello? Who is this?","Alo? Kim arıyor?","Good afternoon, this is Leo from First Bank. Do you have two minutes?","this is|calling from|minute|good"],
+  ["Hello? Who is this?","Alo? Kim arıyor?","Good afternoon, this is Sam from First Bank. Do you have two minutes?","this is|calling from|minute|good"],
   ["I'm busy. What is it about?","Meşgulüm. Ne hakkında?","I'll be quick. We have a credit card with no annual fee for you.","quick|offer|fee|card|special"],
   ["I already have a card.","Zaten bir kartım var.","I understand. Many customers keep both, because this one gives cashback.","understand|cashback|benefit|both|also"],
   ["Hmm, send me the details.","Hmm, detayları gönderin.","Of course. I'll send them by text message today. Thank you for your time!","send|sms|text|email|thank"]]},
@@ -689,7 +689,7 @@ const PRO = [
 const PRO_GLOSSARY = [["AHT","Average Handling Time — ortalama görüşme süresi"],["SLA","Service Level Agreement — hizmet seviyesi"],["FCR","First Contact Resolution — ilk temasta çözüm"],["CSAT","Customer Satisfaction — müşteri memnuniyeti"],["NPS","Net Promoter Score — tavsiye skoru"],["Hold","Beklemeye almak"],["Transfer","Çağrıyı aktarmak"],["Escalate","Üst birime iletmek"],["Dispute","İtiraz kaydı"],["Wrap-up","Görüşme sonrası işlem"]];
 </script>
 <script>// ENGLOW v1.1 — First Class Software
-const VERSION = "v2.0";
+const VERSION = "v2.0.1";
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -870,7 +870,7 @@ const todayMin = () => Math.floor(P().minutes[today()] || 0);
 const mascot = (en, trt) => S().mascot ? `<div class="mascot"><img src="lion.jpg" alt=""><div class="bubble">${en}${tr(trt)}</div></div>` : "";
 const totalStars = () => Object.values(P().stars).reduce((a, b) => a + b, 0);
 
-// ---------- Onboarding v2: Leo ile sohbet havasında, adım çubuğu ----------
+// ---------- Onboarding v2: Aslan ile sohbet havasında, adım çubuğu ----------
 const INTERESTS = [["food", "🍔", "Food", [10, 11, 26, 28, 60]], ["travel", "✈️", "Travel", [22, 23, 30, 31, 32, 55]], ["sports", "⚽", "Sports", [24, 61]], ["music", "🎵", "Music & Art", [37, 25]], ["movies", "🎬", "Movies & TV", [38, 52]], ["tech", "💻", "Technology", [36, 53]], ["nature", "🌿", "Nature", [3, 33, 34, 44, 47]], ["business", "💼", "Business", [45, 54, 41, 68]], ["family", "👨‍👩‍👧", "Family & Friends", [4, 50, 19]], ["health", "🩺", "Health", [5, 29, 56]], ["home", "🏠", "Home", [13, 14, 40]], ["shopping", "🛍️", "Shopping", [27, 12, 41]]];
 const FOCUS = [["travel", "✈️", "Travel", "Seyahat"], ["work", "💼", "My career", "Kariyerim"], ["callcenter", "🎧", "Call center job", "Çağrı merkezi işi"], ["school", "🎓", "School & exams", "Okul ve sınavlar"], ["movies", "🎬", "Movies, music, games", "Film, müzik, oyun"], ["family", "💬", "Talk with people", "İnsanlarla konuşmak"]];
 const SELF = [[0, "🔤", "I'm a total beginner", "Hiç bilmiyorum — harflerden başla"], [1, "🙂", "I can say a few basic words", "Birkaç temel kelime biliyorum"], [11, "💬", "I can use simple sentences", "Basit cümleler kurabiliyorum"], [31, "🗣️", "I can have a short conversation", "Kısa bir sohbet edebiliyorum"], [51, "🌍", "I can talk about many topics", "Birçok konuda konuşabiliyorum"], [71, "🚀", "I speak quite fluently", "Oldukça akıcı konuşuyorum"]];
@@ -906,7 +906,7 @@ function renderOnboarding() {
   }
   let h = "";
   if (ob.step === 1) {
-    h = leoSay([[`Nice to meet you, <b>${esc(ob.name)}</b>! I'm Leo 🦁`, "Tanıştığıma memnun oldum! Ben Leo."], ["A few quick questions and we can start our world tour.", "Birkaç kısa soru, sonra dünya turuna başlıyoruz."]]) +
+    h = leoSay([[`Nice to meet you, <b>${esc(ob.name)}</b>! I'm Aslan 🦁`, "Tanıştığıma memnun oldum! Ben Aslan."], ["A few quick questions and we can start our world tour.", "Birkaç kısa soru, sonra dünya turuna başlıyoruz."]]) +
       `<h2>Do you want Turkish help?</h2><button class="choice ${ob.tr ? "sel" : ""}" data-v="1"><b>🇬🇧 + 🇹🇷 English with Turkish help</b><span>İngilizce + Türkçe açıklamalar</span></button>
       <button class="choice ${!ob.tr ? "sel" : ""}" data-v="0"><b>🇬🇧 English only</b><span>Only English, no Turkish</span></button>` + nx();
   } else if (ob.step === 2) {
@@ -914,7 +914,7 @@ function renderOnboarding() {
   } else if (ob.step === 3) {
     h = `<h2>Which English do you want to hear?</h2>${tr("Hangi aksanı duymak istersin?")}
       <button class="choice ${ob.accent === "en-US" ? "sel" : ""}" data-ac="en-US"><b>🇺🇸 American English</b></button><button class="choice ${ob.accent === "en-GB" ? "sel" : ""}" data-ac="en-GB"><b>🇬🇧 British English</b></button>
-      <h2 style="margin-top:18px">Leo's speaking speed</h2>${tr("Konuşma hızı — sonra Ayarlar'dan değişir")}
+      <h2 style="margin-top:18px">Aslan's speaking speed</h2>${tr("Konuşma hızı — sonra Ayarlar'dan değişir")}
       ${[[1, "1× Normal", "recommended"], [.8, "0.8× Relaxed", "rahat"], [.6, "0.6× Slow", "yavaş"]].map(([v, l, d]) => `<button class="choice ${ob.rate === v ? "sel" : ""}" data-rt="${v}"><b>${l}</b><span>${d}</span></button>`).join("")}` + nx();
   } else if (ob.step === 4) {
     h = `<h2>Choose your character</h2>${tr("Karakterini seç. Sonra Profil'den fotoğraf da ekleyebilirsin.")}<div class="avgrid">${AVATARS.map(([e, bg], i) => `<button class="avbtn ${ob.av === i ? "sel" : ""}" data-i="${i}" style="background:${bg}">${e}</button>`).join("")}</div>` + nx();
@@ -946,7 +946,7 @@ function renderOnboarding() {
   sel(".age", b => ob.age = b.dataset.a);
   sel("[data-ac]", b => { ob.accent = b.dataset.ac; });
   sel("[data-rt]", b => { ob.rate = +b.dataset.rt; });
-  app.querySelectorAll("[data-ac],[data-rt]").forEach(b => { const o = b.onclick; b.onclick = () => { o(); setTimeout(() => sayRaw("Hello! I'm Leo. Let's learn English together.", ob.accent, .95 * ob.rate), 50); }; });
+  app.querySelectorAll("[data-ac],[data-rt]").forEach(b => { const o = b.onclick; b.onclick = () => { o(); setTimeout(() => sayRaw("Hello! I'm Aslan. Let's learn English together.", ob.accent, .95 * ob.rate), 50); }; });
   sel(".avbtn", b => ob.av = +b.dataset.i);
   sel("[data-f]", b => ob.focus = b.dataset.f);
   sel("[data-in]", b => { const k = b.dataset.in; ob.ints = ob.ints.includes(k) ? ob.ints.filter(x => x !== k) : [...ob.ints, k]; });
@@ -1073,7 +1073,7 @@ function renderMap() {
   const tm = todayMin(), gm = p.settings.goalMin;
   if (tm < gm) h += mascot(tm ? `Great job ${esc(p.name)}! <b>${gm - tm} min</b> left for today's goal.` : `Hi ${esc(p.name)}! 🦁 Ready for today's lesson? Keep your streak alive!`, tm ? "Günlük hedefe az kaldı!" : "Serini korumak için bir ders yapalım mı?");
   else h += mascot(`Daily goal complete! 🎉 Streak: <b>${p.streak} days</b>.`, "Günlük hedef tamam!");
-  const quick = [S().chat ? ["qc", "💬", "Chat with Leo", "Speak or type — real conversations", "Leo ile sohbet et"] : null, S().pro && (p.focus === "work" || p.focus === "callcenter") ? ["qp", "🎧", "Pro English", "Call center & business talk", "Çağrı merkezi İngilizcesi"] : null, S().interests && p.interests.length ? ["qi", "⭐", "My interests", p.interests.map(k => (INTERESTS.find(x => x[0] === k) || [, ""])[1]).join(" "), "İlgi alanlarım"] : null].filter(Boolean);
+  const quick = [S().chat ? ["qc", "💬", "Chat with Aslan", "Speak or type — real conversations", "Aslan ile sohbet et"] : null, S().pro && (p.focus === "work" || p.focus === "callcenter") ? ["qp", "🎧", "Pro English", "Call center & business talk", "Çağrı merkezi İngilizcesi"] : null, S().interests && p.interests.length ? ["qi", "⭐", "My interests", p.interests.map(k => (INTERESTS.find(x => x[0] === k) || [, ""])[1]).join(" "), "İlgi alanlarım"] : null].filter(Boolean);
   if (quick.length) h += `<div class="quick">${quick.map(([id, i, t, d]) => `<button class="qk" id="${id}"><span>${i}</span><b>${t}</b><small>${esc(d)}</small></button>`).join("")}</div>`;
   if (due) h += `<button class="list-item" id="dueBtn"><span class="ic">🔁</span><div><b>${due} words to review</b><div class="muted">Review them before you forget</div>${tr("Tekrar zamanı gelen kelimeler")}</div></button>`;
   const sNext = nextStarter();
@@ -1441,7 +1441,7 @@ function renderReview() {
 // ---------- Keşfet ----------
 function renderExplore() {
   $("#app").innerHTML = hero(true) + `<div class="wrap"><h2>🧭 Explore</h2>
-   ${[["gA", "📘", "Grammar Academy", "24 topics · A1→B2 · practice", "Gramer Akademisi"], ["sT", "📖", "Story Library", "Graded stories · tap a word to see its meaning", "Hikâye Kütüphanesi"], ["sC", "🎭", "Real-Life Talk", "Café, airport, hotel, job interview", "Gerçek hayat simülasyonu"], S().chat ? ["cH", "💬", "Chat with Leo", "Speak or type · 🌐 translate · 🐢 slow · 💡 hints", "Leo ile sesli/yazılı sohbet"] : null, S().pro ? ["pE", "🎧", "Pro English: Call Center", "Greeting, hold, angry customer, sales, KPIs", "Çağrı merkezi ve iş İngilizcesi"] : null, S().interests ? ["iN", "⭐", "My Interests", "Words from topics you love", "İlgi alanlarından kelimeler"] : null, S().report ? ["rP", "📈", "My Progress Report", "Before & after · download anytime", "Gelişim raporum"] : null, S().mirror ? ["mR", "🪞", "English Mirror", "Compare your first and latest recording", "Ses Aynası"] : null, ["aB", "🔤", "Alphabet & Sounds", "26 letters — listen and repeat", "Alfabe ve sesler"], S().music ? ["mS", "🎵", "Study Music", "Background music while you learn", "Ders müziği"] : null].filter(Boolean).map(([id, i, t, d, trt]) => `<button class="list-item" id="${id}"><span class="ic">${i}</span><div><b>${t}</b><div class="muted">${d}</div>${tr(trt)}</div></button>`).join("")}</div>`;
+   ${[["gA", "📘", "Grammar Academy", "24 topics · A1→B2 · practice", "Gramer Akademisi"], ["sT", "📖", "Story Library", "Graded stories · tap a word to see its meaning", "Hikâye Kütüphanesi"], ["sC", "🎭", "Real-Life Talk", "Café, airport, hotel, job interview", "Gerçek hayat simülasyonu"], S().chat ? ["cH", "💬", "Chat with Aslan", "Speak or type · 🌐 translate · 🐢 slow · 💡 hints", "Aslan ile sesli/yazılı sohbet"] : null, S().pro ? ["pE", "🎧", "Pro English: Call Center", "Greeting, hold, angry customer, sales, KPIs", "Çağrı merkezi ve iş İngilizcesi"] : null, S().interests ? ["iN", "⭐", "My Interests", "Words from topics you love", "İlgi alanlarından kelimeler"] : null, S().report ? ["rP", "📈", "My Progress Report", "Before & after · download anytime", "Gelişim raporum"] : null, S().mirror ? ["mR", "🪞", "English Mirror", "Compare your first and latest recording", "Ses Aynası"] : null, ["aB", "🔤", "Alphabet & Sounds", "26 letters — listen and repeat", "Alfabe ve sesler"], S().music ? ["mS", "🎵", "Study Music", "Background music while you learn", "Ders müziği"] : null].filter(Boolean).map(([id, i, t, d, trt]) => `<button class="list-item" id="${id}"><span class="ic">${i}</span><div><b>${t}</b><div class="muted">${d}</div>${tr(trt)}</div></button>`).join("")}</div>`;
   if ($("#cH")) $("#cH").onclick = () => chatList(false); if ($("#pE")) $("#pE").onclick = () => chatList(true); if ($("#iN")) $("#iN").onclick = interestPractice; if ($("#rP")) $("#rP").onclick = renderReport;
   $("#gA").onclick = grammarAcademy; $("#sT").onclick = storiesList; $("#sC").onclick = scenList; $("#aB").onclick = alphabet; if ($("#mS")) $("#mS").onclick = musicSheet; if ($("#mR")) $("#mR").onclick = mirror;
 }
@@ -1666,13 +1666,13 @@ function settings() {
    <div class="row"><b>Voice speed</b><select id="rt">${[[.7, "Slow"], [1, "Normal"], [1.2, "Fast"]].map(([v, l]) => `<option value="${v}" ${s.rateAdj == v ? "selected" : ""}>${l}</option>`).join("")}</select></div>${sw("music", "Study music", "Ders müziği")}</div>
    <div class="card"><h3>📝 Learning</h3>${sw("speak", "Speaking exercises", "Mikrofonla konuşma alıştırmaları")}${sw("typing", "Typing exercises", "Yazma alıştırmaları")}${sw("timer", "Timed mode (15 sec)", "Soru başına süre")}${sw("mirror", "English Mirror", "Ses aynası")}
    <div class="row"><b>Daily goal</b><select id="gl">${[5, 10, 15, 20, 30].map(v => `<option value="${v}" ${s.goalMin == v ? "selected" : ""}>${v} min / day</option>`).join("")}</select></div>
-   ${sw("dictation", "Dictation & find the mistake", "Dikte ve hatayı bul soruları")}${sw("slowBtn", "🐢 Slow-listen buttons", "Yavaş dinleme düğmeleri")}${sw("chat", "Chat with Leo", "Leo ile sohbet")}${sw("pro", "Pro English (call center)", "Çağrı merkezi İngilizcesi")}${sw("interests", "My interests", "İlgi alanlarım")}${sw("report", "Progress report", "Gelişim raporu")}
+   ${sw("dictation", "Dictation & find the mistake", "Dikte ve hatayı bul soruları")}${sw("slowBtn", "🐢 Slow-listen buttons", "Yavaş dinleme düğmeleri")}${sw("chat", "Chat with Aslan", "Aslan ile sohbet")}${sw("pro", "Pro English (call center)", "Çağrı merkezi İngilizcesi")}${sw("interests", "My interests", "İlgi alanlarım")}${sw("report", "Progress report", "Gelişim raporu")}
    <div class="row"><b>Reminder time</b><input type="time" id="rat" value="${s.remindAt}" class="inp" style="width:auto;padding:6px 10px;font-size:16px"></div>
    <div class="row"><b>Retake placement test</b><button class="btn ghost" style="width:auto;padding:8px 12px" id="rpt">Start</button></div>
    <div class="row"><b>Start Here (letters & numbers)</b><button class="btn ghost" style="width:auto;padding:8px 12px" id="sth">Open</button></div>
    <div class="row"><b>Jump to level</b><select id="jl"><option value="">—</option>${WORLDS.map(w => `<option value="${(w.id - 1) * 10 + 1}">${w.cefr} · ${city((w.id - 1) * 10 + 1).name}</option>`).join("")}</select></div>
    <div class="row"><b>Age group</b><select id="ag">${Object.entries(AGES).map(([k, a]) => `<option value="${k}" ${P().age === k ? "selected" : ""}>${a.label} (${a.ages})</option>`).join("")}</select></div></div>
-   <div class="card"><h3>🎨 Look</h3>${sw("dark", "Dark mode", "Karanlık mod")}${sw("large", "Large text", "Büyük yazı")}${sw("confetti", "Fireworks & confetti", "Havai fişek ve konfeti")}${sw("mascot", "Leo's messages", "Aslan Leo'nun mesajları")}${sw("reminder", "Daily reminder (notification)", "Günlük hatırlatma bildirimi")}${sw("sharePrompts", "Share buttons", "Paylaş düğmeleri")}</div>
+   <div class="card"><h3>🎨 Look</h3>${sw("dark", "Dark mode", "Karanlık mod")}${sw("large", "Large text", "Büyük yazı")}${sw("confetti", "Fireworks & confetti", "Havai fişek ve konfeti")}${sw("mascot", "Aslan's messages", "Aslan'ın mesajları")}${sw("reminder", "Daily reminder (notification)", "Günlük hatırlatma bildirimi")}${sw("sharePrompts", "Share buttons", "Paylaş düğmeleri")}</div>
    <div class="card"><h3>💾 Data</h3><p class="muted">Your progress is saved on this phone only.</p>${tr("İlerlemen sadece bu telefonda saklanır.")}<div style="height:8px"></div><button class="btn ghost" id="ex">Download backup</button><div style="height:8px"></div><button class="btn ghost" id="im">Restore from backup</button><input type="file" id="fi" accept=".json,application/json" class="hidden"><div style="height:8px"></div><button class="btn bad" id="rs">Reset this profile</button></div>
    <div class="card"><h3>🔒 Privacy</h3><p class="muted">No ads, no account, no chat rooms. Speaking exercises use your phone's speech service (for example Google), which may process your voice online. English Mirror recordings stay on this phone. Levels are organised along CEFR levels; they are not an official certificate.</p>${tr("Konuşma alıştırmalarında telefonunun ses tanıma servisi (örn. Google) sesini internet üzerinden işleyebilir. Ses aynası kayıtları telefonda kalır. Seviyeler CEFR'e göre düzenlenmiştir, resmi sertifika değildir.")}</div>
    <div class="credit">ENGLOW ${VERSION} · by First Class Software</div>`, () => { tab = "me"; render(); });
@@ -1751,10 +1751,10 @@ async function listenOnce(onStart, onEnd) {
     r.onresult = e => { onEnd(); res([...e.results[0]].map(a => a.transcript)); }; r.onerror = e => { onEnd(); rej(e); }; r.onend = onEnd; try { r.start(); } catch (e) { onEnd(); rej(e); } });
 }
 
-// ---------- Chat with Leo & Pro English ----------
+// ---------- Chat with Aslan & Pro English ----------
 function chatList(pro) {
   const p = P(), list = pro ? PRO : CHATS;
-  sub(pro ? "🎧 Pro English" : "💬 Chat with Leo", (pro ? `<div class="card"><b>📞 Call Center English</b><p class="muted">Leo plays the customer. You are the agent. Speak or type your answer.</p>${tr("Leo müşteriyi oynar, sen temsilcisin. Cevabını söyle ya da yaz.")}</div>` :
+  sub(pro ? "🎧 Pro English" : "💬 Chat with Aslan", (pro ? `<div class="card"><b>📞 Call Center English</b><p class="muted">Aslan plays the customer. You are the agent. Speak or type your answer.</p>${tr("Aslan müşteriyi oynar, sen temsilcisin. Cevabını söyle ya da yaz.")}</div>` :
     mascot("Let's talk! Answer me with your voice or type. Tap 💡 if you need an idea.", "Sesinle ya da yazarak cevap ver. Fikir lazımsa 💡'ye dokun.")) +
     list.map((c, i) => `<button class="list-item" data-c="${i}"><span class="ic">${c.icon}</span><div><b>${esc(c.t)}</b> ${p.chats[(pro ? "p" : "c") + i] ? "✅" : ""}<div class="muted">${c.lvl} · ${c.turns.length} turns</div>${tr(c.tr)}</div></button>`).join("") +
     (pro ? `<div class="card"><h3>📘 Glossary</h3>${PRO_GLOSSARY.map(([k, v]) => `<div class="row"><b>${k}</b><span class="muted" style="text-align:right">${esc(v)}</span></div>`).join("")}</div>` : ""));
@@ -1762,7 +1762,7 @@ function chatList(pro) {
 }
 function chat(pro, ci) {
   const c = (pro ? PRO : CHATS)[ci]; let k = 0, tries = 0, score = 0, hint = false, kb = false; const log = [];
-  const leoB = (txt, t, live) => `<div class="cb cleo"><img src="lion.jpg" alt=""><div class="cbody">${pro ? `<div class="who">LEO · ${c.role}</div>` : ""}<div>${esc(txt)}</div>${live ? `<div class="ctr hidden" id="ctr">${esc(t)}</div><div class="cbtn"><button id="cTr" title="Translate">🌐</button><button id="cRe" title="Repeat">🔁</button><button id="cSl" title="Slow">🐢</button></div>` : ""}</div></div>`;
+  const leoB = (txt, t, live) => `<div class="cb cleo"><img src="lion.jpg" alt=""><div class="cbody">${pro ? `<div class="who">ASLAN · ${c.role}</div>` : ""}<div>${esc(txt)}</div>${live ? `<div class="ctr hidden" id="ctr">${esc(t)}</div><div class="cbtn"><button id="cTr" title="Translate">🌐</button><button id="cRe" title="Repeat">🔁</button><button id="cSl" title="Slow">🐢</button></div>` : ""}</div></div>`;
   const youB = (txt, ok) => `<div class="cb cyou ${ok ? "ok" : "bad"}"><div class="cbody">${esc(txt)} ${ok ? "✓" : ""}</div></div>`;
   const end = () => {
     const xp = 10 + score * 3; P().chats[(pro ? "p" : "c") + ci] = true; addXP(xp); P().stats.spoken += score; save(); fireworks(3); beep("win");
@@ -1773,7 +1773,7 @@ function chat(pro, ci) {
   const step = (fresh) => {
     if (k >= c.turns.length) return end();
     const [leo, lt, sample, keys] = c.turns[k];
-    sub(`${c.icon} ${esc(c.t)}`, `<div class="chatbox">${pro && !k ? `<div class="rolebar">${c.role === "AGENT" ? "🧑‍💼 You are the team leader. Leo is your agent." : "🎧 You are the agent. Leo is the customer."}</div>` : ""}${log.join("")}${leoB(leo, lt, true)}
+    sub(`${c.icon} ${esc(c.t)}`, `<div class="chatbox">${pro && !k ? `<div class="rolebar">${c.role === "AGENT" ? "🧑‍💼 You are the team leader. Aslan is your agent." : "🎧 You are the agent. Aslan is the customer."}</div>` : ""}${log.join("")}${leoB(leo, lt, true)}
       ${hint ? `<div class="hintbox">💡 You could say: <b>${esc(sample)}</b> <button class="spk sm" id="hS">🔊</button></div>` : ""}<div id="fbk"></div></div>
       <div class="cbar"><button class="cbic" id="cH" title="Hint">💡</button><button class="spk mic" id="cM">🎤</button><button class="cbic" id="cK" title="Keyboard">⌨️</button></div>
       <p class="muted center" id="cS" style="margin:6px 0">${SR ? "Tap 🎤 and answer" : "Type your answer"}</p>
