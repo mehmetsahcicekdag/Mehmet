@@ -1,13 +1,16 @@
 {
   "name": "englow",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Englow v1.0 – English for Every Age",
+  "description": "Englow v1.1 \u2013 English for Every Age",
   "dependencies": {
     "@capacitor/android": "8.6.2",
     "@capacitor/cli": "8.6.2",
     "@capacitor/core": "8.6.2",
     "@capacitor-community/text-to-speech": "8.0.2",
-    "@capacitor-community/speech-recognition": "7.0.1"
+    "@capacitor-community/speech-recognition": "7.0.1",
+    "@capacitor/share": "8.0.3",
+    "@capacitor/filesystem": "8.1.5",
+    "@capacitor/app-launcher": "8.0.1"
   }
 }

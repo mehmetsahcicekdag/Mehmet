@@ -11,18 +11,18 @@ for d, s in {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144, "xxxhdpi": 192}
 shutil.rmtree(os.path.join(RES, "mipmap-anydpi-v26"), ignore_errors=True)
 for f in glob.glob(os.path.join(RES, "drawable*", "splash.png")):
     w, h = Image.open(f).size
-    bg = Image.new("RGB", (w, h), (11, 31, 92)); s = int(min(w, h) * 0.55)
+    bg = Image.new("RGB", (w, h), (11, 31, 92)); s = int(min(w, h) * 0.8)
     lg = logo.resize((s, s), Image.LANCZOS)
     bg.paste(lg, ((w - s) // 2, (h - s) // 2), lg); bg.save(f)
 g = "android/app/build.gradle"; t = open(g).read()
-t = re.sub(r"versionCode \d+", "versionCode 1", t); t = re.sub(r'versionName "[^"]*"', 'versionName "1.0"', t)
+t = re.sub(r"versionCode \d+", "versionCode 2", t); t = re.sub(r'versionName "[^"]*"', 'versionName "1.1"', t)
 sign = """
     signingConfigs {
         debug {
             storeFile file("../../tools/englow.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
+            storePassword "englowFCS2026"
+            keyAlias "englow"
+            keyPassword "englowFCS2026"
             enableV1Signing true
             enableV2Signing true
         }
