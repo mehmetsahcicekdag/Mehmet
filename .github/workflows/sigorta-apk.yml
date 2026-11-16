@@ -22,15 +22,15 @@ jobs:
       - name: APK'yı hazırla
         run: |
           mkdir -p out
-          cp app/build/outputs/apk/release/app-release.apk out/SigortaSinavi_v2.22.3.apk
+          cp app/build/outputs/apk/release/app-release.apk out/SigortaSinavi_v2.22.4.apk
           ls -la out
       - uses: actions/upload-artifact@v4
         with:
           name: SigortaSinavi-apk
-          path: out/SigortaSinavi_v2.22.3.apk
+          path: out/SigortaSinavi_v2.22.4.apk
       - name: GitHub Release (telefondan indirme linki)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete sigorta-v2.22.3 -y --cleanup-tag -R ${{ github.repository }} || true
-          gh release create sigorta-v2.22.3 out/SigortaSinavi_v2.22.3.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "Sigorta Sınavı v2.22.3 (Android)" --notes "Sigorta Sınavı v2.22.3 Android APK"
+          gh release delete sigorta-v2.22.4 -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create sigorta-v2.22.4 out/SigortaSinavi_v2.22.4.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "Sigorta Sınavı v2.22.4 (Android)" --notes "Sigorta Sınavı v2.22.4 Android APK"
