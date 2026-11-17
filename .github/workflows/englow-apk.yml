@@ -34,15 +34,15 @@ jobs:
       - name: APK'yı hazırla
         run: |
           mkdir -p out
-          cp android/app/build/outputs/apk/debug/app-debug.apk out/Englow-v2.3.1.apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk out/Englow-v3.0.apk
           ls -la out
       - uses: actions/upload-artifact@v4
         with:
-          name: Englow-v2.3.1-apk
-          path: out/Englow-v2.3.1.apk
+          name: Englow-v3.0-apk
+          path: out/Englow-v3.0.apk
       - name: GitHub Release (telefondan indirme linki)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete englow-v2.3.1 -y --cleanup-tag -R ${{ github.repository }} || true
-          gh release create englow-v2.3.1 out/Englow-v2.3.1.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "Englow v2.3.1" --notes "Englow v2.3.1 – Around the World in 80 Levels · Android APK"
+          gh release delete englow-v3.0 -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create englow-v3.0 out/Englow-v3.0.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "Englow v3.0" --notes "Englow v3.0 – 5,000 words & all tenses · Android APK"
