@@ -6,8 +6,8 @@ android {
         applicationId 'com.firstclass.sigortasinavi'
         minSdk 23
         targetSdk 33
-        versionCode 22900
-        versionName '2.29.0'
+        versionCode 23000
+        versionName '2.30.0'
     }
     signingConfigs {
         main {
