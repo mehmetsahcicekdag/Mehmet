@@ -1,0 +1,20 @@
+name: Diksiyon Koçu APK
+on:
+  push:
+    branches: [diksiyon-kocu]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: GitHub Release (telefondan indirme linki)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          APK=$(ls DiksiyonKocu_v*.apk | sort -V | tail -1)
+          VER=$(echo "$APK" | sed -E 's/DiksiyonKocu_v(.*)\.apk/\1/')
+          gh release delete diksiyon-v$VER -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create diksiyon-v$VER "$APK" -R ${{ github.repository }} --target ${{ github.sha }} --title "Diksiyon Koçu v$VER" --notes "Diksiyon Koçu v$VER · Zolan Software · Android APK"
