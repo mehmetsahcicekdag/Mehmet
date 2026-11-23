@@ -1,0 +1,90 @@
+name: BES Sinavi APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [bessinavi]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Web dosyalarini al (bessinavi.netlify.app)
+        run: |
+          mkdir -p www/img tools
+          curl -fsSL https://bessinavi.netlify.app/index.html -o www/index.html
+          for f in zolan.jpg favicon.png og-image.jpg logo-b.png logo-b-t.png banner.jpg icon-192.png icon-512.png apple-touch-icon.png wordmark.png; do curl -fsSL https://bessinavi.netlify.app/img/$f -o www/img/$f || true; done
+          grep -o 'const VER="[0-9.]*"' www/index.html | grep -o '[0-9][0-9.]*' > ver.txt
+          echo "Surum: $(cat ver.txt)"
+      - name: Proje dosyalari
+        run: |
+          cat > package.json <<'EOF'
+          {"name":"bessinavi","version":"3.3.0","private":true,"dependencies":{"@capacitor/android":"8.6.2","@capacitor/cli":"8.6.2","@capacitor/core":"8.6.2"}}
+          EOF
+          cat > capacitor.config.json <<'EOF'
+          {"appId":"com.bessinavi.app","appName":"BES Sınavı","webDir":"www","backgroundColor":"#070b24","android":{"backgroundColor":"#070b24"}}
+          EOF
+          echo "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" | base64 -d > tools/bes-debug.keystore
+          cat > tools/brand.py <<'EOF'
+          # BES Sınavı: Android ikon, açılış ekranı ve sürüm ayarları
+          import os, re, shutil, glob
+          VN = open("ver.txt").read().strip(); VC = VN.replace(".", "")
+          from PIL import Image
+          RES = "android/app/src/main/res"
+          SZ = {"mdpi":48,"hdpi":72,"xhdpi":96,"xxhdpi":144,"xxxhdpi":192}
+          ic = Image.open("www/img/icon-512.png").convert("RGBA")
+          for k, s in SZ.items():
+              dst = os.path.join(RES, "mipmap-" + k); os.makedirs(dst, exist_ok=True)
+              for n in ("ic_launcher.png", "ic_launcher_round.png"): ic.resize((s, s), Image.LANCZOS).save(os.path.join(dst, n))
+          shutil.rmtree(os.path.join(RES, "mipmap-anydpi-v26"), ignore_errors=True)
+          for f in glob.glob(os.path.join(RES, "mipmap-*", "ic_launcher_foreground.png")): os.remove(f)
+          logo = Image.open("www/img/icon-512.png").convert("RGB")
+          for f in glob.glob(os.path.join(RES, "drawable*", "splash.png")):
+              w, h = Image.open(f).size
+              bg = Image.new("RGB", (w, h), (7, 11, 36)); s = int(min(w, h) * 0.42)
+              bg.paste(logo.resize((s, s), Image.LANCZOS), ((w - s) // 2, (h - s) // 2)); bg.save(f)
+          g = "android/app/build.gradle"; t = open(g).read()
+          t = re.sub(r"versionCode \d+", "versionCode " + VC, t); t = re.sub(r'versionName "[^"]*"', 'versionName "' + VN + '"', t)
+          sign = """
+              signingConfigs {
+                  debug {
+                      storeFile file("../../tools/bes-debug.keystore")
+                      storePassword "android"
+                      keyAlias "androiddebugkey"
+                      keyPassword "android"
+                      enableV1Signing true
+                      enableV2Signing true
+                  }
+              }
+          """
+          if "bes-debug.keystore" not in t:
+              t = t.replace("android {", "android {" + sign, 1)
+          open(g, "w").write(t)
+          v = os.path.join(RES, "values", "styles.xml")
+          if os.path.exists(v):
+              x = open(v).read()
+              if "android:statusBarColor" not in x:
+                  x = x.replace('<style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">', '<style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">\n        <item name="android:statusBarColor">#070b24</item>\n        <item name="android:navigationBarColor">#070b24</item>')
+                  open(v, "w").write(x)
+          print("branding ok")
+          EOF
+      - run: npm install
+      - run: npx cap add android
+      - run: pip install pillow && python3 tools/brand.py && npx cap sync android
+      - name: APK derle
+        run: cd android && chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          V=$(cat ver.txt)
+          mkdir -p out && cp android/app/build/outputs/apk/debug/app-debug.apk out/BES-Sinavi-v$V.apk
+          gh release delete bes-v$V -y --cleanup-tag -R ${{ github.repository }} || true
+          gh release create bes-v$V out/BES-Sinavi-v$V.apk -R ${{ github.repository }} --target ${{ github.sha }} --title "BES Sinavi v$V" --notes "Android APK"
